@@ -1,11 +1,10 @@
-## Agência 2 - Conta Poupança e Corrente
+# Agência 2 - Conta Poupança e Corrente
 ![](capa.jpg)
 
 <!--TOC_BEGIN-->
-- [Agência 2 - Conta Poupança e Corrente](#agência-2---conta-poupança-e-corrente)
 - [Requisitos](#requisitos)
 - [Shell](#shell)
-- [Raio X](#raio-x)
+- [Diagrama](#diagrama)
 
 <!--TOC_END-->
 
@@ -31,19 +30,19 @@ O objetivo dessa atividade é implementar uma agência bancária simplificada. D
 # addCli _idCliente
 # adiciona um cliente na lista de clientes.
 # cria uma conta poupança e uma conta corrente para cada cliente usando numeração de forma sequencial.
-$addCli Diego
-$addCli Aline
-$addCli Andre
+$addCli Almir
+$addCli Julia
+$addCli Maria
 
 # show mostra as contas do banco, com id:usuario:saldo:tipo
 # em tipo use CC para conta corrente e CP para conta poupança.
 $show
-0:Diego:0.00:CC
-1:Diego:0.00:CP
-2:Aline:0.00:CC
-3:Aline:0.00:CP
-4:Andre:0.00:CC
-5:Andre:0.00:CP
+0:Almir:0.00:CC
+1:Almir:0.00:CP
+2:Julia:0.00:CC
+3:Julia:0.00:CP
+4:Maria:0.00:CC
+5:Maria:0.00:CP
 
 ######################################
 #__case operações básicas
@@ -66,12 +65,12 @@ $saque 1 300
 fail: saldo insuficiente
 
 $show
-0:Diego:30.00:CC
-1:Diego:200.00:CP
-2:Aline:50.00:CC
-3:Aline:250.00:CP
-4:Andre:0.00:CC
-5:Andre:0.00:CP
+0:Almir:30.00:CC
+1:Almir:200.00:CP
+2:Julia:50.00:CC
+3:Julia:250.00:CP
+4:Maria:0.00:CC
+5:Maria:0.00:CP
 
 $transf 3 5 200
 $transf 0 4 25
@@ -81,12 +80,12 @@ $transf 2 8 10
 fail: conta nao encontrada
 
 $show
-0:Diego:5.00:CC
-1:Diego:200.00:CP
-2:Aline:50.00:CC
-3:Aline:50.00:CP
-4:Andre:25.00:CC
-5:Andre:200.00:CP
+0:Almir:5.00:CC
+1:Almir:200.00:CP
+2:Julia:50.00:CC
+3:Julia:50.00:CP
+4:Maria:25.00:CC
+5:Maria:200.00:CP
 
 #__case update mensal
 # No comando update todas as contas serão atualizadas.
@@ -95,18 +94,18 @@ $show
 $update
 
 $show
-0:Diego:-15.00:CC
-1:Diego:202.00:CP
-2:Aline:30.00:CC
-3:Aline:50.50:CP
-4:Andre:5.00:CC
-5:Andre:202.00:CP
+0:Almir:-15.00:CC
+1:Almir:202.00:CP
+2:Julia:30.00:CC
+3:Julia:50.50:CP
+4:Maria:5.00:CC
+5:Maria:202.00:CP
 
 $end
 
 ```
 
 ***
-## Raio X
+## Diagrama
 
 ![](uml.jpg)

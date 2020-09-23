@@ -5,6 +5,7 @@
 - [Shell](#shell)
 - [Main em Java](#main-em-java)
 - [Diagrama UML](#diagrama-uml)
+- [Main interativa](#main-interativa)
 - [Recursos Extras](#recursos-extras)
 
 <!--TOC_END-->
@@ -168,224 +169,52 @@ poo [ ]
 ## Diagrama UML
 ![](resources/diagrama.png)
 
+
+## Main interativa
+
+```c++
+int main(){
+    string line, cmd;
+    Sistema sistema;
+    while(true){
+        try{
+            getline(cin, line);
+            cout << "$" << line << endl;
+            stringstream ss(line);
+            vector<string> ui(istream_iterator<string>{ss}, istream_iterator<string>());
+            string cmd = ui[0];
+            if(cmd == "end"){
+                break;
+            }else if(cmd == "nwalu"){
+                for(size_t i = 1; i < ui.size(); i++)
+                    sistema.addAluno(ui[i]);
+            }else if(cmd == "nwdis"){
+                for(size_t i = 1; i < ui.size(); i++)
+                    sistema.addDiscp(ui[i]);
+            }else if(cmd == "show"){
+                cout << sistema;
+            }else if(cmd == "tie"){
+                for(size_t i = 2; i < ui.size(); i++)
+                    sistema.matricular(ui[1], ui[i]);
+            }else if(cmd == "untie"){
+                for(size_t i = 2; i < ui.size(); i++)
+                    sistema.desmatricular(ui[1], ui[i]);
+            }else if(cmd == "rmalu"){
+                sistema.rmAluno(ui[1]);
+            }else{
+                cout << "comando invalido " << "[" << cmd << "]\n";
+            }
+        }catch(string e){
+            cout << e << endl;
+        }
+    }
+}
+```
+
+
+
 ***
 ## Recursos Extras
 - [Comandos de teste](resources/testes.tio)
 - [Modelo em C++](resources/raiox.cpp)
 - [Exemplo Main em C++](resources/exemplo_main.cpp)
-
-<!--
-***
-
-***
-## Raio X em Java []()
-
-````java
-class Aluno
-- id: String
-- m_discp: Map<String, Discp>
---
-+ matricular(discp: Discp): void
-+ desmatricular(idDiscp: String): void
-+ getDisciplinas(): List<Discp>
---
-+ Aluno(idAluno)
-+ getId(): String
-
-
-class Discp
-- id: String
-- m_aluno: Map<String, Aluno>
---
-+ matricular(aluno: Aluno): void
-+ desmatricular(idAluno: String): void
-+ getAlunos(): List<Aluno>
---
-+ Discp(id)
-+ getId(): String
-
-class Sistema
-- alunos: Map<String, Aluno>
-- discps: Map<String, Discp>
---
-+ addAluno(idAluno: String): void
-+ addDiscp(idDiscp: String): void
-+ matricular(idAluno: String, idDisc: String): void
-+ desmatricular(idAluno: String, idDisc: String): void
-+ rmAluno(idAluno: String): void
-````
-
-
-***
-## Raio X em C++ []()
-
-````c++
-class Discp{
-    string id;
-    map<string, Aluno*> m_aluno;
-public:
-    Discp(string nome = "");
-    string getId();
-    void addAluno(Aluno* aluno);
-    void rmAluno(string idAluno);
-    friend ostream& operator<<(ostream& os, Discp& discp);
-};
-
-class Aluno{
-    string id;
-    map<string, Discp*> m_discp;
-public:
-    Aluno(string nome = "");
-    string getId();
-    vector<Discp*> getDiscps();
-    friend ostream& operator<<(ostream& os, Aluno& aluno);
-    friend void Discp::addAluno(Aluno*);
-    friend void Discp::rmAluno(string);
-};
-
-class Sistema {
-    map<string, Aluno> m_aluno;
-    map<string, Discp> m_discp;
-public:
-    void addAluno(string idAluno);
-    void addDiscp(string idDiscp);
-    void matricular(string idAluno, string idDiscp);
-    void desmatricular(string idAluno, string idDiscp);
-    void rmAluno(string idAluno);
-    friend ostream& operator<<(ostream& os, Sistema& sis);
-};
-
-````
-
-<!--
-***
-## Main interativa em C++ []()
-
-```c++
-template <class T>
-T get(stringstream& ss){
-    T value;
-    ss >> value;
-    return value;
-}
-
-struct Solver{
-    Sistema sistema;
-
-    void exec(){
-        while (true){
-            string line;
-            getline(cin, line);
-            cout << "$" << line<< "\n";
-            if(line == "end")
-                break;
-            else{
-                try{
-                    shell(line);
-                }catch(exception &e){
-                    cout << e.what() << "\n";
-                }
-            }
-        }
-    }
-
-    void shell(string line){
-        stringstream ss(line);
-        string cmd, value;
-        ss >> cmd;
-        if(cmd == "nwalu"){
-            while(ss >> value)
-                sistema.addAluno(value);
-        }else if(cmd == "nwdis"){
-            while(ss >> value)
-                sistema.addDiscp(value);
-        }else if(cmd == "show"){
-            cout << sistema;
-        }else if(cmd == "tie"){
-            string aluno = get<string>(ss);
-            while(ss >> value)
-                sistema.matricular(aluno, value);
-        }else if(cmd == "untie"){
-            string aluno = get<string>(ss);
-            while(ss >> value)
-                sistema.desmatricular(aluno, value);
-        }else if(cmd == "rmalu"){
-            sistema.rmAluno(get<string>(ss));
-        }else{
-            cout << "comando invalido " << "[" << cmd << "]\n";
-        }
-    }
-};
-
-int main(){
-    Solver().exec();
-}
-```
-
-
-
-
-***
-## Exemplo em C++ []()
-
-```c++
-int main(){
-    Sistema sys;
-    for(auto aluno : {"alice", "edson", "bruno"})
-        sys.addAluno(aluno);
-    for(auto discp : {"fup", "aps", "poo"})
-        sys.addDiscp(discp);
-    cout << sys;
-/*
-alunos:
-    alice [ ]
-    bruno [ ]
-    edson [ ]
-discps:
-    aps [ ]
-    fup [ ]
-    poo [ ]
-*/
-    for(auto discp : {"fup", "aps", "poo"})
-        sys.matricular("bruno", discp);
-    for(auto discp : {"fup", "poo"})
-        sys.matricular("alice", discp);
-    sys.matricular("edson", "fup");
-    cout << sys;
-/*
-alunos:
-    alice [ fup poo ]
-    bruno [ aps fup poo ]
-    edson [ fup ]
-discps:
-    aps [ bruno ]
-    fup [ alice bruno edson ]
-    poo [ alice bruno ]
-*/
-    sys.desmatricular("bruno", "poo");
-    sys.desmatricular("bruno", "aps");
-    cout << sys;
-/*
-alunos:
-    alice [ fup poo ]
-    bruno [ fup ]
-    edson [ fup ]
-discps:
-    aps [ ]
-    fup [ alice bruno edson ]
-    poo [ alice ]
-*/
-    sys.rmAluno("alice");
-    cout << sys;
-/*
-alunos:
-    bruno [ fup ]
-    edson [ fup ]
-discps:
-    aps [ ]
-    fup [ bruno edson ]
-    poo [ ]
-*/
-}
-```
--->

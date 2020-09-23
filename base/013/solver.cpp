@@ -33,11 +33,12 @@ struct Conta{
         this->sacar(value);
         other.depositar(value);
     }
-    virtual string toString(){
+    friend ostream& operator<<(ostream& os, Conta& conta){
         char saida[200];
         sprintf(saida, "%d:%s:%.2f:%s", 
-            this->id, this->idCliente.c_str(), this->saldo, this->tipo.c_str());
-        return string(saida);
+            conta.id, conta.idCliente.c_str(), conta.saldo, conta.tipo.c_str());
+        os << string(saida);
+        return os;
     }
 };
 
@@ -68,11 +69,18 @@ struct Cliente{
     }
 };
 
-struct Agencia{
+class Agencia{
     map<string, shared_ptr<Cliente>> clientes;
     map<int, shared_ptr<Conta>> contas;
     int nextContaId {};
-
+    Conta& getConta(int id){
+        try{
+            return *contas.at(id);
+        }catch(exception& e){
+            throw string("fail: conta nao encontrada");
+        }
+    }
+public:
     Agencia(){}
 
     void addCli(string id){
@@ -88,21 +96,29 @@ struct Agencia{
         }
     }
 
-    Conta& getConta(int id){
-        try{
-            return *contas.at(id);
-        }catch(exception& e){
-            throw string("fail: conta nao encontrada");
-        }
+    void sacar(int idConta, float value){
+        getConta(idConta).sacar(value);
     }
-
-    string toString(){
-        stringstream ss;
-        for(auto& pair : contas)
-            ss << pair.second->toString() << "\n";
-        return ss.str();
+    void depositar(int idConta, float value){
+        getConta(idConta).depositar(value);
+    }
+    void transferir(int contaDe, int contaPara, float value){
+        getConta(contaDe).transferir(getConta(contaPara), value);
+    }
+    void atualizarContas(){
+        for(auto& [k, v] : this->contas)
+            v->atualizarMes();
+    }
+    friend ostream& operator<<(ostream& os, Agencia& agencia){
+        for(auto& pair : agencia.contas)
+            os << *pair.second << "\n";
+        return os;
     }
 };
+
+
+template <class T>
+T get(istream& is){ T t; is >> t; return t;}
 
 int main(){
     string line, cmd;
@@ -116,26 +132,23 @@ int main(){
             if(cmd == "end")
                 break;
             else if(cmd == "addCli"){
-                string idCliente;
-                ss >> idCliente;
-                ag.addCli(idCliente);
+                ag.addCli(get<string>(ss));
             }else if(cmd == "show"){
-                cout << ag.toString();
+                cout << ag;
             }else if(cmd == "saque"){
                 int conta; float value;
                 ss >> conta >> value;
-                ag.getConta(conta).sacar(value);
+                ag.sacar(conta, value);
             }else if(cmd == "deposito"){
                 int conta; float value;
                 ss >> conta >> value;
-                ag.getConta(conta).depositar(value);
+                ag.depositar(conta, value);
             }else if(cmd == "transf"){
                 int contaDe, contaPara; float value;
                 ss >> contaDe >> contaPara >> value;
-                ag.getConta(contaDe).transferir(ag.getConta(contaPara), value);
+                ag.transferir(contaDe, contaPara, value);
             }else if(cmd == "update"){
-                for(auto& par : ag.contas)
-                    par.second->atualizarMes();
+                ag.atualizarContas();
             }else{
                 cout << "fail: comando invalido\n";
             }
