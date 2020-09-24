@@ -1,9 +1,5 @@
 # Agiota Gente Fina
 
-Ptolomeu é o agiota mais carismático de MoneyVille. Sem nenhuma razão foi denunciado e acabou indo pra cadeira. A lasqueira foi que ele afirma que quem implementou o software de controle dos empréstimos e quem apagou os registro dos defuntos foi você.
-
-![](figura.jpg)
-
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
 - [Exemplos](#exemplos)
@@ -12,6 +8,11 @@ Ptolomeu é o agiota mais carismático de MoneyVille. Sem nenhuma razão foi den
 - [Fim da história](#fim-da-história)
 
 <!--TOC_END-->
+
+Ptolomeu é o agiota mais carismático de MoneyVille. Sem nenhuma razão foi denunciado e acabou indo pra cadeira. A lasqueira foi que ele afirma que quem implementou o software de controle dos empréstimos e quem apagou os registro dos defuntos foi você.
+
+![](figura.jpg)
+
 
 Seu Plutolomeu é um agiota que empresta dinheiro a juros 0. Ele é uma pessoa muito carismática e amiga de todos. De sorriso largo sempre aberto, Plutolomeu é amigo da vizinhança. Inclusive esse ano, ele ganhou uma festa de aniversário surpresa de todos os seus devedores. Só quem é gente muito fina ganha festa surpresa né?
 
