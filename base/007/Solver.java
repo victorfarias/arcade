@@ -6,8 +6,9 @@ interface Conta{
     void tarifa(float valor);
     void extrato();
     void extratoN(int valor);
-    void extornar(int valor)
+    void extornar(int valor);
 }
+
 public class Solver {
     public static void main(String[] args) {
         Conta sys = new Conta(100);
