@@ -111,56 +111,21 @@ public static void main(String[] args) {
     for(String id : Arrays.asList("fup", "aps", "poo"))
         sys.addDiscp(id);
     System.out.println(sys);
-/*
-alunos:
-alice [ ]
-bruno [ ]
-edson [ ]
-discps:
-aps [ ]
-fup [ ]
-poo [ ]
-*/
+// check
     for(String id : Arrays.asList("fup", "aps", "poo"))
         sys.matricular("bruno", id);
     for(String id : Arrays.asList("fup", "poo"))
         sys.matricular("alice", id);
     sys.matricular("edson", "fup");
     System.out.println(sys);
-/*
-alunos:
-alice [ fup poo ]
-bruno [ aps fup poo ]
-edson [ fup ]
-discps:
-aps [ bruno ]
-fup [ alice bruno edson ]
-poo [ alice bruno ]
-*/
+// check
     sys.desmatricular("bruno", "poo");
     sys.desmatricular("bruno", "aps");
     System.out.println(sys);
-/*
-alunos:
-alice [ fup poo ]
-bruno [ fup ]
-edson [ fup ]
-discps:
-aps [ ]
-fup [ alice bruno edson ]
-poo [ alice ]
-*/
+// check
     sys.rmAluno("alice");
     System.out.println(sys);
-/*
-alunos:
-bruno [ fup ]
-edson [ fup ]
-discps:
-aps [ ]
-fup [ bruno edson ]
-poo [ ]
-*/
+// check
 }
 
 ```
@@ -180,6 +145,7 @@ int main(){
             getline(cin, line);
             cout << "$" << line << endl;
             stringstream ss(line);
+            //cria um vetor de strings a partir de line
             vector<string> ui(istream_iterator<string>{ss}, istream_iterator<string>());
             string cmd = ui[0];
             if(cmd == "end"){
