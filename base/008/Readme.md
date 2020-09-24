@@ -20,6 +20,7 @@ Seu Plutolomeu é um agiota que empresta dinheiro a juros 0. Ele é uma pessoa m
 
 Vamos abstrair um pouco da história de Plutolomeu e analisar o sistema de emprestimos que ele tinha instalado em seu computador.
 
+***
 ## Requisitos
 
 - Iniciar Sistema.
@@ -50,9 +51,8 @@ Vamos abstrair um pouco da história de Plutolomeu e analisar o sistema de empre
     - Apagar as transações não altera o saldo de ptolomeu.
 
 
-
-
-## Exemplos
+***
+## Shell
 
 ```bash
 #__case init
@@ -138,6 +138,7 @@ $end
 ## Diagrama
 ![](diagrama.png)
 
+***
 ## Main
 ```java
 public static void main(String args[]){
@@ -172,6 +173,7 @@ public static void main(String args[]){
 
 ```
 
+***
 ## Fim da história
 
 - Então assim ficou Ptolomeu, depois de conseguir explicar pra polícia que tudo não passou me um mal entendido. 
