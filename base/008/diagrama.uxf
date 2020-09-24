@@ -28,27 +28,25 @@ fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
+      <x>150</x>
       <y>300</y>
-      <w>430</w>
+      <w>400</w>
       <h>200</h>
     </coordinates>
-    <panel_attributes>**Sistema**
+    <panel_attributes>**Agiota**
 bg=yellow
-fontfamily=Monospaced
 --
 - nextTrId: int
-- clientes: Map&lt;String, Cliente&gt;
-- transacoes: Map&lt;int, Transacao&gt;
+- balance: float
+- repClient: Map&lt;String, Client&gt;
+- repTrans:  Map&lt;Integer, Transaction&gt;
 --
-+ emprestar(idCliente: String, valor: float): void
-+ receber(idCliente: String, valor: float): void
-+ getCliente(idCliente: String) : Cliente
-+ matar(idCliente: String)
-+ getTransacoes(): List&lt;Transacoes&gt;
---
-constructor(saldoInicial: float)
-toString()
++ Agiota(saldoInicial: float)
++ addCliente(codename: String, limite: float): void
++ lend(codename: String, value: float): void
++ receive(codename: String, value: float): void
++ kill(codename: String)
+
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -60,15 +58,15 @@ toString()
       <w>290</w>
       <h>110</h>
     </coordinates>
-    <panel_attributes>**Transacao**
+    <panel_attributes>**Transaction**
 bg=yellow
 --
-+ idTr : int
-+ idCliente : String
-+ valor : float
++ id: int
++ codename: String
++ value: float
 --
-constructor(idTr, idCliente, valor)
-toString()</panel_attributes>
++ Transaction(id, codename, value)
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -85,22 +83,31 @@ toString()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>350</x>
+      <x>390</x>
       <y>120</y>
       <w>290</w>
       <h>130</h>
     </coordinates>
-    <panel_attributes>**Cliente**
+    <panel_attributes>**Client**
 bg=yellow
 --
-+ idTr : STring
-+ nomeCompleto : String
-+ transacoes: Map&lt;int, Transacao&gt;
++ codename: String
++ limite: float
++ balance: float
 --
-+ addTransacao(transacao): void
---
-constructor(idCliente, nomeCompleto)
-toString()</panel_attributes>
++ Client(codename, limite)
+</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>240</y>
+      <w>30</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
