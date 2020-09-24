@@ -185,4 +185,3 @@ fail: indice 50 invalido
 ***
 ## Recursos Extras
 - [Comandos de teste](resources/testes.tio)
-- [Exemplo Main em C++](resources/exemplo_main.cpp)
