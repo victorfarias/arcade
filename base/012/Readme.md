@@ -1,14 +1,15 @@
 # Topic de Luxo
 ![](figura.jpg)
 
-<!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Shell](#shell)
-- [Raio X](#raio-x)
-
-<!--TOC_END-->
 
 O objetivo dessa atividade é exercitar o que vocês aprenderam no cinema com algumas variações. Aqui, vamos implementar um sistema de alocação de passageiros em uma topic. Nossa topic tem uma quantidade máxima de passageiros, mas também define alguns assentos preferenciais.
+
+<!--TOC_BEGIN-->
+- [Topic de Luxo](#topic-de-luxo)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+
+<!--TOC_END-->
 
 ## Requisitos
 Seu sistema deverá:
@@ -91,22 +92,6 @@ fail: pass ja esta na topic
 $show
 [ @joao:103 @bia:16 =aragao:96 = =rex:20 ]
 $end
-
 #__end__
 ```
-
 ***
-## Raio X
-```java
-class Pass
-+ id: string
-+ idade: int
-
-class Topic
-+ cadeiras: Pass[]
---
-+ 
-
-
-
-```

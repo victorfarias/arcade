@@ -70,7 +70,7 @@ class Sala{
     }
 }
 
-public class Controller {
+public class Solver {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Sala sala = new Sala(0);

@@ -1,20 +1,21 @@
 # Sala de Cinema
 ![](figura.jpg)
 
-<!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Raio X](#raio-x)
-- [Shell](#shell)
-
-<!--TOC_END-->
 
 O objetivo dessa atividade é implementar o sistema de alocação de uma única sala de cinema. Se existem cadeiras livres, os clientes podem reservá-las. Também podem desistir da reserva. O sistema deve mostrar quem está sentado em cada cadeira.
 
-Nessa atividade, você deverá criar:
-- Uma classe que representa o cliente.
-- Uma classe que representa a sala de cinema e guarda os clientes.
-- Uma classe que controle o fluxo de entrada e saída e processe as chamadas.
+- Nessa atividade, você deverá criar:
+1- Uma classe que representa o cliente.
+2- Uma classe que representa a sala de cinema e guarda os clientes.
+3- Uma classe que controle o fluxo de entrada e saída e processe as chamadas.
 
+<!--TOC_BEGIN-->
+- [Sala de Cinema](#sala-de-cinema)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Main](#main)
+
+<!--TOC_END-->
 ## Requisitos
 Seu sistema deverá:
 
@@ -32,22 +33,6 @@ Seu sistema deverá:
     - Cancele reserva passando o id do cliente.
 
 ***
-## Raio X
-
-```java
-class Cliente
-+ id: string
-+ fone: string
-
-class Cinema 
-+ cadeiras:Cliente[]
---
-+ reservar(id, fone, indice): bool    //reservar
-+ cancelar(id): bool   //cancelar
---
-+ Cinema(lotacao)
-```
-
 
 ## Shell
 
@@ -70,9 +55,9 @@ $reservar joao 3131 3
 $show
 [ davi:3232 - - joao:3131 ]
 $reservar rute 3030 0
-failure: cadeira ja esta ocupada
+fail: cadeira ja esta ocupada
 $reservar davi 3234 2
-failure: cliente ja esta no cinema
+fail: cliente ja esta no cinema
 
 #__case cancelamentos
 
@@ -80,11 +65,41 @@ $cancelar davi
 $show
 [ - - - joao:3131 ]
 $cancelar rita
-failure: cliente nao esta no cinema
+fail: cliente nao esta no cinema
 $show
 [ - - - joao:3131 ]
 $end
 #__end__
+```
+![](diagrama.png)
+
+## Main
+
+```java
+    Cinema cinema = new Cinema(0);
+    System.out.println(cinema);
+    // [ ]
+    cinema = new Cinema(5);
+    System.out.println(cinema);
+    // [ - - - - - ]
+    cinema = new Cinema(4);
+    System.out.println(cinema);
+    // [ - - - - ]
+    cinema.reservar("davi", "3232", 0);
+    cinema.reservar("joao", "3131", 3);
+    System.out.println(cinema);
+    // [ davi:3232 - - joao:3131 ]
+    cinema.reservar("rute", "3030", 0);
+    // fail: cadeira ja esta ocupada
+    cinema.reservar("davi", "3234", 2);
+    // fail: cliente ja esta no cinema
+    cinema.cancelar("davi");
+    System.out.println(cinema);
+    // [ - - - joao:3131 ]
+    cinema.cancelar("rita");
+    // fail: cliente nao esta no cinema
+    System.out.println(cinema);
+    // [ - - - joao:3131 ]
 ```
 
 

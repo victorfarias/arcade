@@ -87,6 +87,7 @@ $rm alves
 
 $speedList
 $historico
+$end
 ```
 
 ## Diagrama de Classes

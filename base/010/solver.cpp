@@ -34,16 +34,16 @@ struct Sala{
     void reservar(string id, string fone, int ind){
         int qtd = cadeiras.size();
         if((ind < 0) || (ind >= qtd)){
-            cout << "failure: cadeira nao existe" << endl;
+            cout << "fail: cadeira nao existe" << endl;
             return;
         } 
         if(cadeiras[ind] != nullptr){ 
-            cout << "failure: cadeira ja esta ocupada" << endl; 
+            cout << "fail: cadeira ja esta ocupada" << endl; 
             return;
         }
         for(int i = 0; i < (int) cadeiras.size(); i++){
             if((cadeiras[i] != nullptr) && (cadeiras[i]->id == id)){
-                cout << "failure: cliente ja esta no cinema" << endl;
+                cout << "fail: cliente ja esta no cinema" << endl;
                 return;
             }
         }
@@ -58,7 +58,7 @@ struct Sala{
                 return;
             }
         }
-        cout << "failure: cliente nao esta no cinema" << endl;
+        cout << "fail: cliente nao esta no cinema" << endl;
     }
 
     string toString(){

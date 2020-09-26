@@ -42,7 +42,7 @@ $init 100
 $show 
 conta:100 saldo:0
 
-#__case 
+#__case depositar
 $deposito 100
 $deposito -10
 fail: valor invalido
@@ -55,7 +55,7 @@ $tarifa 10
 $show
 conta:100 saldo:70
 $saque 150
-fail: saldo insuficiente
+fail: saldo insuficienti
 $saque 30
 $tarifa 5
 $deposito 5
