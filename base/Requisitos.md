@@ -1,13 +1,12 @@
 # CheckList
 - [ ] diagrama.png
 - [ ] diagrama.uxf
-- [ ] Solver.cpp
-- [ ] Solver.java
+- [ ] Solver.cpp ou Solver.java
 - [ ] Readme.md
   1. Titulo
-  2. Img
-  3. Texto
-  - TOC
+  2. TOC
+  3. Img
+  4. Texto
   - Requisitos
   - [ ] Exemplos
   - [ ] Diagrama

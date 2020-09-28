@@ -1,6 +1,12 @@
 # Sala de Cinema
-![](figura.jpg)
+<!--TOC_BEGIN-->
+- [Sala de Cinema](#sala-de-cinema)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Main não interativa](#main-não-interativa)
 
+<!--TOC_END-->
+![](figura.jpg)
 
 O objetivo dessa atividade é implementar o sistema de alocação de uma única sala de cinema. Se existem cadeiras livres, os clientes podem reservá-las. Também podem desistir da reserva. O sistema deve mostrar quem está sentado em cada cadeira.
 
@@ -9,13 +15,6 @@ O objetivo dessa atividade é implementar o sistema de alocação de uma única 
 2- Uma classe que representa a sala de cinema e guarda os clientes.
 3- Uma classe que controle o fluxo de entrada e saída e processe as chamadas.
 
-<!--TOC_BEGIN-->
-- [Sala de Cinema](#sala-de-cinema)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Main](#main)
-
-<!--TOC_END-->
 ## Requisitos
 Seu sistema deverá:
 
@@ -73,7 +72,7 @@ $end
 ```
 ![](diagrama.png)
 
-## Main
+## Main não interativa
 
 ```java
     Cinema cinema = new Cinema(0);
