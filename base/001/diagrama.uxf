@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>140</x>
+      <y>40</y>
+      <w>200</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>*Calculadora*
+bg=yellow
+--
++ battery: int
++ maxBattery: int
++ display: float
+--
++ charge(value: int): void
++ useBattery(): void
++ sum(a: int, b: int): string
++ div(a: int, b: int): string
++ show(): void
+--
++ constructor(batteryMax)
++ getBattery()</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

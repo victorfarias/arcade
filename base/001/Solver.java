@@ -45,7 +45,7 @@ class Calculadora {
 	
 	public String toString(){
 		DecimalFormat form = new DecimalFormat("0.00");
-		return "display = " + form.format(this.display) + ", battery = " + this.bateria;
+		return "display = " + form.format(this.display).replace(",",".") + ", battery = " + this.bateria;
 	}
 }
 
