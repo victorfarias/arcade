@@ -52,7 +52,9 @@ display = 0.00, battery = 2
 $charge 3
 $show
 display = 0.00, battery = 4
-
+$end	
+```	
+```bash
 #__case somando
 # O comando "$sum V1 V2" soma e mostra o resultado da soma. Para isso ele precisa gastar uma unidade de bateria. Caso não exista bateria suficiente informe.
 $init 2
@@ -71,7 +73,9 @@ display = 5.00, battery = 1
 $sum -4 -2
 $show
 display = -6.00, battery = 0
-
+$end
+```
+```bash
 #__case dividindo
 # O comando "$div A B" consome uma unidade de bateria e apresenta o resultado da divisão inteira entre os números inteiros A e B. Se B for 0 ou não houver bateria, informe os erros. Tentar dividir por 0 consome uma unidade de bateria.
 $init 3
