@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>50</y>
+      <w>300</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>*Car*
+bg=yellow
+--
++ gas: int
++ gasMax: int
++ pass: int
++ passMax: int
++ km: int
+--
++ in(): bool    //embarcar
++ out(): bool   //desembarcar
++ fuel(value: int): void //abastecer
++ drive(distance: int): boolean //dirigir
++ show(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

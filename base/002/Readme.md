@@ -1,13 +1,15 @@
 # Carro com pessoas
-![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Shell](#shell)
-- [Raio X](#raio-x)
-- [Respostas](#respostas)
+- [Carro com pessoas](#carro-com-pessoas)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Diagrama](#diagrama)
+  - [Main não interativa](#main-não-interativa)
+  - [Respostas](#respostas)
 
 <!--TOC_END-->
+![](figura.jpg)
 
 Essa atividade se propõe a implementar um carro ecológico que pode passear pela cidade. Ele deve poder embarcar e desembarcar pessoas, colocar combustível e andar.
 
@@ -92,25 +94,53 @@ $end
 ```
 
 ***
-## Raio X
+## Diagrama
+![](diagrama.png)
 
+## Main não interativa
 ```java
-class Car 
-+ gas: int
-+ gasMax: int
-+ pass: int
-+ passMax: int
-+ km: int
---
-+ in(): bool    //embarcar
-+ out(): bool   //desembarcar
-+ fuel(value: int): void //abastecer
-+ drive(distance: int): boolean //dirigir
-+ show(): void
+Car car = new Car();
+System.out.println(car);
+//pass: 0, gas: 0, km: 0
+car.in();
+car.in();
+System.out.println(car);
+//pass: 2, gas: 0, km: 0
+car.in();
+//fail: limite de pessoas atingido
+System.out.println(car);
+//pass: 2, gas: 0, km: 0
+car.out();
+car.out();
+car.out();
+//fail: nao ha ninguem no carro
+System.out.println(car);
+//pass: 0, gas: 0, km: 0
+
+Car car = new Car();
+car.fuel(60);
+System.out.println(car);
+//pass: 0, gas: 60, km: 0
+
+car.drive(10);
+//fail: nao ha ninguem no carro
+
+car.in();
+car.drive(10);
+System.out.println(car);
+//pass: 1, gas: 50, km: 10
+
+car.drive(70);
+//fail: tanque vazio apos andar 50 km
+car.drive(10);
+//fail: tanque vazio
+System.out.println(car);
+//pass: 1, gas: 0, km: 60
+
+car.fuel(200);
+System.out.println(car);
+//pass: 1, gas: 100, km: 60
 ```
-
-
-
 ***
 ## Respostas
 - [C++](solver.cpp)
