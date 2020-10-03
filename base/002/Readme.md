@@ -97,6 +97,7 @@ $end
 ## Diagrama
 ![](diagrama.png)
 
+***
 ## Main não interativa
 ```java
 Car car = new Car();

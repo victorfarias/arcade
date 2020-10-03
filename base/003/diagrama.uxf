@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>30</y>
+      <w>160</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>*Passageiro*
+bg=yellow
+--
++ nome: string
++ idade: int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>170</y>
+      <w>180</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>*Moto*
+bg=yellow
+--
++ potencia: int
++ pass: Passageiro
++ tempo: int
+--
++ Moto(potencia: int)
++ subir(pass)
++ buzinar()
++ descer()
++ dirigir(tempo)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>190</x>
+      <y>90</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+</diagram>
