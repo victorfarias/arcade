@@ -118,7 +118,7 @@ car.out();
 System.out.println(car);
 //pass: 0, gas: 0, km: 0
 
-Car car = new Car();
+car = new Car();
 car.fuel(60);
 System.out.println(car);
 //pass: 0, gas: 60, km: 0
