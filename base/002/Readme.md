@@ -1,12 +1,10 @@
 # Carro com pessoas
 
 <!--TOC_BEGIN-->
-- [Carro com pessoas](#carro-com-pessoas)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
-  - [Respostas](#respostas)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 ![](figura.jpg)
@@ -143,5 +141,4 @@ System.out.println(car);
 //pass: 1, gas: 100, km: 60
 ```
 ***
-## Respostas
-- [C++](solver.cpp)
+

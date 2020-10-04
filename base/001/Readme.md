@@ -1,13 +1,13 @@
 # Calculadora com bateria
 
 <!--TOC_BEGIN-->
-- [Calculadora com bateria](#calculadora-com-bateria)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Ajuda](#ajuda)
-  - [Main não interativa](#main-não-interativa)
-  - [Respostas](#respostas)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Ajuda](#ajuda)
+- [Main não interativa](#main-não-interativa)
+- [Respostas](#respostas)
+
 <!--TOC_END-->
 
 ![](figura.jpg)

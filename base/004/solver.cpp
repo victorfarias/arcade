@@ -16,11 +16,19 @@ struct Grafite{
         this->dureza = dureza;
         this->tamanho = tamanho;
     }
-    string toString(){
-        stringstream ss;
-        ss << std::fixed << setprecision(1) << calibre << ":" << dureza << ":" << tamanho;
-        return ss.str();
-
+    friend ostream& operator<<(ostream& os, Grafite g){
+        os << std::fixed << setprecision(1) << g.calibre << ":" << g.dureza << ":" << g.tamanho;
+        return os;
+    }
+    int desgastePorFolha(){
+        if(dureza == "HB")
+            return 1;
+        else if(dureza == "2B")
+            return 2;
+        else if(dureza == "4B")
+            return 4;
+        else
+            return 6;
     }
 };
 
@@ -37,14 +45,13 @@ struct Lapiseira{
             delete this->grafite;
     }
 
-    string toString(){
-        stringstream saida;
-        saida << "calibre: " << this->calibre << ", grafite: ";
-        if (this->grafite != nullptr)
-            saida << "[" << grafite->toString() << "]";
+    friend ostream& operator<<(ostream& os, const Lapiseira& l){
+        os << "calibre: " << l.calibre << ", grafite: ";
+        if (l.grafite != nullptr)
+            os << "[" << *l.grafite << "]";
         else
-            saida << "null";
-        return saida.str();
+            os << "null";
+        return os;
     }
 
     bool inserir(Grafite * grafite){
@@ -61,27 +68,34 @@ struct Lapiseira{
         return false;
     }
 
-    void remover(){
-        if(this->grafite == nullptr)
+    Grafite * remover(){
+        if(this->grafite == nullptr){
             cout << "fail: nao existe grafite\n";
-        else{
-            delete this->grafite;
-            this->grafite = nullptr;
+            return nullptr;
         }
+        auto backup = this->grafite;
+        this->grafite = nullptr;
+        return backup;
     }
 
-    void write(int pressao){
-        if(this->grafite == nullptr)
+    void write(int folhas){
+        if(this->grafite == nullptr){
             cout << "fail: nao existe grafite\n";
-        else if(this->grafite->tamanho <= 2 * pressao){
-            if(this->grafite->tamanho < 2 * pressao)
-                cout << "fail: folha ficou pela metade\n";
-            delete this->grafite;
-            this->grafite = nullptr;
-            cout << "fail: grafite acabou\n";
-        }else{
-            this->grafite->tamanho -= 2 * pressao;
+            return;
         }
+        int& tamanho = this->grafite->tamanho;
+        int total = this->grafite->desgastePorFolha() * folhas;
+        if(tamanho > total){
+            tamanho -= total;
+            return;
+        }
+        if(tamanho < total){
+            int qtd = tamanho / this->grafite->desgastePorFolha();
+            cout << "fail: folhas escritas completas: " << qtd << "\n";
+        }
+        cout << "warning: grafite acabou\n";
+        delete this->grafite;
+        this->grafite = nullptr;
     }
 };
 
@@ -97,7 +111,7 @@ int main(){
         if(line == "end")
             break;
         else if(cmd == "help"){
-            cout << "init _calibre; inserir _calibre _dureza _tamanho; remover; write _pressao" << endl;
+            cout << "init _calibre; inserir _calibre _dureza _tamanho; remover; write _folhas" << endl;
         }else if(cmd == "init"){
             float calibre;
             ss >> calibre;
@@ -111,9 +125,11 @@ int main(){
             if(!lapiseira.inserir(grafite))
                 delete grafite;
         }else if(cmd == "remover"){
-            lapiseira.remover();
+            auto gr = lapiseira.remover();
+            if(gr != nullptr)
+                delete gr;
         }else if(cmd == "show"){
-            cout << lapiseira.toString() << endl;
+            cout << lapiseira << endl;
         }else if (cmd == "write"){
             int pressao;
             ss >> pressao;

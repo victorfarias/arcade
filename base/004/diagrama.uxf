@@ -29,54 +29,57 @@ fontfamily=Monospaced//possible: SansSerif,Serif,
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>220</x>
-      <y>160</y>
-      <w>220</w>
-      <h>100</h>
+      <x>160</x>
+      <y>130</y>
+      <w>320</w>
+      <h>190</h>
     </coordinates>
-    <panel_attributes>*Pessoa*
+    <panel_attributes>*Grafite*
 bg=yellow
 --
-+ nome : String
-+ idade: int
++ calibre : float
++ dureza  : String
++ tamanho : int
 --
-Pessoa(nome, idade)
-toString() //[nome:idade]
+Grafite(calibre, dureza, tamanho)
+desgastePorFolha(): int
+--
+toString() //calibre:dureza:tamanho
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>190</x>
-      <y>290</y>
-      <w>280</w>
+      <x>170</x>
+      <y>380</y>
+      <w>300</w>
       <h>170</h>
     </coordinates>
-    <panel_attributes>*Moto*
+    <panel_attributes>*Lapiseira*
 bg=yellow
 --
-+ potencia: int
-+ tempo   : int
-+ pass    : Pessoa
++ calibre: float
++ grafite: Grafite
 --
-+ Moto(potencia: int)
-+ subir(pass: Pessoa): void
-+ descer(): Pessoa
-+ buzinar(): String
-+ dirigir(tempo): void</panel_attributes>
++ inserir(grafite: Grafite): bool
++ remover(): Grafite
++ escrever(folhas: int): void
+--
++ Lapiseira(calibre: float)
++ toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>250</y>
+      <x>270</x>
+      <y>310</y>
       <w>30</w>
-      <h>60</h>
+      <h>90</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLPackage</id>
@@ -84,7 +87,7 @@ bg=yellow
       <x>150</x>
       <y>100</y>
       <w>340</w>
-      <h>390</h>
+      <h>490</h>
     </coordinates>
     <panel_attributes>JAVA
 --
@@ -99,7 +102,7 @@ bg=orange</panel_attributes>
       <w>360</w>
       <h>540</h>
     </coordinates>
-    <panel_attributes>C++
+    <panel_attributes>C++ Diferenças
 --
 
 layer=-1
@@ -109,72 +112,46 @@ bg=pink</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>160</y>
-      <w>220</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>*Pessoa*
-bg=yellow
---
-+ nome : string
-+ idade: int
---
-Pessoa(nome, idade)
-toString() //[nome:idade]
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>630</x>
-      <y>290</y>
-      <w>280</w>
+      <x>600</x>
+      <y>150</y>
+      <w>320</w>
       <h>170</h>
     </coordinates>
-    <panel_attributes>*Moto*
+    <panel_attributes>*Lapiseira*
 bg=yellow
 --
-+ potencia: int
-+ tempo   : int
-+ pass    : Pessoa*
++ calibre: float
++ grafite: Grafite*
 --
-+ Moto(potencia: int)
-+ subir(pass: Pessoa*): void
-+ descer(): Pessoa*
-+ buzinar(): string
-+ dirigir(tempo): void</panel_attributes>
++ inserir(grafite: Grafite*): bool
++ remover(): Grafite*
++ escrever(folhas: int): void
+--
++ Lapiseira(calibre: float)
++ toString(): String</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>760</x>
-      <y>250</y>
-      <w>30</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>630</x>
-      <y>470</y>
-      <w>280</w>
-      <h>150</h>
+      <x>600</x>
+      <y>390</y>
+      <w>310</w>
+      <h>230</h>
     </coordinates>
     <panel_attributes>**main**
-bg=light_gray
+bg=gray
 
-Fazer a alocação usando new
-antes de embarcar, e desalocar
-com delete após descer.
+- new deve ser dado na ação de 
+inserir.
+- delete deve ser dado na ação
+de remover, mas também no write.
 
-Atenção aos casos especiais para
-moto lotada ou vazia.</panel_attributes>
+Observe os casos especiais
+nas ações dos métodos inserir e
+remover quando já existe ou quando
+não existe grafite.
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
