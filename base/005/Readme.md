@@ -4,6 +4,7 @@
 - [Mestre dos Vetores](#mestre-dos-vetores)
   - [Requisitos](#requisitos)
   - [Shell](#shell)
+  - [Diagrama](#diagrama)
   - [Dica](#dica)
   - [Main não interativa](#main-não-interativa)
   - [Respostas](#respostas)
@@ -158,6 +159,9 @@ $show
 [ 1 3 ]
 $end
 ```
+***
+## Diagrama
+![](diagrama.png)
 
 ***
 ## Dica

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>7</x>
+      <y>84</y>
+      <w>182</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>JAVA
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>105</y>
+      <w>161</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>*ArrayManip*
+bg=yellow
+--
+- vet : ArrayList&lt;Integer&gt;
+--
++ add(value : int)
++ add(elements[] : int)
++ rmi(index : int)
++ rma(value : int)
++ ins(index : int, element : int)
++ get(index : int) : int
++ set(index : int, element : int)
++ find(index : int[]) : String
++ show() : String
++ rshow() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
