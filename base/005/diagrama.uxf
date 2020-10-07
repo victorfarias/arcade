@@ -23,27 +23,14 @@ fontfamily=SansSerif possible: Monospaced
 
 
 // This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>7</zoom_level>
-  <element>
-    <id>UMLPackage</id>
-    <coordinates>
-      <x>196</x>
-      <y>336</y>
-      <w>182</w>
-      <h>182</h>
-    </coordinates>
-    <panel_attributes>JAVA
---
-bg=orange</panel_attributes>
-    <additional_attributes/>
-  </element>
+  <zoom_level>12</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>203</x>
-      <y>357</y>
-      <w>161</w>
-      <h>154</h>
+      <x>348</x>
+      <y>132</y>
+      <w>276</w>
+      <h>264</h>
     </coordinates>
     <panel_attributes>*ArrayManip*
 bg=yellow
@@ -60,6 +47,19 @@ bg=yellow
 + find(index : int[]) : String
 + show() : String
 + rshow() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>336</x>
+      <y>96</y>
+      <w>300</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>JAVA
+--
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
