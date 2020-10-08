@@ -1,17 +1,18 @@
 # Agiota Gente Fina
 
 <!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Shell](#shell)
-- [Diagrama](#diagrama)
-- [Main](#main)
-- [Fim da história](#fim-da-história)
+- [Agiota Gente Fina](#agiota-gente-fina)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Diagrama](#diagrama)
+  - [Main](#main)
+  - [Fim da história](#fim-da-história)
 
 <!--TOC_END-->
+![](figura.jpg)
 
 Ptolomeu é o agiota mais carismático de MoneyVille. Sem nenhuma razão foi denunciado e acabou indo pra cadeira. A lasqueira foi que ele afirma que quem implementou o software de controle dos empréstimos e quem apagou os registro dos defuntos foi você.
 
-![](figura.jpg)
 
 
 Seu Plutolomeu é um agiota que empresta dinheiro a juros 0. Ele é uma pessoa muito carismática e amiga de todos. De sorriso largo sempre aberto, Plutolomeu é amigo da vizinhança. Inclusive esse ano, ele ganhou uma festa de aniversário surpresa de todos os seus devedores. Só quem é gente muito fina ganha festa surpresa né?
@@ -141,7 +142,6 @@ $end
 ***
 ## Main
 ```java
-public static void main(String args[]){
     Agiota ag = new Agiota(500);
     ag.addCli("maria", 500);
     ag.addCli("josue", 60);
