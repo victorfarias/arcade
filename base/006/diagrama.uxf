@@ -28,9 +28,9 @@ fontfamily=SansSerif possible: Monospaced
     <id>UMLClass</id>
     <coordinates>
       <x>100</x>
-      <y>230</y>
+      <y>50</y>
       <w>300</w>
-      <h>200</h>
+      <h>280</h>
     </coordinates>
     <panel_attributes>*Pet*
 bg=yellow
@@ -41,28 +41,12 @@ bg=yellow
 - age: int
 - alive: bool
 --
-+ setEnergy(value: int): void
-+ setHungry(value: int): void
-+ setClean(value: int): void
+- setEnergy(value: int): void
+- setHungry(value: int): void
+- setClean(value: int): void
 --
 + Pet(energyMax, hungryMax, cleanMax)
-+ allGets</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>100</x>
-      <y>50</y>
-      <w>300</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>*Jogo*
-bg=yellow
---
-- Pet pet;
---
-+ iniciar(Tamagotchi pet): void
++ allGets
 + play(): void
 + shower(): void
 + eat(): void
@@ -71,21 +55,10 @@ bg=yellow
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>240</x>
-      <y>190</y>
-      <w>30</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLNote</id>
     <coordinates>
       <x>100</x>
-      <y>440</y>
+      <y>340</y>
       <w>300</w>
       <h>170</h>
     </coordinates>
@@ -108,7 +81,7 @@ brincar.
       <x>90</x>
       <y>20</y>
       <w>320</w>
-      <h>600</h>
+      <h>500</h>
     </coordinates>
     <panel_attributes>JAVA
 --
