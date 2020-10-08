@@ -1,14 +1,15 @@
 # Agência 1 - Extrato, Saldo, Tarifas
-![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Shell](#shell)
-- [Main em Java](#main-em-java)
-- [Diagrama UML](#diagrama-uml)
-- [Recursos Extras](#recursos-extras)
+- [Agência 1 - Extrato, Saldo, Tarifas](#agência-1---extrato-saldo-tarifas)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Diagrama UML](#diagrama-uml)
+  - [Main em Java](#main-em-java)
+  - [Recursos Extras](#recursos-extras)
 
 <!--TOC_END-->
+![](figura.jpg)
 
 O objetivo dessa atividade é implementar uma classe responsável por gerenciar a conta bancária de um único cliente. Faremos operações de saque, depósito e extrato.
 
@@ -107,6 +108,10 @@ $extratoN 2
 
 $end
 ```
+***
+## Diagrama UML
+![](resources/diagrama.png)
+***
 ## Main em Java
 ```java
 public static void main(String[] args) {
@@ -178,10 +183,6 @@ fail: indice 50 invalido
 }
 
 ```
-
-## Diagrama UML
-![](resources/diagrama.png)
-
 ***
 ## Recursos Extras
 - [Comandos de teste](resources/testes.tio)

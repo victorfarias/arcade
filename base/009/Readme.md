@@ -1,13 +1,15 @@
 # Pula pula no parquinho
-![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Opcional](#opcional)
-- [Shell](#shell)
-- [Raio X](#raio-x)
+- [Pula pula no parquinho](#pula-pula-no-parquinho)
+  - [Requisitos](#requisitos)
+  - [Opcional](#opcional)
+  - [Shell](#shell)
+  - [Diagrama](#diagrama)
+  - [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
+![](figura.jpg)
 
 Nosso objetivo no trabalho é modelar um gestor de pula pulas em um parquinho.
 
@@ -64,27 +66,30 @@ $show
 => mario:5 luana:3 => [ livia:4 ]
 $end
 ```
+***
+## Diagrama
+![](diagrama.png)
+***
+## Main não interativa
+```java
+//case unico
+Trampoline trampoline = New Trampoline();
+trampoline.arrive(new Kid(mario, 5));
+trampoline.arrive(new Kid(livia, 4));
+trampoline.arrive(new Kid(luana, 3));
+System.out.println(trampoline);
+//=> luana:3 livia:4 mario:5 => [ ]
 
+//case entrando
+trampoline.in();
+System.out.println(trampoline);
+//=> luana:3 livia:4 => [ mario:5 ]
+trampoline.in();
+System.out.println(trampoline);
+//=> luana:3 => [ livia:4 mario:5 ]
 
-## Raio X
-```c++
-class Kid
-- name: String
-- age: int
---
-+ toString()
-+ getName(): String
-+ getAge(): int
---
-Kid(name, age)
-
-class Trampoline:
-- kidsWaiting: Kid[]
-- kidsPlaying: Kid[]
---
-+ toString(): String
-+ arrive(kid: Kid)
-+ show(): void
-+ in(): void
-+ out(): void
+//case saindo
+trampoline.out();
+System.out.println(trampoline);
+//=> mario:5 luana:3 => [ livia:4 ]
 ```
