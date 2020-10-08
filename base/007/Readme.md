@@ -1,5 +1,4 @@
 # Agência 1 - Extrato, Saldo, Tarifas
-![](figura.jpg)
 
 <!--TOC_BEGIN-->
 - [Agência 1 - Extrato, Saldo, Tarifas](#agência-1---extrato-saldo-tarifas)
@@ -10,6 +9,7 @@
   - [Recursos Extras](#recursos-extras)
 
 <!--TOC_END-->
+![](figura.jpg)
 
 O objetivo dessa atividade é implementar uma classe responsável por gerenciar a conta bancária de um único cliente. Faremos operações de saque, depósito e extrato.
 
