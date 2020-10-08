@@ -1,8 +1,10 @@
 # Sala de Cinema
 <!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Shell](#shell)
-- [Main não interativa](#main-não-interativa)
+- [Sala de Cinema](#sala-de-cinema)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Diagrama](#diagrama)
+  - [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 ![](figura.jpg)
@@ -69,8 +71,11 @@ $show
 $end
 #__end__
 ```
+***
+## Diagrama
 ![](diagrama.png)
 
+***
 ## Main não interativa
 
 ```java
