@@ -1,13 +1,15 @@
 # JunkFood Machine
-![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Shell](#shell)
-- [Raio X](#raio-x)
-- [Ajuda](#ajuda)
+- [JunkFood Machine](#junkfood-machine)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Diagrama](#diagrama)
+  - [Ajuda](#ajuda)
+  - [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
+![](figura.jpg)
 
 Máquinas de junk food só servem pra 2 coisas, 1 vender comidas que fazem mal pra saúde, 2 rejeitar as notas velhas que você tem.
 
@@ -131,29 +133,8 @@ $end
 ```
 
 ***
-## Raio X
-
-````java
-class Espiral
-+ nome: String
-+ qtd: int
-+ preco: float
---
-+ toString(): String
-
-class Maquina
-- espirais: List<Espiral>
-- saldoCliente: float
-- lucro: float
---
-+ inserirDinheiro(value: number): boolean
-+ pedirTroco(): float
-+ vender(indice: int): boolean
-+ alterarEspiral(indice: int, nome: String, qtd : int, preco :float) : boolean
-+ getSaldo(): float
-+ toString() String
-````
-
+## Diagrama
+![](diagrama.png)
 
 ***
 ## Ajuda
@@ -212,4 +193,79 @@ public:
     }
 }
 ```
+***
+## Main não interativa
+```java
+//case init
+    Maquina maquina = new Maquina(3, 5);
+    System.out.println(maquina);
+        //saldo: 0.00
+        //0 [   empty : 0 U : 0.00 RS]
+        //1 [   empty : 0 U : 0.00 RS]
+        //2 [   empty : 0 U : 0.00 RS]
 
+//case inserindo comida
+    maquina.alterarEspiral(2, new Espiral("todinho", 3, 2.50f));
+    System.out.println(maquina);
+        //saldo: 0.00
+        //0 [   empty : 0 U : 0.00 RS]
+        //1 [   empty : 0 U : 0.00 RS]
+        //2 [ todinho : 3 U : 2.50 RS]
+    maquina.alterarEspiral(0, new Espiral("tampico", 1, 1.50f));
+    maquina.alterarEspiral(1, new Espiral("xaverde", 3, 5.00f));
+    System.out.println(maquina);   
+        //saldo: 0.00
+        //0 [ tampico : 1 U : 1.50 RS]
+        //1 [ xaverde : 3 U : 5.00 RS]
+        //2 [ todinho : 3 U : 2.50 RS]
+
+//case limpando
+    maquina.alterarEspiral(2, new Espiral());
+    System.out.println(maquina);
+        //saldo: 0.00
+        //0 [ tampico : 1 U : 1.50 RS]
+        //1 [ xaverde : 3 U : 5.00 RS]
+        //2 [   empty : 0 U : 0.00 RS]
+    maquina.alterarEspiral(4 ,new Espiral("ovo", 2, 4.30f));
+        //fail: indice nao existe
+    maquina.alterarEspiral(0 ,new Espiral("farofa", 50, 3.00f));
+        //fail: limite excedido
+
+//case dinheiro
+    maquina.inserirDinheiro(5f);
+    maquina.inserirDinheiro(4f);
+    System.out.println(maquina);   
+        //saldo: 9.00
+        //0 [ tampico : 1 U : 1.50 RS]
+        //1 [ xaverde : 3 U : 5.00 RS]
+        //2 [   empty : 0 U : 0.00 RS]
+
+//case troco
+    maquina.pedirTroco();
+        //voce recebeu 9.00 RS
+    System.out.println(maquina);
+        //saldo: 0.00
+        //0 [ tampico : 1 U : 1.50 RS]
+        //1 [ xaverde : 3 U : 5.00 RS]
+        //2 [   empty : 0 U : 0.00 RS]
+    maquina.inserirDinheiro(8f);
+
+//case comprar
+    maquina.vender(1);
+        //voce comprou um xaverde
+    maquina.vender(1);
+        //fail: saldo insuficiente
+    maquina.vender(0);
+        //voce comprou um tampico
+    System.out.println(maquina);
+        //saldo: 1.50
+        //0 [ tampico : 0 U : 1.50 RS]
+        //1 [ xaverde : 2 U : 5.00 RS]
+        //2 [   empty : 0 U : 0.00 RS]
+    maquina.vender(0);
+        //fail: espiral sem produtos
+    maquina.vender(4);
+        //fail: indice nao existe
+    maquina.pedirTroco();
+        //voce recebeu 1.50 RS
+```
