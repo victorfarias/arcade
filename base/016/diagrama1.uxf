@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>152</x>
+      <y>240</y>
+      <w>168</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>*Fone*
+bg=yellow
+--
+- id: string
+- number: string
+--
++ _validar_(number): bool
+--
++ constructor(id, number)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>152</x>
+      <y>64</y>
+      <w>168</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>*Contato*
+bg=yellow
+--
+- id: string
+- fones: Fone[]
+- favorited: bool
+--
++ addFone(id, number)
++ rmFone(id)
+--
++ constructor(id, number)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>376</x>
+      <y>64</y>
+      <w>232</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>*Agenda*
+bg=yellow
+--
+- contatos: Contato[]
+- favoritos: Contato[]
+
+    map&lt;string, Contato&gt; contatos;
+    map&lt;string, Contato*&gt; favoritos;
+--
++ addContato(idContato, Contato): void
++ rmContato(id): void
++ getAllContatos(): Contato[]
++ favoritar(id)
++ desfavoritar(id)
++ getFavoritos(): Contato[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>376</x>
+      <y>240</y>
+      <w>232</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes>*Agenda*
+bg=blue
+--
+*AddContato(idContato, Contato)*
+    se contato
+    	contatos.add()
+
+*rmContato(id)*
+    se contato existe
+        desfavoritar(id)
+        remove da lista de contatos
+
+*getAllContatos()*
+    retorna todos contatos
+
+*favoritar(id)*
+    contato = getContato(id)
+    if not contato.favorited:
+        contato.favorited = true
+        favoritos[id] = contato
+
+*desfavoritar(id)*
+    contato = getContato(id)
+    if contato.favorited:
+        contato.favorited = false
+        favoritos.remove(id)
+    
+*getFavoritos()*
+    retorna favoritos</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>80</y>
+      <w>80</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>168</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
