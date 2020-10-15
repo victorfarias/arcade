@@ -4,7 +4,7 @@
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
 - [Shell](#shell)
-- [Raio X](#raio-x)
+- [Diagrama UML](#diagrama-uml)
 - [Ajuda](#ajuda)
 
 <!--TOC_END-->
@@ -72,30 +72,9 @@ $end
 ```
 
 ***
-## Raio X
+## Diagrama UML
+![](diagrama.png)
 
-```java
-class Fone
-+ id: string
-+ number: string
---
-+ _validate(number):_ bool
-+ toString(): string
---
-Fone(id, number)
-
-class Contato
-- name: string
-- fones: Fone[]
---
-+ addFone(fone: Fone) : boolean
-+ rmFone(ind: int) : boolean
-+ toString()
---
-Contato(name)
-getName(): string
-getFones(): Fone[]
-````
 
 ## Ajuda
 - Utilize uma estrutura linear como vector(c++) ou ArrayList(Java) para guardar os telefones.

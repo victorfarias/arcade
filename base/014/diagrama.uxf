@@ -31,7 +31,7 @@ fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
       <x>216</x>
       <y>264</y>
       <w>192</w>
-      <h>112</h>
+      <h>104</h>
     </coordinates>
     <panel_attributes>*Fone*
 bg=yellow
@@ -58,88 +58,13 @@ bg=yellow
 --
 - name: string
 - fones: vector&lt;Fone&gt;
-- favorited: bool
 --
 + addFone(label, number)
 + rmFone(index)
-+ setFavorited(value)
 --
 + Contato(id)
 + toString(): String</panel_attributes>
     <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>440</x>
-      <y>88</y>
-      <w>280</w>
-      <h>168</h>
-    </coordinates>
-    <panel_attributes>*Agenda*
-bg=yellow
---
-- map&lt;string, Contato&gt; contatos;
-- map&lt;string, Contato*&gt; favoritos;
---
-+ addContato(idContato: string): void
-+ getContato(id): Contato*
-+ rmContato(id): void
-+ favoritar(id): void
-+ desfavoritar(id): void
-+ getContatos(): vector&lt;Contato&gt;
-+ getFavoritos(): vector&lt;Contato&gt;</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>440</x>
-      <y>264</y>
-      <w>280</w>
-      <h>392</h>
-    </coordinates>
-    <panel_attributes>*Ajuda Lógica*
-bg=blue
---
-*addContato(idContato, Contato)*
-    se idContato ainda nao existe:
-    	contatos.add(novo contato(idContato))
-
-*rmContato(id)*
-    se contato existe
-        desfavoritar(id)
-        remover da lista de contatos
-
-*getAllContatos()*
-    retorna todos contatos
-
-*favoritar(id)*
-    contato = getContato(id)
-    if not contato.favorited:
-        contato.favorited = true
-        favoritos[id] = contato
-
-*desfavoritar(id)*
-    contato = getContato(id)
-    if contato.favorited:
-        contato.favorited = false
-        favoritos.remove(id)
-    
-*getFavoritos()*
-    retorna favoritos</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>376</x>
-      <y>104</y>
-      <w>80</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -151,25 +76,5 @@ bg=blue
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>144</x>
-      <y>448</y>
-      <w>280</w>
-      <h>208</h>
-    </coordinates>
-    <panel_attributes>*Agenda*
-bg=pink
---
-Para Java:
-- utilize TreeMap ao invés de map
-
-- utilize ArrayList no lugar de vector
-
-- Quando encontrar Contato*, 
-  utilize apenas Contato.</panel_attributes>
-    <additional_attributes/>
   </element>
 </diagram>
