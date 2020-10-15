@@ -1,10 +1,9 @@
 # Sala de Cinema
 <!--TOC_BEGIN-->
-- [Sala de Cinema](#sala-de-cinema)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 ![](figura.jpg)

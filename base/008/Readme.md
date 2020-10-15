@@ -1,12 +1,11 @@
 # Agiota Gente Fina
 
 <!--TOC_BEGIN-->
-- [Agiota Gente Fina](#agiota-gente-fina)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Main](#main)
-  - [Fim da história](#fim-da-história)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Main](#main)
+- [Fim da história](#fim-da-história)
 
 <!--TOC_END-->
 ![](figura.jpg)

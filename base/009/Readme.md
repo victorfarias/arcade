@@ -1,12 +1,11 @@
 # Pula pula no parquinho
 
 <!--TOC_BEGIN-->
-- [Pula pula no parquinho](#pula-pula-no-parquinho)
-  - [Requisitos](#requisitos)
-  - [Opcional](#opcional)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
+- [Requisitos](#requisitos)
+- [Opcional](#opcional)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 ![](figura.jpg)

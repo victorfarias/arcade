@@ -1,1 +1,1 @@
-[LINK](../base/010/RaioX.md)
+[LINK](../base/006/RaioX.md)

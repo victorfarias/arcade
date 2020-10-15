@@ -1,13 +1,13 @@
 # Mestre dos Vetores
 
 <!--TOC_BEGIN-->
-- [Mestre dos Vetores](#mestre-dos-vetores)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Dica](#dica)
-  - [Main não interativa](#main-não-interativa)
-  - [Respostas](#respostas)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Dica](#dica)
+- [Main não interativa](#main-não-interativa)
+- [Respostas](#respostas)
+
 <!--TOC_END-->
 
 ![](figura.jpg)

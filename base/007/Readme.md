@@ -1,12 +1,11 @@
 # Agência 1 - Extrato, Saldo, Tarifas
 
 <!--TOC_BEGIN-->
-- [Agência 1 - Extrato, Saldo, Tarifas](#agência-1---extrato-saldo-tarifas)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama UML](#diagrama-uml)
-  - [Main em Java](#main-em-java)
-  - [Recursos Extras](#recursos-extras)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama UML](#diagrama-uml)
+- [Main em Java](#main-em-java)
+- [Recursos Extras](#recursos-extras)
 
 <!--TOC_END-->
 ![](figura.jpg)

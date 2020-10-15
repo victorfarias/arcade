@@ -1,15 +1,14 @@
 # Tamagotchi
 
 <!--TOC_BEGIN-->
-- [Tamagotchi](#tamagotchi)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
     - [Exemplo 1](#exemplo-1)
     - [Exemplo 2](#exemplo-2)
     - [Exemplo 3](#exemplo-3)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
-  - [Respostas](#respostas)
+- [Diagrama](#diagrama)
+- [Main não interativa](#main-não-interativa)
+- [Respostas](#respostas)
 
 <!--TOC_END-->
 

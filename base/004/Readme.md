@@ -2,12 +2,11 @@
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Lapiseira e Grafite](#lapiseira-e-grafite)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
-  - [Ajuda](#ajuda)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Main não interativa](#main-não-interativa)
+- [Ajuda](#ajuda)
 
 <!--TOC_END-->
 
