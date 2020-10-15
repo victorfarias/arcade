@@ -1,15 +1,16 @@
 # Topic de Luxo
-![](figura.jpg)
+<!--TOC_BEGIN-->
+- [Topic de Luxo](#topic-de-luxo)
+  - [Requisitos](#requisitos)
+  - [Shell](#shell)
+  - [Diagrama](#diagrama)
 
+<!--TOC_END-->
+![](figura.jpg)
 
 O objetivo dessa atividade é exercitar o que vocês aprenderam no cinema com algumas variações. Aqui, vamos implementar um sistema de alocação de passageiros em uma topic. Nossa topic tem uma quantidade máxima de passageiros, mas também define alguns assentos preferenciais.
 
-<!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Shell](#shell)
-
-<!--TOC_END-->
-
+***
 ## Requisitos
 Seu sistema deverá:
 
@@ -94,3 +95,5 @@ $end
 #__end__
 ```
 ***
+## Diagrama
+![](diagrama.png)

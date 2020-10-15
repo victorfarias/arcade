@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>440</y>
+      <w>210</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>*Fone*
+bg=yellow
+--
++ id: string
++ number: string
+--
++ _validate(number):_ bool
++ toString(): string
+--
+Fone(serial)
+Fone(id, number)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>230</y>
+      <w>340</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>*Contato*
+bg=yellow
+--
+- name: string
+- fones: Fone[]
+--
++ addFone(id: string, number: string) : boolean
++ rmFone(index: int) : boolean
++ toString()
+--
+Contato(name)
+getName(): string
+getFones(): Fone[]
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>230</y>
+      <w>310</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>*Agenda*
+bg=yellow
+--
+- contatos: Contato[]
+--
+- findContato(name: string): int
+
++ addContato(name: string, fones: Fone[])
++ rmContato(name: string): bool
++ getContato(name: string): Contato
++ search(pattern: string): Contato[]
++ getContatos(): Contato[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>310</y>
+      <w>80</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>150</x>
+      <y>390</y>
+      <w>30</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+</diagram>
