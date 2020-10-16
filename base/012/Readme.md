@@ -1,9 +1,9 @@
 # Topic de Luxo
+[](solver.cpp)
 <!--TOC_BEGIN-->
-- [Topic de Luxo](#topic-de-luxo)
-  - [Requisitos](#requisitos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
 
 <!--TOC_END-->
 ![](figura.jpg)
@@ -94,6 +94,7 @@ $show
 $end
 #__end__
 ```
+
 ***
 ## Diagrama
 ![](diagrama.png)

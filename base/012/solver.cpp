@@ -11,10 +11,9 @@ struct Pass{
         this->id = id;
         this->idade = idade;
     }
-    string toString(){
-        stringstream ss;
-        ss << this->id << ":" << this->idade;
-        return ss.str();
+    friend ostream& operator<<(ostream& os, Pass& p){
+        os << p.id << ":" << p.idade;
+        return os;
     }
 };
 
@@ -23,8 +22,7 @@ struct Topic{
     int qtdPref;
 
     Topic(int lotacao = 0, int qtdPref = 0):
-        cadeiras(lotacao, nullptr), qtdPref(qtdPref)
-    {
+        cadeiras(lotacao, nullptr), qtdPref(qtdPref) {
     }
 
     ~Topic(){
@@ -54,11 +52,9 @@ struct Topic{
     }
     
 
-    bool reservar(string id, int idade){
-        if(this->find(id) != -1){
-            cout << "fail: pass ja esta na topic" << endl;
-            return false;
-        }
+    bool subir(Pass * pass){
+        string id = pass->id;
+        int idade = pass->idade;
         int pref = findPref();
         int norm = findNormal();
         if(pref == -1 && norm == -1){
@@ -70,76 +66,66 @@ struct Topic{
             pos = pref != -1? pref : norm;
         else
             pos = norm != -1? norm : pref;
-        cadeiras[pos] = new Pass(id, idade);
+        cadeiras[pos] = pass;
         return true;
     }
 
-    bool cancelar(string id){
+    Pass * descer(string id){
         for(int i = 0; i < (int) cadeiras.size(); i++){
             if(cadeiras[i] != nullptr && cadeiras[i]->id == id){
-                delete cadeiras[i];
+                Pass * p = cadeiras[i];
                 cadeiras[i] = nullptr;
-                return true;
+                return p;
             }
         }
         cout << "fail: pass nao esta na topic" << endl;
-        return false;
+        return nullptr;
     }
 
-    string toString(){
-        stringstream ss;
-        ss << "[ ";
-        for(int i = 0; i < (int) cadeiras.size(); i++){
-            ss << (i < qtdPref ? "@" : "=");
-            if(cadeiras[i] != nullptr)
-                ss << cadeiras[i]->toString();
-            ss << " ";
+    friend ostream& operator<<(ostream& os, Topic& t){
+        os << "[ ";
+        for(int i = 0; i < (int) t.cadeiras.size(); i++){
+            os << (i < t.qtdPref ? "@" : "=");
+            if(t.cadeiras[i] != nullptr)
+                os << *t.cadeiras[i];
+            os << " ";
         }
-        ss << "]";
-        return ss.str();
+        os << "]";
+        return os;
     }
 };
 
-struct Controller{
-    Topic topic;
 
-    void shell(string line){
-        stringstream in(line);
-        string op;
-        in >> op;
-        if(op == "show"){
-            cout << topic.toString() << endl;
-        }else if(op == "init"){
+int main(){
+    string line, cmd;
+    Topic topic;
+    while(true){
+        getline(cin, line);
+        stringstream ss(line);
+        cout << "$" << line << endl;
+        ss >> cmd;
+        if(line == "end"){
+            break;
+        }else if(cmd == "show"){
+            cout << topic << endl;
+        }else if(cmd == "init"){
             int qtd, pref;
-            in >> qtd >> pref;
+            ss >> qtd >> pref;
             topic = Topic(qtd, pref);
-        }else if(op == "in"){
+        }else if(cmd == "in"){
             string id;
             int idade;
-            in >> id >> idade;
-            topic.reservar(id, idade);
-        }else if(op == "out"){
+            ss >> id >> idade;
+            Pass * pass = new Pass(id, idade);
+            if(!topic.subir(pass))
+                delete pass;
+        }else if(cmd == "out"){
             string id;
-            in >> id;
-            topic.cancelar(id);
+            ss >> id;
+            Pass * pass = topic.descer(id);
+            if(pass != nullptr)
+                delete pass;
         }else
             cout << "fail: comando invalido" << endl;
     }
-
-    void exec(){
-        string line;
-        while(true){
-            getline(cin, line);
-            cout << "$" << line << endl;
-            if(line == "end")
-                return;
-            shell(line);
-        }
-    }
-};
-
-int main(){
-    Controller c;
-    c.exec();
-    return 0;
 }

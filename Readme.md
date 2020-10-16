@@ -5,11 +5,10 @@
 - [Duas classes usando agregação](#duas-classes-usando-agregação)
 - [Construtores, Get e Set](#construtores-get-e-set)
 - [Manipulação de dados em listas](#manipulação-de-dados-em-listas)
-- [2 classes, Vetores de Null, agregação](#2-classes-vetores-de-null-agregação)
-- [2 classes, Vetores, composição, responsabilidades](#2-classes-vetores-composição-responsabilidades)
-- [Progressões](#progressões)
-- [Composição, 3 camadas, ordenação](#composição-3-camadas-ordenação)
-- [Redundâncias, uso de mapas](#redundâncias-uso-de-mapas)
+- [2 classes, Vetores de Null, Agregação](#2-classes-vetores-de-null-agregação)
+- [2 classes, Vetores, Composição, responsabilidades](#2-classes-vetores-composição-responsabilidades)
+- [3 camadas, Ordenação](#3-camadas-ordenação)
+- [Uso de mapas](#uso-de-mapas)
 - [Associação](#associação)
 - [Herança](#herança)
 
@@ -33,22 +32,20 @@
 - [@005 Mestre dos Vetores](base/005/Readme.md) 
 - [@009 Pula pula no parquinho](base/009/Readme.md) 
 
-## 2 classes, Vetores de Null, agregação
+## 2 classes, Vetores de Null, Agregação
 - [@010 Sala de Cinema](base/010/Readme.md) 
-- [@011 JunkFood Machine](base/011/Readme.md) 
+- [@012 Topic de Luxo](base/012/Readme.md) 
 
-## 2 classes, Vetores, composição, responsabilidades
+## 2 classes, Vetores, Composição, responsabilidades
 - [@014 Agenda 1 - Um único contato](base/014/Readme.md) 
 - [@007 Agência 1 - Extrato, Saldo, Tarifas](base/007/Readme.md) 
+- [@011 JunkFood Machine](base/011/Readme.md) 
 
-## Progressões
-- [@018 Progressão Agenda](base/018/Readme.md) 
+## 3 camadas, Ordenação
+- [@015 Agenda 2 - Varios contatos](base/015/Readme.md) 
 
-## Composição, 3 camadas, ordenação
-- [@015 Agenda 2 - Varios contatos ordenados](base/015/Readme.md) 
+## Uso de mapas
 - [@008 Agiota Gente Fina](base/008/Readme.md) 
-
-## Redundâncias, uso de mapas
 - [@016 Agenda 3 - Favoritos](base/016/Readme.md) 
 
 ## Associação

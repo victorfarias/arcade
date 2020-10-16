@@ -1,5 +1,5 @@
 [](base/014/Readme.md) : # Agenda 1 - Um único contato
-[](base/015/Readme.md) : # Agenda 2 - Varios contatos ordenados
+[](base/015/Readme.md) : # Agenda 2 - Varios contatos
 [](base/016/Readme.md) : # Agenda 3 - Favoritos
 [](base/017/Readme.md) : # Agenda 4 - Híbrida com notas e contatos
 [](base/019/Readme.md) : # Agenda 5 - Serviço de Ligações
@@ -23,6 +23,7 @@
 [](base/016/RaioX.md)  : ## Raio X
 [](base/010/RaioX.md)  : ## Raio X
 [](base/011/RaioX.md)  : ## Raio X
+[](base/015/RaioX.md)  : ## Raio X
 [](base/006/RaioX.md)  : ## Raio X
 [](base/003/RaioX.md)  : ## RaioX
 [](base/001/RaioX.md)  : ```java

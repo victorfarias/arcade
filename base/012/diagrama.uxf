@@ -2,7 +2,8 @@
 <diagram program="umlet" version="14.3.0">
   <help_text>// Uncomment the following line to change the fontsize and font:
 // fontsize=14
-fontfamily= Monospaced
+fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Welcome to UMLet!
@@ -27,114 +28,92 @@ fontfamily= Monospaced
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>50</x>
-      <y>440</y>
-      <w>210</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>*Fone*
-bg=yellow
---
-+ id: string
-+ number: string
---
-_+ validate(number): bool_
-+ toString(): string
---
-Fone(serial)
-Fone(id, number)
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>50</x>
-      <y>230</y>
-      <w>340</w>
-      <h>170</h>
-    </coordinates>
-    <panel_attributes>*Contato*
-bg=yellow
---
-- name: string
-- fones: Fone[]
---
-+ addFone(id: string, number: string) : boolean
-+ rmFone(index: int) : boolean
-+ getName(): string
-+ getFones(): Fone[]
---
-+ Contato(name)
-+ toString(): strin
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>440</x>
-      <y>230</y>
-      <w>340</w>
+      <x>30</x>
+      <y>320</y>
+      <w>370</w>
       <h>190</h>
     </coordinates>
-    <panel_attributes>*Agenda*
+    <panel_attributes>**Topic (java)**
 bg=yellow
 --
-- contatos: Contato[]
++ cadeiras: ArrayList&lt;Pass&gt;
++ qtdPref: int
 --
-- findContato(name: string): int
-
-+ addContato(name: string, fones: Fone[])
-+ rmContato(name: string): bool
-+ search(pattern: string): Contato[]
-+ getContatos(): Contato[]
++ subir(pass: Pass): bool
++ descer(name): Pass
 --
-+ getContato(name: string): Contato  (java)
-+ getContato(name: string): Contato* (c++)
-
++ Topic(lotacao, qtdPref)
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>140</y>
+      <w>210</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>**Pass**
+bg=yellow
+--
+- name : string
+- idade: int
+--
++ Pass(id, idade)
++ toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>310</y>
-      <w>80</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>60.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>150</x>
-      <y>390</y>
+      <x>200</x>
+      <y>260</y>
       <w>30</w>
-      <h>70</h>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>440</x>
-      <y>450</y>
-      <w>310</w>
-      <h>150</h>
+      <x>470</x>
+      <y>130</y>
+      <w>360</w>
+      <h>170</h>
     </coordinates>
     <panel_attributes>Note..
 bg=pink
 
-Java:
-Usar ArrayList para todos os []
-
+O vetor de cadeiras deve ser preenchido
+na criação da Topic com "objetos" null.
 
 C++
-Usar vector para todos os []</panel_attributes>
+Desaloque todos os Pass que ainda 
+existirem na Topic no destrutor da Topic.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>320</y>
+      <w>370</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>**Topic C++**
+bg=yellow
+--
++ cadeiras: vector&lt;Pass*&gt;
++ qtdPref: int
+--
++ subir(pass: Pass*): bool
++ descer(name): Pass*
+--
++ Topic(lotacao, qtdPref)
++ ~Topic()
+</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

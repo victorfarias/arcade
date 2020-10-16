@@ -1,12 +1,11 @@
-# Agenda 2 - Varios contatos ordenados
+# Agenda 2 - Varios contatos
 
 <!--TOC_BEGIN-->
-- [Agenda 2 - Varios contatos ordenados](#agenda-2---varios-contatos-ordenados)
-  - [Requisitos Novos](#requisitos-novos)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Ajuda](#ajuda)
-  - [Main não interativa](#main-não-interativa)
+- [Requisitos Novos](#requisitos-novos)
+- [Shell](#shell)
+- [Diagrama](#diagrama)
+- [Ajuda](#ajuda)
+- [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 ![](figura.jpg)
@@ -91,8 +90,7 @@ $end
 ***
 ## Ajuda
 - Inserção
-    - Opção 1: Guarde os contato em uma estrutura de dados ordenada como um map(c++) ou TreeMap(Java) utilizando o Id do contato como chave.
-    - Opção 2: Utilizar uma estrutura linear, tal como um vector(c++) ou ArrayList(Java), mas lembrar de reordenar o vetor para cada nova inserção de contato.
+    - Utilizar uma estrutura linear, tal como um vector(c++) ou ArrayList(Java), mas lembrar de reordenar o vetor para cada nova inserção de contato.
 - Busca: 
     - Na busca por pattern verifique faça uma busca usando a substring com o valor toString() to contato.
 - Crie um construtor para o Fone que aceite um único parâmetro, no caso o serial "oi:13123"
@@ -102,10 +100,10 @@ $end
 ```java
 //case adicionando em lote
 Agenda agenda = new Agenda();
-agenda.addContato("eva", Fone fone[] = {new Fone("oio", 8585), new Fone("cla", 9999)});
-agenda.addContato("ana", Fone fone[] = {new Fone("Tim", 3434)});
-agenda.addContato("bia", Fone fone[] = {new Fone("viv", 5454)});
-agenda.addContato("ana", Fone fone[] = {new Fone("cas", 4567), new Fone("oio", 8754)});
+agenda.addContato("eva", Arrays.asList(new Fone("oio", 8585), new Fone("cla", 9999)));
+agenda.addContato("ana", Arrays.asList(new Fone("Tim", 3434)));
+agenda.addContato("bia", Arrays.asList(new Fone("viv", 5454)));
+agenda.addContato("ana", Arrays.asList(new Fone("cas", 4567), new Fone("oio", 8754)));
 System.out.println(agenda);
 /*
 - ana [0:tim:3434] [1:cas:4567] [2:oio:8754]
@@ -129,9 +127,9 @@ System.out.println(agenda);
 - ana [0:cas:4567] [1:oio:8754]
 - eva [0:oio:8585] [1:cla:9999]
 */
-agenda.addContato("ava", Fone fone[] = {new Fone("viv", 5454)});
-agenda.addContato("rui", Fone fone[] = {new Fone("viv", 2222),new Fone("oio", 9991)});
-agenda.addContato("zac", Fone fone[] = {new Fone("rec", 3131)});
+agenda.addContato("ava", Arrays.asList(new Fone("viv", 5454)));
+agenda.addContato("rui", Arrays.asList(new Fone("viv", 2222),new Fone("oio", 9991)));
+agenda.addContato("zac", Arrays.asList(new Fone("rec", 3131)));
 System.out.println(agenda);
 /*
 - ana [0:cas:4567] [1:oio:8754]
