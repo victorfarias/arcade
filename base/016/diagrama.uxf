@@ -71,8 +71,8 @@ bg=yellow
     <coordinates>
       <x>440</x>
       <y>80</y>
-      <w>280</w>
-      <h>168</h>
+      <w>376</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>*Agenda*
 bg=yellow
@@ -80,7 +80,7 @@ bg=yellow
 - map&lt;string, Contato&gt; contatos;
 - map&lt;string, Contato*&gt; favoritos;
 --
-+ addContato(idContato: string): void
++ addContato(idContato: string, contatos: vetor&lt;Contato&gt;): void
 + getContato(id): Contato*
 + rmContato(id): void
 + favoritar(id): void
