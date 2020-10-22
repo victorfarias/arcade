@@ -3,10 +3,11 @@
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Requisitos Novos](#requisitos-novos)
-- [Shell](#shell)
-- [Diagrama UML](#diagrama-uml)
-- [Ajuda](#ajuda)
+- [Agenda 3 - Favoritos](#agenda-3---favoritos)
+  - [Requisitos Novos](#requisitos-novos)
+  - [Shell](#shell)
+  - [Diagrama UML](#diagrama-uml)
+  - [Ajuda](#ajuda)
 
 <!--TOC_END-->
 
@@ -107,3 +108,78 @@ $end
     - Quando remover um contato, lembre de removê-lo dos favoritos se necessário.
 - Desfavoritar
     - Quando desfavoritar um contato, lembre de tanto remover da lista de favoritos como também alterar o valor do atributo `favorited` no próprio contato.
+
+
+```java
+Agenda agenda = new Agenda();
+agenda.addContato("eva", Arrays.asList(new Fone("oio", 8585), new Fone("cla", 9999)));
+agenda.addContato("ana", Arrays.asList(new Fone("Tim", 3434)));
+agenda.addContato("bia", Arrays.asList(new Fone("viv", 5454)));
+agenda.addContato("ana", Arrays.asList(new Fone("cas", 4567), new Fone("oio", 8754)));
+System.out.println(agenda);
+/*
+- ana [0:casa:4567][1:oi:8754]
+- bia [0:vivo:5454]
+- eva [0:oi:8585][1:claro:9999]
+- rui [0:casa:3233]
+- zac [0:fixo:3131]
+*/
+
+//case favoritando
+agenda.favoritar("eva");
+agenda.favoritar("ana");
+agenda.favoritar("ana");
+agenda.favoritar("zac");
+agenda.favoritar("rex");
+//fail: contato rex nao existe
+System.out.println(agenda);
+/*
+@ ana [0:casa:4567][1:oi:8754]
+- bia [0:vivo:5454]
+@ eva [0:oi:8585][1:claro:9999]
+- rui [0:casa:3233]
+@ zac [0:fixo:3131]
+*/
+
+//case lista de favoritos
+for(Favoritos fav in agenda.getFavoritos){
+    System.out.println(fav);
+}
+/*
+@ ana [0:casa:4567][1:oi:8754]
+@ eva [0:oi:8585][1:claro:9999]
+@ zac [0:fixo:3131]
+*/
+
+//case removendo contato
+agenda.rmContato("zac");
+System.out.println(agenda);
+/*
+@ ana [0:casa:4567][1:oi:8754]
+- bia [0:vivo:5454]
+@ eva [0:oi:8585][1:claro:9999]
+- rui [0:casa:3233]
+@ zac [0:fixo:3131]
+*/
+for(Favoritos fav in agenda.getFavoritos){
+    System.out.println(fav);
+}
+/*
+@ ana [0:casa:4567][1:oi:8754]
+@ eva [0:oi:8585][1:claro:9999]
+*/
+
+//case desfavoritando
+agenda.unfav("ana");
+for(Favoritos fav in agenda.getFavoritos){
+    System.out.println(fav);
+}
+//@ eva [0:oi:8585][1:claro:9999]
+System.out.println(agenda);
+/*
+- ana [0:casa:4567][1:oi:8754]
+- bia [0:vivo:5454]
+@ eva [0:oi:8585][1:claro:9999]
+- rui [0:casa:3233]
+*/
+```
