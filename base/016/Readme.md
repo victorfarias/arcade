@@ -75,7 +75,6 @@ $agenda
 - bia [0:vivo:5454]
 @ eva [0:oi:8585][1:claro:9999]
 - rui [0:casa:3233]
-@ zac [0:fixo:3131]
 
 $favorited
 @ ana [0:casa:4567][1:oi:8754]
@@ -159,7 +158,6 @@ System.out.println(agenda);
 - bia [0:vivo:5454]
 @ eva [0:oi:8585][1:claro:9999]
 - rui [0:casa:3233]
-@ zac [0:fixo:3131]
 */
 for(Favoritos fav in agenda.getFavoritos){
     System.out.println(fav);
