@@ -1,6 +1,15 @@
-## ©10_after 44 Hospital #nxn #repositorios
-### Cadastrar Pacientes, Médicos e Plantões.
+# Hospital
+
+<!--TOC_BEGIN-->
+- [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
+- [Funcionalidades](#funcionalidades)
+- [Diagrama de Classes](#diagrama-de-classes)
+
+<!--TOC_END-->
+
 ![](figura.jpg)
+
+## Cadastrar Pacientes, Médicos e Plantões.
 
 
 Na UTI do nosso hospital existem vários pacientes. Cada paciente é atendico por médicos de várias especialidades. Pacientes e médicos podem se comunicar via mensagens. O sistema deve ser capaz de: 

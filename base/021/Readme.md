@@ -1,4 +1,4 @@
-# Época de Matrícula - Associação NxN
+# Matrícula - Associação NxN
 
 <!--TOC_BEGIN-->
 - [Funcionalidades](#funcionalidades)

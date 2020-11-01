@@ -1,13 +1,12 @@
-# Agenda 3 - Favoritos
+# Favoritos - Agenda 3
 
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Agenda 3 - Favoritos](#agenda-3---favoritos)
-  - [Requisitos Novos](#requisitos-novos)
-  - [Shell](#shell)
-  - [Diagrama UML](#diagrama-uml)
-  - [Ajuda](#ajuda)
+- [Requisitos Novos](#requisitos-novos)
+- [Shell](#shell)
+- [Diagrama UML](#diagrama-uml)
+- [Ajuda](#ajuda)
 
 <!--TOC_END-->
 

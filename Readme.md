@@ -37,20 +37,22 @@
 - [@012 Topic de Luxo](base/012/Readme.md) 
 
 ## 2 classes, Vetores, Composição, responsabilidades
-- [@014 Agenda 1 - Um único contato](base/014/Readme.md) 
-- [@007 Agência 1 - Extrato, Saldo, Tarifas](base/007/Readme.md) 
-- [@011 JunkFood Machine](base/011/Readme.md) 
+- [@014 Contato - Agenda 1](base/014/Readme.md) 
+- [@007 Tarifas - Agência 1](base/007/Readme.md) 
+- [@011 JunkFood](base/011/Readme.md) 
 
 ## 3 camadas, Ordenação
-- [@015 Agenda 2 - Varios contatos](base/015/Readme.md) 
+- [@015 Busca - Agenda 2](base/015/Readme.md) 
+- [@024 Mensagens](base/024/Readme.md) 
 
 ## Uso de mapas
-- [@008 Agiota Gente Fina](base/008/Readme.md) 
-- [@016 Agenda 3 - Favoritos](base/016/Readme.md) 
+- [@008 Agiota](base/008/Readme.md) 
+- [@016 Favoritos - Agenda 3](base/016/Readme.md) 
 
 ## Associação
-- [@021 Época de Matrícula - Associação NxN](base/021/Readme.md) 
+- [@021 Matrícula - Associação NxN](base/021/Readme.md) 
 
 ## Herança
-- [@013 Agência 2 - Conta Poupança e Corrente](base/013/Readme.md) 
-- [@017 Agenda 4 - Híbrida com notas e contatos](base/017/Readme.md) 
+- [@023 Salário](base/023/Readme.md) 
+- [@022 Hospital](base/022/Readme.md) 
+- [@013 Cadastro - Agência 2 - Conta Corrente e Poupança](base/013/Readme.md) 

@@ -1,0 +1,51 @@
+# Mensagens
+<!--TOC_BEGIN-->
+- [Requisitos](#requisitos)
+- [Shell](#shell)
+- [Main](#main)
+- [Diagrama](#diagrama)
+
+<!--TOC_END-->
+
+![](figura.png)
+
+Essa atividade é a base conceitual para simplificar a troca de mensagens entre dois usuários de um sistema. Cada usuário deve conter um _inbox_ que guarda as mensagens recebidas.
+
+***
+## Requisitos
+
+- Adicionar usuários usando o nome como chave única.
+- Enviar mensagens de texto entre usuários.
+- Ler as mensagens não lidas de um usuário.
+
+***
+## Shell
+
+```bash
+#__case unique
+$addUser david
+$addUser celia
+$sendMsg david celia voce esta com fome?
+$sendMsg david celia ganhei duas cortesias para comer no McLanches, bora?
+$readMsgs david
+- empty -
+$sendMsg david celia me avisa se quiser ir!
+$readMsgs celia
+david:voce esta com fome?
+david:ganhei duas cortesias para comer no McLanches, bora?
+david:me avisa se quiser ir!
+$sendMsg celia david na hora, te encontro la em 10 min
+$readMsgs david
+celia:na hora, te encontro la em 10 min
+$sendMsg david celia ja to aqui
+$readMsgs celia
+david:ja to aqui
+$end
+```
+
+## Main
+
+***
+## Diagrama
+
+![](diagrama.png)

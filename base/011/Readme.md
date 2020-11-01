@@ -1,4 +1,4 @@
-# JunkFood Machine
+# JunkFood
 [](solver.cpp)
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)

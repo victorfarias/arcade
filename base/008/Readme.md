@@ -1,4 +1,4 @@
-# Agiota Gente Fina
+# Agiota
 
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
