@@ -1,6 +1,13 @@
-## ©10_after 40 Twitter
-### Twitte para seus seguidores e dê like quando gostar daquilo que alguém disse
+# Twitter - Associação reflexiva
 ![](figura.jpg)
+
+<!--TOC_BEGIN-->
+- [Habilidades](#habilidades)
+- [Funcionalidades](#funcionalidades)
+- [Comandos e Exemplos](#comandos-e-exemplos)
+- [Orientações](#orientações)
+
+<!--TOC_END-->
 
 Vamos implementar o modelo do twitter. Os usuários se cadastram e podem follow outros usuários do sistema. Ao twittar, a mensagem vai para timeline de todas as pessoas que a seguem.
 

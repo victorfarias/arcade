@@ -1,7 +1,15 @@
-# Serviço de Anotações
+# Anotações
 
 ![](figura.jpg)
 
+<!--TOC_BEGIN-->
+- [Vídeo Explicativo](#vídeo-explicativo)
+- [Funcionalidades](#funcionalidades)
+- [Exemplos](#exemplos)
+- [Pontuação](#pontuação)
+- [Raio X](#raio-x)
+
+<!--TOC_END-->
 
 O objetivo dessa atividade é criar um pequeno serviço de anotações. O sistema
 terá vários usuários que vão logar utilizando login e senha. Cada usuário pode

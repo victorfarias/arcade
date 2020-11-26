@@ -1,5 +1,13 @@
-## ©10_after 33 Clinica Veterinária #agregação #manager #template
-### Totó tá com a perna dodói. Faça o sistema da clínica veterinária para cadastrar clientes, animais, servicos e vendas.
+# Clinica Veterinária
+
+<!--TOC_BEGIN-->
+- [Requisitos Parte 1](#requisitos-parte-1)
+- [Raio X](#raio-x)
+
+<!--TOC_END-->
+
+Totó tá com a perna dodói. Faça o sistema da clínica veterinária para cadastrar clientes, animais, servicos e vendas.
+
 ![](figura.jpg)
 
 Você deve desenvolver o sistema de uma clínica veterinária que deve ser capaz de:
@@ -114,27 +122,17 @@ class Animal
 + toString()
 
 class Cliente
-+ idCliente: String
++ id: String
 + nome: String
-- animais: Repository<Animal>
+- animais: Map<String, Animal>
 --
 + addAnimal(animal: Animal): void
 --
-+ constructor (idCliente, nome)
++ constructor (id, nome)
 + toString()
 + getIdCliente()
 + getNome()
 + getAnimais()
-
-class Repository<T>
-- data: List<T>
-+ add(key: String, t: T): void
-+ get(key:String): T
-+ rm(key: String): void
-+ getAll() List<T>
---
-+ constructor(typename: String)
-OBS: lançar exceções em caso de erros
 
 class Servico
 + idServico: int

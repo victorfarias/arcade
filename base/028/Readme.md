@@ -1,6 +1,12 @@
-## ©10_after 24 Bilheteria #agregação #manager #template
+# Bilheteria
 ### FUP ★★★☆☆  POO ★★★☆☆
 ![](figura.jpg)
+<!--TOC_BEGIN-->
+    - [FUP ★★★☆☆  POO ★★★☆☆](#fup---poo-)
+- [Requisitos](#requisitos)
+- [Raio X](#raio-x)
+
+<!--TOC_END-->
 
 Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado para modernizar a bilheteria do seu bairro e trazer ela pro século XXI
 

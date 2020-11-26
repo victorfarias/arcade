@@ -1,6 +1,12 @@
-## ©10_after 40 Whatsapp I
-### Só 5% do que tem no zap presta. Nestes 5% pode haver uma história de amor.
+# Whatsapp I - Chat Grupo
 ![](figura.jpg)
+
+<!--TOC_BEGIN-->
+- [Funcionalidades](#funcionalidades)
+- [Guia de Resolução](#guia-de-resolução)
+- [Créditos](#créditos)
+
+<!--TOC_END-->
 
 ## Funcionalidades
 

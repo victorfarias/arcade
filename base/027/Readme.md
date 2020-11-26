@@ -1,6 +1,11 @@
-## ©10_after 41 Whatsapp II
-### Chats pessoa a pessoa e Grupos.
+# Whatsapp II - Chat Pessoa
 ![](figura.jpg)
+
+<!--TOC_BEGIN-->
+- [Guia de Atividade](#guia-de-atividade)
+- [Créditos](#créditos)
+
+<!--TOC_END-->
 
 - Usuários podem ser adicionados ao sistema e devem ter id único.
 - Os usuários podem criar grupos e convidar outros usuários do sistema.

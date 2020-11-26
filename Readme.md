@@ -11,6 +11,7 @@
 - [Uso de mapas](#uso-de-mapas)
 - [Associação](#associação)
 - [Herança](#herança)
+- [Em construção](#em-construção)
 
 <!--TOC_END-->
 
@@ -50,9 +51,27 @@
 - [@016 Favoritos - Agenda 3](base/016/Readme.md) 
 
 ## Associação
+- [@025 Twitter - Associação reflexiva](base/025/Readme.md) 
 - [@021 Matrícula - Associação NxN](base/021/Readme.md) 
+- [@026 Whatsapp I - Chat Grupo](base/026/Readme.md) 
 
 ## Herança
-- [@023 Salário](base/023/Readme.md) 
-- [@022 Hospital](base/022/Readme.md) 
+- [@023 Salário](base/023/Readme.md)
+- [@022 Hospital](base/022/Readme.md)
 - [@013 Cadastro - Agência 2 - Conta Corrente e Poupança](base/013/Readme.md) 
+- [@027 Whatsapp II - Chat Pessoa](base/027/Readme.md) 
+
+
+## Em construção
+- [@018 Progressão Agenda](base/018/Readme.md) 
+- [@020 Agenda 7 - Login Multiusuário](base/020/Readme.md) 
+- [@019 Ligações - Agenda 5](base/019/Readme.md) 
+- [@017 Agenda 4 - Híbrida com notas e contatos](base/017/Readme.md) 
+- [@034 Trem 2](base/034/Readme.md) 
+- [@032 Mercantil](base/032/Readme.md) 
+- [@031 Clinica Veterinária](base/031/Readme.md) 
+- [@033 Trem 1](base/033/Readme.md) 
+- [@030 Banco - Vários clientes](base/030/Readme.md) 
+- [@028 Bilheteria](base/028/Readme.md) 
+- [@035 Agenda 7 - Login Multiusuário](base/035/Readme.md) 
+- [@029 Anotações](base/029/Readme.md) 

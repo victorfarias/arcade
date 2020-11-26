@@ -1,6 +1,11 @@
-## ©10_after 50 Mercantil #interfaces #composite #decorator
-###
+## Mercantil
+
 ![](figura.jpg)
+
+<!--TOC_BEGIN-->
+- [Mercantil](#mercantil)
+
+<!--TOC_END-->
 
 
 ```bash
