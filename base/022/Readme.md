@@ -30,19 +30,18 @@ Na UTI do nosso hospital existem vários pacientes. Cada paciente é atendico po
         - Cada médico tem um id(nome) e uma especialidade.
 
 
-```
-addPacs fred-fratura alvis-avc goku-hemorragia silva-sinusite
-  done
-addMeds bisturi-cirurgia snif-alergologia facada-cirurgia
-  done
-seeAll
-  Pac: fred:fratura     Meds: []
-  Pac: alvis:avc        Meds: []
-  Pac: goku:hemorragia  Meds: []
-  Pac: silva:sinusite   Meds: []
-  Med: bisturi:cirurgia Pacs: []
-  Med: snif:alergologia Pacs: []
-  Med: facada:cirurgia  Pacs: []
+```sh
+#__case inserir
+$addPacs fred-fratura alvis-avc goku-hemorragia silva-sinusite
+$addMeds bisturi-cirurgia snif-alergologia facada-cirurgia
+$seeAll
+Pac: fred:fratura     Meds: []
+Pac: alvis:avc        Meds: []
+Pac: goku:hemorragia  Meds: []
+Pac: silva:sinusite   Meds: []
+Med: bisturi:cirurgia Pacs: []
+Med: snif:alergologia Pacs: []
+Med: facada:cirurgia  Pacs: []
 ```
 
 - **Vinculos - 3.0 P**
@@ -51,22 +50,20 @@ seeAll
         - O paciente não deve entrar duas vezes na lista do médico e vice-versa.
 
 ```
+#__case vincular
 # tie _med _pac _pac ...
-tie bisturi fred alvis goku
-  done
-tie snif silva alvis
-  done
-tie facada goku
-  fail: ja existe outro medico da especialidade cirurgia
-
-seeAll
-  Pac: fred:fratura     Meds: [bisturi]
-  Pac: alvis:avc        Meds: [bisturi snif]
-  Pac: goku:hemorragia  Meds: [bisturi]
-  Pac: silva:sinusite   Meds: [snif]
-  Med: bisturi:cirurgia Pacs: [fred alvis goku]
-  Med: snif:alergologia Pacs: [silva alvis]
-  Med: facada:cirurgia  Pacs: []
+$tie bisturi fred alvis goku
+$tie snif silva alvis
+$tie facada goku
+fail: ja existe outro medico da especialidade cirurgia
+$seeAll
+Pac: fred:fratura     Meds: [bisturi]
+Pac: alvis:avc        Meds: [bisturi snif]
+Pac: goku:hemorragia  Meds: [bisturi]
+Pac: silva:sinusite   Meds: [snif]
+Med: bisturi:cirurgia Pacs: [fred alvis goku]
+Med: snif:alergologia Pacs: [silva alvis]
+Med: facada:cirurgia  Pacs: []
 ```
 
 - **Mensagens - 3.0 P**
@@ -76,21 +73,19 @@ seeAll
     - Depois de ver as mensagens elas são apagadas automaticamente.
 
 ```
-msg alvis bisturi posso tomar homeprazol?
-  done
-msg goku bisturi coceira no reto eh normal?
-  done
-inbox bisturi
-  [alvis: posso tomar homeprazol?]
-  [goku: coceira no reto eh normal?]
-msg bisturi alvis chupe limao que passa
-  done
+#__case mensagens
+$msg alvis bisturi posso tomar homeprazol?
+$msg goku bisturi coceira no reto eh normal?
+$inbox bisturi
+[alvis: posso tomar homeprazol?]
+[goku: coceira no reto eh normal?]
+$msg bisturi alvis chupe limao que passa
 msg bisturi goku venha na minha sala pra eu olhar
-  done
-inbox goku
-  [bisturi: venha na minha sala pra eu olhar]
-msg goku facada
-  fail: goku nao conhece facada
+$inbox goku
+[bisturi: venha na minha sala pra eu olhar]
+$msg goku facada
+fail: goku nao conhece facada
+$end
 ```
 
 ## Diagrama de Classes

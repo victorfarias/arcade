@@ -55,7 +55,7 @@ $tarifa 10
 $show
 conta:100 saldo:70
 $saque 150
-fail: saldo insuficienti
+fail: saldo insuficiente
 $saque 30
 $tarifa 5
 $deposito 5
@@ -107,9 +107,11 @@ $extratoN 2
 
 $end
 ```
+
 ***
 ## Diagrama UML
 ![](resources/diagrama.png)
+
 ***
 ## Main em Java
 ```java
@@ -182,6 +184,7 @@ fail: indice 50 invalido
 }
 
 ```
+
 ***
 ## Recursos Extras
 - [Comandos de teste](resources/testes.tio)

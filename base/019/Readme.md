@@ -16,7 +16,7 @@
 
 _Você digita o número de Maria no celular e aparece que você está ligando pra João. Hum, alguma coisa errada não está certa._
 
-Vamos criar o módulo que gerencia ligações da nossa agenda telefônica. Ele vai ser capaz de encontrar o número da agenda que corresponde à aquele número, montar nossa lista de contatos mais ligados e histórico de ligações.
+Vamos criar o módulo que gerência ligações da nossa agenda telefônica. Ele vai ser capaz de encontrar o número da agenda que corresponde à aquele número, montar nossa lista de contatos mais ligados e histórico de ligações.
 
 ## Requisitos Novos
 
@@ -29,7 +29,7 @@ Vamos criar o módulo que gerencia ligações da nossa agenda telefônica. Ele v
     - Se o número ligado pertencer a vários contatos, incremente o contador de ligações em todos eles.
 
 - SpeedList
-    - Mostrar a speedList, uma lista dos contatos ordenandos pela quantidade de ligações recebidas, começando pelos que receberam mais ligações primeiro.
+    - Mostrar a speedList, uma lista dos contatos ordenados pela quantidade de ligações recebidas, começando pelos que receberam mais ligações primeiro.
     - Não mostre contatos os que nunca receberam ligações.
 
 - Histórico

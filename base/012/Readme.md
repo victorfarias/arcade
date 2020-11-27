@@ -23,7 +23,7 @@ Seu sistema deverá:
     - Inserir passageiros informando id e idade
         - Se o passageiro for idoso:
             - Se houver cadeiras preferenciais
-                - O coloque na primeira cadeira preferencia.
+                - O coloque na primeira cadeira preferência.
             - Senão
                 - O coloque na primeira cadeira normal.
         - Se o passageiro não for idoso.

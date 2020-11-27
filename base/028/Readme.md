@@ -1,8 +1,7 @@
 # Bilheteria
-### FUP ★★★☆☆  POO ★★★☆☆
 ![](figura.jpg)
+
 <!--TOC_BEGIN-->
-    - [FUP ★★★☆☆  POO ★★★☆☆](#fup---poo-)
 - [Requisitos](#requisitos)
 - [Raio X](#raio-x)
 
@@ -20,18 +19,16 @@ Você deve desenvolver um sistema para gerenciar as vendas de uma bilheteria de 
     - pessoa deve ter nome, idade e pode ou não ser estudante
 - Mostrar todos os clientes
 
-```
+```sh
+#__case cadastro pessoas
 # addPessoa _nome _idade _estudante
-addPessoa steve 32 nao
-  done
-addPessoa tony 43 sim
-  done
-addPessoa steve 24 sim
-  fail: pessoa steve ja existe
-showP
-  [steve, 32, nao],
-  [tony, 43, sim]
-
+$addPessoa steve 32 nao
+$addPessoa tony 43 sim
+$addPessoa steve 24 sim
+fail: pessoa steve ja existe
+$showP
+[steve, 32, nao],
+[tony, 43, sim]
 ```
 
 - Cadastrar evento pelo nome.
@@ -42,20 +39,19 @@ showP
     - Setores do MESMO EVENTO não podem ter o mesmo nome
 - Mostrar evento e setores de um evento cadastrados
 
-```
+```sh
+#__case cadastro eventos e setores
+
 # addEvento _nome
-addEvento orappa
-  done
-#addSetor _nome-evento _nome _preco
-addSetor orappa front 70
-  done
+$addEvento orappa
+# addSetor _nome-evento _nome _preco
+$addSetor orappa front 70
 addSetor orappa pista 35
-  done
-showE
-  [orappa]
-showS orappa
-  [front],
-  [pista]
+$showE
+[orappa]
+$showS orappa
+[front],
+[pista]
 
 ```
 
@@ -68,20 +64,23 @@ showS orappa
     - O valor da venda deve ser contabilizado em um caixa
 - Mostrar vendas realizadas e o valor atual em caixa
 
-```
-#vender _Pessoa _Evento _Setor
-vender tony orappa front
-  done
-vender steve orappa camarote
-  fail: setor camarote nao existe
+```sh
+#__case vender ingressos
+
+# vender _Pessoa _Evento _Setor
+$vender tony orappa front
+$vender steve orappa camarote
+fail: setor camarote nao existe
 
 #showV
-showV
-  [tony, orappa, front, 35]
+$showV
+[tony, orappa, front, 35]
 
 #showC
-showC
-  R$ 35.00
+$showC
+R$ 35.00
+
+$end
 ```
 ***
 ## Raio X

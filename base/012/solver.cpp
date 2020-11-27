@@ -61,6 +61,10 @@ struct Topic{
             cout << "fail: topic lotada" << endl;
             return false;
         }
+        if(find(pass->id) != -1){
+            cout << "fail: pass ja esta na topic" << endl;
+            return false;
+        }
         int pos = 0;
         if(idade >= 65)
             pos = pref != -1? pref : norm;
