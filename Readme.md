@@ -43,9 +43,6 @@
 - [@007 Tarifas - Agência 1](base/007/Readme.md) 
 - [@011 JunkFood](base/011/Readme.md) 
 
-## Excessões
-- Todo
-    - [@029 Anotações](base/029/Readme.md) 
 
 ## 3 camadas, Ordenação
 - [@015 Busca - Agenda 2](base/015/Readme.md) 
@@ -55,6 +52,9 @@
 - [@008 Agiota](base/008/Readme.md) 
 - [@016 Favoritos - Agenda 3](base/016/Readme.md) 
 
+## Excessões
+- Todo
+    - [@029 Anotações](base/029/Readme.md) 
 
 ## Associação
 - Done
