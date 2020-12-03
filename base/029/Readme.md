@@ -28,7 +28,7 @@ O objetivo dessa atividade é criar um pequeno serviço de anotações. O sistem
 
 ## Shell
 
-```sh
+```python
 #__case add
 #addUser _username _pass
 #fail: usuario ja existe
@@ -38,21 +38,12 @@ $addUser luana 541
 
 # Mostra os usuários cadastrados
 #showUsers
-$showUsers
+$users
 [ david luana ]
 
 
 #__case login
-# Mostra os dados do usuário logado
-#show
-#fail: nenhum usuario logado
-
-$show
-fail: nenhum usuario logado
-
 #login _username _pass
-#fail: senha invalida
-#fail: usuario nao encontrado
 
 $login david 144
 fail: senha invalida
