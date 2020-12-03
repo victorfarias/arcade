@@ -59,8 +59,13 @@ struct Sistema{
 };
 
 template <class T>
-T get(stringstream &ss){T t; ss >> t; return t;}
-int main1(){
+T get(stringstream &ss){
+    T t;
+    ss >> t;
+    return t;
+}
+
+int main(){
     string line, cmd;
     Sistema sis;
     while(true){
@@ -90,7 +95,7 @@ int main1(){
     return 0;
 }
 
-int main(){
+int main1(){
     User david("david");
     User celia("celia");
     david.sendMsg(celia, "voce esta com fome?");
@@ -108,4 +113,5 @@ int main(){
     david.sendMsg(celia, "ja to aqui");
     cout << celia.readMsgs();
     // david:ja to aqui
+    return 0;
 }

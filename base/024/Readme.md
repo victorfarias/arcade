@@ -21,24 +21,24 @@ Essa atividade é a base conceitual para simplificar a troca de mensagens entre 
 ***
 ## Shell
 
-```bash
+```python
 #__case unique
 $addUser david
 $addUser celia
 $sendMsg david celia voce esta com fome?
 $sendMsg david celia ganhei duas cortesias para comer no McLanches, bora?
-$readMsgs david
+$inbox david
 - empty -
 $sendMsg david celia me avisa se quiser ir!
-$readMsgs celia
+$inbox celia
 david:voce esta com fome?
 david:ganhei duas cortesias para comer no McLanches, bora?
 david:me avisa se quiser ir!
 $sendMsg celia david na hora, te encontro la em 10 min
-$readMsgs david
+$inbox david
 celia:na hora, te encontro la em 10 min
 $sendMsg david celia ja to aqui
-$readMsgs celia
+$inbox celia
 david:ja to aqui
 $end
 ```

@@ -5,30 +5,6 @@
 
 using namespace std;
 
-// raw string inicio
-const char * HELP_TEXT = R"(# crud de contatos
-addContato _idContato
-rmContato  _idContato
-
-# crud de telefone
-addFone    _idContato _idFone _number
-rmFone     _idContato _idFone
-
-# buscas e visualizações
-show       _idContato
-showAll
-search     _pattern
-
-# favoritos
-fav        _idContato
-desfav     _idContato
-showFav
-
-# default
-fim
-help)";
-// raw string fim
-
 class Fone {
 public:
     string idFone;
@@ -51,8 +27,9 @@ public:
         return this->idFone == other.idFone;
     }
 
-    string toString(){
-        return "[" + this->idFone + " " + this->numero + "]";
+    friend ostream& operator<<(ostream& out, Fone fone){
+        out << fone.idFone << ":" << fone.numero;
+        return out;
     }
 };
 
@@ -61,38 +38,30 @@ public:
     string id;
     vector<Fone> fones;
     bool favorited;
-    Contato(string id = ""){
-        this->id = id;
-        this->favorited = true;
+
+    Contato(string id = string(""), vector<Fone> fones= {}) : 
+        id{id}, fones{fones}, favorited{false}{
     }
 
     void addFone(Fone fone){
-        for(auto elem : fones)
-            if(elem.idFone == fone.idFone)
-                throw "fone " + fone.idFone + " ja existe";
         fones.push_back(fone);
     }
 
-    void rmFone(string idFone){
-        for(int i = 0; i < (int) fones.size(); i++){
-            if(fones[i].idFone == idFone){
-                fones.erase(fones.begin() + i);
-                return;
-            }
-        }
-        throw "fone " + idFone + " nao existe";
+    void rmFone(int index){
+        fones.erase(fones.begin() + index);
     }
 
     vector<Fone> getAllFones(){
         return fones;
     }
 
-    string toString(){
-        string saida = favorited ? "@" : "-";
-        saida += " " + id + " ";
-        for(auto fone: fones)
-            saida += fone.toString();
-        return saida;
+    friend ostream& operator<<(ostream& out, Contato contato){
+        out << (contato.favorited ? "@ " : "- ");
+        out << contato.id;
+        int i = 0;
+        for(auto fone: contato.fones)
+            out << " [" << i++ << ":" << fone << "]";
+        return out;
     }
 };
 

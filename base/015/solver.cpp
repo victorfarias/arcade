@@ -34,11 +34,11 @@ public:
 };
     
 
-class Contato{
+class Contact{
     string name;
     vector<Fone> fones;
 public:
-    Contato(string name = ""):
+    Contact(string name = ""):
         name(name){
     }
     string getName(){
@@ -58,7 +58,7 @@ public:
     vector<Fone> getFones(){
         return fones;
     }
-    friend ostream& operator<<(ostream& out, Contato& contato){
+    friend ostream& operator<<(ostream& out, Contact& contato){
         out << "- " << contato.getName();
         int i = 0;
         for(Fone fone : contato.getFones()){
@@ -69,13 +69,13 @@ public:
     }
 };
 
-bool compare_contato(Contato one, Contato two){
+bool compare_contato(Contact one, Contact two){
     return one.getName() < two.getName();
 }
 
 
 class Agenda {
-    vector<Contato> contatos;
+    vector<Contact> contatos;
 
     int findContato(string id){
         for(int i = 0; i < (int) contatos.size(); i++)
@@ -89,7 +89,7 @@ public:
     void addContato(string name, vector<Fone> fones) {
         int ind = findContato(name);
         if(ind == -1){
-            contatos.push_back(Contato(name));
+            contatos.push_back(Contact(name));
             //opcao 1
             //std::sort(contatos.begin(), contatos.end(), [](auto a, auto b){return a.name < b.name;});
             std::sort(contatos.begin(), contatos.end(), compare_contato);
@@ -106,19 +106,19 @@ public:
             contatos.erase(contatos.begin() + ind);
     }
 
-    Contato * getContato(string id) {
+    Contact * getContato(string id) {
         int ind = findContato(id);
         if(ind != -1)
             return &contatos[ind];
         return nullptr;
     }
 
-    vector<Contato> getContatos() {
+    vector<Contact> getContatos() {
         return contatos; //retorna a cópia
     }
 
-    vector<Contato> search(string pattern) {
-        vector<Contato> resp;
+    vector<Contact> search(string pattern) {
+        vector<Contact> resp;
         for(auto& cont : contatos){
             stringstream ss;
             ss << cont;
@@ -161,18 +161,18 @@ int main(int argc, char const *argv[]){
             }
             agenda.addContato(name, fones);
         }
-        else if(cmd == "agenda"){
+        else if(cmd == "show"){
             cout << agenda;
         }
         else if(cmd == "rmFone"){//id index
             string id;
             int index;
             ss >> id >> index;
-            Contato * contato = agenda.getContato(id);
+            Contact * contato = agenda.getContato(id);
             if(contato != nullptr)
                 contato->rmFone(index);
         }
-        else if(cmd == "rmContato"){//id
+        else if(cmd == "rm"){//id
             string id;
             ss >> id;
             agenda.rmContato(id);
@@ -180,7 +180,7 @@ int main(int argc, char const *argv[]){
         else if(cmd == "search"){//pattern
             string pattern;
             ss >> pattern;
-            for(Contato contato : agenda.search(pattern))
+            for(Contact contato : agenda.search(pattern))
                 cout << contato << endl;
         }
         else{

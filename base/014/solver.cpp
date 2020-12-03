@@ -28,11 +28,11 @@ public:
 };
     
 
-class Contato{
+class Contact{
     string name;
     vector<Fone> fones;
 public:
-    Contato(string name = "", vector<Fone> fones = vector<Fone>()):
+    Contact(string name = "", vector<Fone> fones = vector<Fone>()):
         name(name), fones(fones){
     }
     string getName(){
@@ -52,7 +52,7 @@ public:
     vector<Fone> getFones(){
         return fones;
     }
-    friend ostream& operator<<(ostream& out, Contato& contato){
+    friend ostream& operator<<(ostream& out, Contact& contato){
         out << "- " << contato.getName();
         int i = 0;
         for(Fone fone : contato.getFones()){
@@ -74,7 +74,7 @@ T get(stringstream& ss){
 }
 
 int main(int argc, char const *argv[]){
-    Contato contato;
+    Contact contato;
     while(true){
         string line, cmd;
         getline(cin, line);
@@ -85,7 +85,7 @@ int main(int argc, char const *argv[]){
             break;
         }
         else if(cmd == "init"){//name
-            contato = Contato(get<string>(ss));
+            contato = Contact(get<string>(ss));
         }
         else if(cmd == "add"){//id fone
             string id = get<string>(ss);

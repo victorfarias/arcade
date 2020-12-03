@@ -1,14 +1,12 @@
 # Whatsapp I - Chat Grupo
 
 <!--TOC_BEGIN-->
-- [Whatsapp I - Chat Grupo](#whatsapp-i---chat-grupo)
-  - [Funcionalidades](#funcionalidades)
+- [Funcionalidades](#funcionalidades)
     - [Seu sistema deverá:](#seu-sistema-deverá)
-  - [- Ao pedir a lista de notificações, o usuário vê ao lado de cada grupo se ele possui mensagens não lidas.](#--ao-pedir-a-lista-de-notificações-o-usuário-vê-ao-lado-de-cada-grupo-se-ele-possui-mensagens-não-lidas)
-  - [Shell](#shell)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
-  - [Créditos](#créditos)
+- [Shell](#shell)
+- [Guia de Resolução](#guia-de-resolução)
+- [Main não interativa](#main-não-interativa)
+- [Créditos](#créditos)
 
 <!--TOC_END-->
 

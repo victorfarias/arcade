@@ -51,84 +51,77 @@ O objetivo desta atividade é imprementar um sistema que aloca passageiros em va
 ## Exemplos
 
 ```python
-#######################################
-# Trem e vagões
-#######################################
-init _maxVagoes
-nwvag _capacidade
+#__case init 
+#init _maxVagoes
+#nwvag _capacidade
 
-init 2
-  done
-nwvag 2
-  done
-la
-  Trem [ - - ]
-nwvag 3
-  done
-la
-  Trem [ - - ][ - - - ]
-nwvag 1
-  fail: limite de vagões atingido
+$init 2
+$nwvag 2
+$la
+Trem [ - - ]
+$nwvag 3
+$la
+Trem [ - - ][ - - - ]
+$nwvag 1
+fail: limite de vagões atingido
 
-#######################################
-# Embarque e Desembarque
-#######################################
-entrar _idPass
-entrar goku
-la
-  Trem [ goku - ][ - - - ]
-entrar kate
-entrar sara
-entrar goku
-  fail: goku já está no trem
-la
-  Trem [ goku kate ][ sara - - ]
-entrar tina
-entrar james
-entrar rufus
-  fail: trem lotado
-show
-  Trem [ goku kate ][ sara tina james ]
+#__case embarque e desembarque
+#entrar _idPass
+$entrar goku
+$la
+Trem [ goku - ][ - - - ]
+$entrar kate
+$entrar sara
+$entrar goku
+fail: goku já está no trem
+$la
+Trem [ goku kate ][ sara - - ]
+$entrar tina
+$entrar james
+$entrar rufus
+fail: trem lotado
+$show
+Trem [ goku kate ][ sara tina james ]
 
-sair kate
-sair sara
-sair rufus
-  fail: rufus nao esta no trem
-la
-  Trem [ goku - ][ - tina james ]
-entrar alex
-la
-  Trem [ goku alex ][ - tina james ]
+$sair kate
+$sair sara
+$sair rufus
+fail: rufus nao esta no trem
+$la
+Trem [ goku - ][ - tina james ]
+$entrar alex
+$la
+Trem [ goku alex ][ - tina james ]
+$end
 
-#######################################
-# Cadastro de Passeiros e Registro de Embarque
-#######################################
-entrar sara
-sair goku
-la
-  Trem [ - alex ][ sara tina james ]
+#__case cadastro de passageiros e movimentacao
+$entrar sara
+$sair goku
+$la
+trem [ - alex ][ sara tina james ]
 
-cadastro
-  alex
-  goku
-  james
-  kate
-  rufus
-  sara
-  tina
+$cadastro
+alex
+goku
+james
+kate
+rufus
+sara
+tina
 
-movimentacao
-  goku in
-  kate in
-  sara in
-  tina in
-  james in
-  kate out
-  sara out
-  alex in
-  sara in
-  goku out
+$movimentacao
+goku in
+kate in
+sara in
+tina in
+james in
+kate out
+sara out
+alex in
+sara in
+goku out
 
+$end
 ```
 
 ***
@@ -171,5 +164,5 @@ class Registro
 - movimentacao: Movimento[]
 --
 + cadastrar(pass: Passageiro)
-+ movimentar(mov: Movimento)
++ movimentar(string: passId, mov: Movimento)
 ```

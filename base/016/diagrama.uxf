@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
   <help_text>// Uncomment the following line to change the fontsize and font:
 // fontsize=14
 fontfamily= Monospaced
@@ -51,18 +52,18 @@ bg=yellow
       <w>168</w>
       <h>144</h>
     </coordinates>
-    <panel_attributes>*Contato*
+    <panel_attributes>*Contact*
 bg=yellow
 --
 - name: string
 - fones: vector&lt;Fone&gt;
-- favorited: bool
+- starred: bool
 --
 + addFone(label, number)
 + rmFone(index)
-+ setFavorited(value)
++ setBookmark(value)
 --
-+ Contato(id)
++ Contact(id)
 + toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
@@ -77,16 +78,16 @@ bg=yellow
     <panel_attributes>*Agenda*
 bg=yellow
 --
-- map&lt;string, Contato&gt; contatos;
-- map&lt;string, Contato*&gt; favoritos;
+- map&lt;string, Contact&gt;  contacts;
+- map&lt;string, Contact*&gt; bookmarks;
 --
-+ addContato(idContato: string, contatos: vetor&lt;Contato&gt;): void
-+ getContato(id): Contato*
-+ rmContato(id): void
-+ favoritar(id): void
-+ desfavoritar(id): void
-+ getContatos(): vector&lt;Contato&gt;
-+ getFavoritos(): vector&lt;Contato&gt;</panel_attributes>
++ addContact(idContact: string, fones: Fones): void
++ getContact(id): Contact*
++ rmContact(id) : void
++ bookmark(id)  : void
++ unBookmark(id): void
++ getContacts() : Contact[]
++ getBookmarks(): Contact[]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -100,32 +101,32 @@ bg=yellow
     <panel_attributes>*Ajuda Lógica*
 bg=blue
 --
-*addContato(idContato, Contato)*
-    se idContato ainda nao existe:
-    	contatos.add(novo contato(idContato))
+*addContact(idContact, Contact)*
+    se idContact ainda nao existe:
+    	contacts.add(novo contact(idContact))
 
-*rmContato(id)*
-    se contato existe
-        desfavoritar(id)
+*rmContact(id)*
+    se contact existe
+        unBookmark(id)
         remover da lista de contatos
 
-*getAllContatos()*
+*getAllContacts()*
     retorna todos contatos
 
-*favoritar(id)*
-    contato = getContato(id)
-    if not contato.favorited:
-        contato.favorited = true
-        favoritos[id] = contato
+*bookmark(id)*
+    contact = getContact(id)
+    if not contact.starred:
+        contato.starred = true
+        bookmarks[id] = contact
 
-*desfavoritar(id)*
-    contato = getContato(id)
-    if contato.favorited:
-        contato.favorited = false
-        favoritos.remove(id)
+*unBookmark(id)*
+    contact = getContact(id)
+    if contact.starred:
+        contact.starred = false
+        bookmarks.remove(id)
     
-*getFavoritos()*
-    retorna favoritos</panel_attributes>
+*getBookmarks()*
+    retorna bookmarks</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -163,9 +164,7 @@ bg=pink
 --
 Para Java:
 - utilize TreeMap ao invés de map
-
-- utilize ArrayList no lugar de vector
-
+- utilize ArrayList para []
 - Quando encontrar Contato*, 
   utilize apenas Contato.</panel_attributes>
     <additional_attributes/>

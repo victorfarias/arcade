@@ -5,15 +5,12 @@
 <!--TOC_BEGIN-->
 - [Vídeo Explicativo](#vídeo-explicativo)
 - [Funcionalidades](#funcionalidades)
-- [Exemplos](#exemplos)
-- [Pontuação](#pontuação)
+- [Shell](#shell)
 - [Raio X](#raio-x)
 
 <!--TOC_END-->
 
-O objetivo dessa atividade é criar um pequeno serviço de anotações. O sistema
-terá vários usuários que vão logar utilizando login e senha. Cada usuário pode
-armazenar notas de texto contendo título e texto.
+O objetivo dessa atividade é criar um pequeno serviço de anotações. O sistema terá vários usuários que vão logar utilizando login e senha. Cada usuário pode armazenar notas de texto contendo título e texto.
 
 ## Vídeo Explicativo
 
@@ -21,106 +18,94 @@ armazenar notas de texto contendo título e texto.
 
 ## Funcionalidades
 
-- **[1.0 P]** Criar usuário passando username e password.
+- Criar usuário passando username e password.
     - Usernames devem ser únicos no sistema.
+- Mostrar os usernames cadastrados no sistema.
+- Logar e deslogar na conta de um usuário.
+- Adicionar uma nota com título e texto.
+    - A primeira palavra é o título, o resto é o texto.
+- Mostrar notas
 
-- **[1.0 P]** Mostrar os usernames cadastrados no sistema.
+## Shell
 
-- **[2.0 P]** Logar e deslogar na conta de um usuário.
+```sh
+#__case add
+#addUser _username _pass
+#fail: usuario ja existe
 
-- **[1.0 P]** Mudar password.
+$addUser david 123
+$addUser luana 541
 
-- **[1.0 P]** Adicionar uma nota com título e texto.
-    - **[2.0 E]** Título deve ter uma palavra, mas o texto pode conter várias palavras.
-        - Não deve ser possível inserir duas notas com o mesmo título para o mesmo usuário.
-
-- **[1.0 E]** Apagar uma nota dado o título.
-
-- **[1.0 P]** Mostrar notas
-
-- **[1.0 P]** Inicialize seu sistema com alguns usuários e algumas notas.
-
-## Exemplos
-
-```python
-#######################################
-# Criar usuário
-#######################################
-addUser _username _password
-  ok | usuario criado
-  fail: username já existe
-
-#######################################
-# Mostrar usernames cadastrados
-#######################################
-showUsers
-  _username1
-  _username2
-  ...
-
-#######################################
-# Logar e deslogar
-#######################################
-login _username _senha
-  done
-  fail: username não existe
-  fail: senha inválida
-
-logout
-  ok
-  fail: nenhum usuário logado
-
-#######################################
-# Mudar o password
-#######################################
-changePass _oldpass _newpass
-  done
-  fail: password errado
-  fail: ninguém logado
-
-#######################################
-# Adicionar nota
-#######################################
-addNote _titulo _texto
-  done
-  fail: ninguem logado
-  fail: titulo ja existe
-
-#######################################
-# Apagar uma nota
-#######################################
-rmNote _titulo
-  done
-  fail: nota não encontrada
-  fail: ninguém logado
+# Mostra os usuários cadastrados
+#showUsers
+$showUsers
+[ david luana ]
 
 
-#######################################
-# Mostrar notas
-#######################################
-showNotes
-  _titulo1 _texto1
-  _titulo2 _texto2
-...
+#__case login
+# Mostra os dados do usuário logado
+#show
+#fail: nenhum usuario logado
 
-```
+$show
+fail: nenhum usuario logado
 
-## Pontuação
+#login _username _pass
+#fail: senha invalida
+#fail: usuario nao encontrado
 
-```
-[ ][1.0 P] addUser
-[ ][1.0 P] showUsers
-[ ][1.0 P] login
-[ ][1.0 P] logout
-[ ][1.0 P] changePass
-[ ][1.0 P] addNote
-[ ][1.0 P] showNotes
-[ ][1.0 P] inicialização do sistema
-[ ]     Total pontos
+$login david 144
+fail: senha invalida
+$login davi 123
+fail: usuario nao encontrado
 
-[ ][2.0 E] título deve ter uma palavra e o texto várias
-[ ][1.0 E] apagar nota por título
-[ ]        Total Extras
+$login david 123
+$show
+user: david
+
+#__case logout
+
+#logout
+#fail: ninguem logado
+$logout
+
+$logout
+fail: ninguem logado
+
+
+#__case notes
+
+#addNote _titulo _texto
+#fail: ninguem logado
+$login david 123
+$addNote compras comprar banana ovo xilito mexirica e melancia
+$addNote farmacia comprar tilenol, omeprazol, doril e soro
+
+$show
+user: david
+[0:compras:comprar banana ovo xilito mexirica e melancia]
+[1:farmacia:comprar tilenol, omeprazol, doril e soro]
+
+$logout
+$login luana 541
+$addNote beleza fazer as unhas, limpeza de pele, massagem linfatica
+$addNote filmes_favoritos moana, ariel, bela adormecida
+$addNote cores azul, vermelho, verde, anil
+
+$show
+user: luana
+[0:beleza:fazer as unhas, limpeza de pele, massagem linfatica]
+[1:filmes_favoritos:moana, ariel, bela adormecida]
+[2:cores:azul, vermelho, verde, anil]
+
+$logout
+$login david 123
+$show
+user: david
+[0:compras:comprar banana ovo xilito mexirica e melancia]
+[1:farmacia:comprar tilenol, omeprazol, doril e soro]
+$end
+
 ```
 
 ***
@@ -133,20 +118,25 @@ class Nota
 --
 + toString(): String
 
-class Usuario
+
+class User
 - username: String
 - password: String
 - notas: List<Nota>
 --
-+ addNote(note: Nota): boolean
-+ rmNote(titulo: String): boolean
-+ changePass(oldPass: String, newPass: String): boolean
++ addNote(title: string, text: string): boolean
++ rmNote(index: int): boolean
++ checkPass(pass: String): boolean
 + toString(): String
 
+
 class Sistema
-- usuarios: List<Usuario>
+- currentUser: User
+- users: User[]
 --
 + addUser(userName: String, password: String): boolean
-
-
++ login(username: string, pass: string)
++ logout()
++ getCurrentUser(): User
++ getUsers(): String[]
 ````

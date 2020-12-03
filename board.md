@@ -1,12 +1,8 @@
-[](base/017/Readme.md) : # Agenda 4 - Híbrida com notas e contatos
-[](base/020/Readme.md) : # Agenda 7 - Login Multiusuário
-[](base/035/Readme.md) : # Agenda 7 - Login Multiusuário
 [](base/008/Readme.md) : # Agiota
 [](base/029/Readme.md) : # Anotações
-[](base/030/Readme.md) : # Banco - Vários clientes
 [](base/028/Readme.md) : # Bilheteria
 [](base/015/Readme.md) : # Busca - Agenda 2
-[](base/013/Readme.md) : # Cadastro - Agência 2 - Conta Corrente e Poupança
+[](base/013/Readme.md) : # Cadastro - Agência 2
 [](base/001/Readme.md) : # Calculadora com bateria
 [](base/002/Readme.md) : # Carro com pessoas
 [](base/031/Readme.md) : # Clinica Veterinária
@@ -15,12 +11,11 @@
 [](base/022/Readme.md) : # Hospital
 [](base/011/Readme.md) : # JunkFood
 [](base/004/Readme.md) : # Lapiseira e Grafite
-[](base/019/Readme.md) : # Ligações - Agenda 5
+[](base/019/Readme.md) : # Ligações - Agenda 4
 [](base/021/Readme.md) : # Matrícula - Associação NxN
 [](base/024/Readme.md) : # Mensagens
 [](base/005/Readme.md) : # Mestre dos Vetores
 [](base/003/Readme.md) : # Motoca infantil no parque
-[](base/018/Readme.md) : # Progressão Agenda
 [](base/009/Readme.md) : # Pula pula no parquinho
 [](base/010/Readme.md) : # Sala de Cinema
 [](base/023/Readme.md) : # Salário
@@ -32,7 +27,6 @@
 [](base/025/Readme.md) : # Twitter - Associação reflexiva
 [](base/026/Readme.md) : # Whatsapp I - Chat Grupo
 [](base/027/Readme.md) : # Whatsapp II - Chat Pessoa
-[](base/032/Readme.md) : ## Mercantil
 [](base/009/RaioX.md)  : ## Raio X
 [](base/016/RaioX.md)  : ## Raio X
 [](base/010/RaioX.md)  : ## Raio X

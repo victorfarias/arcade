@@ -27,7 +27,7 @@ Sua agenda possui vários contatos e cada contato possui vários telefones.
 
 ## Shell
 
-```bash
+```python
 #__case adicionando em lote
 $add eva oio:8585 cla:9999
 $add ana tim:3434 
@@ -37,7 +37,7 @@ $add bia viv:5454
 # adicione os telefones ao contato existente
 $add ana cas:4567 oio:8754
 
-$agenda
+$show
 - ana [0:tim:3434] [1:cas:4567] [2:oio:8754]
 - bia [0:viv:5454]
 - eva [0:oio:8585] [1:cla:9999]
@@ -47,15 +47,15 @@ $agenda
 # remove o elemento indice 0 da ana
 $rmFone ana 0
 
-$agenda
+$show
 - ana [0:cas:4567] [1:oio:8754]
 - bia [0:viv:5454]
 - eva [0:oio:8585] [1:cla:9999]
 
 #__case removendo contato
-$rmContato bia
+$rm bia
 
-$agenda
+$show
 - ana [0:cas:4567] [1:oio:8754]
 - eva [0:oio:8585] [1:cla:9999]
 
@@ -63,7 +63,7 @@ $add ava tim:5454
 $add rui viv:2222 oio:9991
 $add zac rec:3131
 
-$agenda
+$show
 - ana [0:cas:4567] [1:oio:8754]
 - ava [0:tim:5454]
 - eva [0:oio:8585] [1:cla:9999]
@@ -100,10 +100,10 @@ $end
 ```java
 //case adicionando em lote
 Agenda agenda = new Agenda();
-agenda.addContato("eva", Arrays.asList(new Fone("oio", 8585), new Fone("cla", 9999)));
-agenda.addContato("ana", Arrays.asList(new Fone("Tim", 3434)));
-agenda.addContato("bia", Arrays.asList(new Fone("viv", 5454)));
-agenda.addContato("ana", Arrays.asList(new Fone("cas", 4567), new Fone("oio", 8754)));
+agenda.addContact("eva", Arrays.asList(new Fone("oio", 8585), new Fone("cla", 9999)));
+agenda.addContact("ana", Arrays.asList(new Fone("Tim", 3434)));
+agenda.addContact("bia", Arrays.asList(new Fone("viv", 5454)));
+agenda.addContact("ana", Arrays.asList(new Fone("cas", 4567), new Fone("oio", 8754)));
 System.out.println(agenda);
 /*
 - ana [0:tim:3434] [1:cas:4567] [2:oio:8754]
@@ -121,15 +121,15 @@ System.out.println(agenda);
 */
 
 //case removendo contato
-agenda.rmContato("bia");
+agenda.rmContact("bia");
 System.out.println(agenda);
 /*
 - ana [0:cas:4567] [1:oio:8754]
 - eva [0:oio:8585] [1:cla:9999]
 */
-agenda.addContato("ava", Arrays.asList(new Fone("viv", 5454)));
-agenda.addContato("rui", Arrays.asList(new Fone("viv", 2222),new Fone("oio", 9991)));
-agenda.addContato("zac", Arrays.asList(new Fone("rec", 3131)));
+agenda.addContact("ava", Arrays.asList(new Fone("viv", 5454)));
+agenda.addContact("rui", Arrays.asList(new Fone("viv", 2222),new Fone("oio", 9991)));
+agenda.addContact("zac", Arrays.asList(new Fone("rec", 3131)));
 System.out.println(agenda);
 /*
 - ana [0:cas:4567] [1:oio:8754]
