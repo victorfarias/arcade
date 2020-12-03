@@ -1,12 +1,14 @@
 # Whatsapp I - Chat Grupo
 
 <!--TOC_BEGIN-->
-- [Funcionalidades](#funcionalidades)
+- [Whatsapp I - Chat Grupo](#whatsapp-i---chat-grupo)
+  - [Funcionalidades](#funcionalidades)
     - [Seu sistema deverá:](#seu-sistema-deverá)
-- [Shell](#shell)
-- [Guia de Resolução](#guia-de-resolução)
-- [Main não interativa](#main-não-interativa)
-- [Créditos](#créditos)
+  - [- Ao pedir a lista de notificações, o usuário vê ao lado de cada grupo se ele possui mensagens não lidas.](#--ao-pedir-a-lista-de-notificações-o-usuário-vê-ao-lado-de-cada-grupo-se-ele-possui-mensagens-não-lidas)
+  - [Shell](#shell)
+  - [Guia de Resolução](#guia-de-resolução)
+  - [Main não interativa](#main-não-interativa)
+  - [Créditos](#créditos)
 
 <!--TOC_END-->
 
@@ -107,7 +109,7 @@ $chats sara
 
 ```sh
 #__case mensagens
-$zap goku guerreiros sou goku galera
+$zap goku guerreiros oi, eu sou o goku
 $zap tina guerreiros oi goku
 
 $notify goku
@@ -118,7 +120,7 @@ $notify tina
 $ler goku guerreiros
 [tina: oi goku]
 $ler tina guerreiros
-[goku: sou goku galera]
+[goku: oi, eu sou o goku]
 
 $ler sara guerreiros
 fail: user sara nao esta no chat guerreiros
@@ -154,6 +156,81 @@ $end
 
 ## Main não interativa
 ```java
+//case init
+WhatsappService whatsapp = new WhatsappService();
+whatsapp.createUser("goku");
+whatsapp.createUser("sara");
+whatsapp.createUser("tina");
+System.out.println(whatsapp.allUsers());
+//[goku sara tina]
+whatsapp.createChat("goku", "guerreiros");
+whatsapp.createChat("goku", "homens");
+whatsapp.createChat("sara", "familia"));
+
+whatsapp.createChat("sara", "guerreiros");
+//fail: chat guerreiros ja existe
+
+System.out.println(whatsapp.getChatsUser("goku"));
+//[guerreiros homens]
+System.out.println(whatsapp.getChatsUser("sara"));
+//[familia]
+System.out.println(whatsapp.getChatsUser("tina"));
+//[]
+
+//case invite
+whatsapp.addByInvite("goku", "sara", "guerreiros");
+whatsapp.addByInvite("sara", "tina", "guerreiros");
+whatsapp.addByInvite("tina", "goku", "familia");
+//fail: user tina nao esta em chat familia
+System.out.println(whatsapp.getChatsUser("sara"));
+//[familia guerreiros]
+System.out.println(whatsapp.getChatsUser("tina"));
+//[guerreiros]
+System.out.println(whatsapp.getChatsUser("goku"));
+//[guerreiros homens]
+System.out.println(whatsapp.getUsersChat("guerreiros"));
+//[goku sara tina]
+System.out.println(whatsapp.getUsersChat("familia"));
+//[sara tina]
+
+//case leaving
+whatsapp.removerUserChat("sara", "guerreiros");
+System.out.println(whatsapp.getUsersChat("guerreiros"));
+//[goku tina]
+System.out.println(whatsapp.getChatsUser("sara"));
+//[familia]
+
+//case mensagens
+whatsapp.sendMessage("goku", "guerreiros", "oi, eu sou o goku");
+whatsapp.sendMessage("tina", "guerreiros", "oi goku");
+
+whatsapp.getNotify("goku");
+//[guerreiros(1) homens]
+whatsapp.getNotify("tina");
+//[guerreiros(1)]
+
+whatsapp.readMessageUserChat("goku", "guerreiros");
+//[tina: oi goku]
+whatsapp.readMessageUserChat("tina", "guerreiros");
+//[goku: oi, eu sou o goku]
+
+whatsapp.readMessageUserChat("sara", "guerreiros");
+//fail: user sara nao esta no chat guerreiros
+
+whatsapp.sendMessage("goku", "guerreiros", "vamos sair tina?");
+whatsapp.sendMessage("tina", "guerreiros", "voce ta com fome goku?");
+whatsapp.sendMessage("goku", "guerreiros", "to com saudade de voce.");
+
+whatsapp.getNotify("tina");
+//[guerreiros(2)]
+whatsapp.getNotify("goku");
+//[guerreiros(1) homens]
+
+whatsapp.readMessageUserChat("goku", "guerreiros");
+//[tina: voce ta com fome goku?]
+whatsapp.readMessageUserChat("tina", "guerreiros");
+//[goku: vamos sair tina?]
+//[goku: to com saudade de voce.]
 ```
 ---
 ## Créditos
