@@ -7,9 +7,9 @@
 - [Manipulação de dados em listas](#manipulação-de-dados-em-listas)
 - [2 classes, Vetores de Null, Agregação](#2-classes-vetores-de-null-agregação)
 - [2 classes, Vetores, Composição, responsabilidades](#2-classes-vetores-composição-responsabilidades)
-- [Excessões](#excessões)
 - [3 camadas, Ordenação](#3-camadas-ordenação)
 - [Uso de mapas](#uso-de-mapas)
+- [Excessões](#excessões)
 - [Associação](#associação)
 - [Herança](#herança)
 - [Lógica](#lógica)
@@ -53,8 +53,7 @@
 - [@016 Favoritos - Agenda 3](base/016/Readme.md) 
 
 ## Excessões
-- Todo
-    - [@029 Anotações](base/029/Readme.md) 
+- [@029 Anotações](base/029/Readme.md) 
 
 ## Associação
 - Done
