@@ -94,4 +94,4 @@ $end
 
 - Métodos Get e Set de atributos básicos omitidos.
 
-![](/assets/ligacoes/diagrama.png)
+
