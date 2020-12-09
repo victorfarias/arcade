@@ -87,7 +87,7 @@ bg=yellow
 + user: User
 + msgs: Msg[]
 --
-</panel_attributes>
++ addMsg: void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -96,7 +96,7 @@ bg=yellow
       <x>90</x>
       <y>320</y>
       <w>340</w>
-      <h>190</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>*Chat*
 bg=yellow
@@ -111,7 +111,7 @@ bg=yellow
 + addUserChat(user: User)
 + addByInvite(user: User, invited: User)
 + rmUserChat(user: User)
-</panel_attributes>
++ addInbox(user: User, msg: String): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>

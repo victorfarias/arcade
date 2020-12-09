@@ -88,7 +88,7 @@ $chats goku
 $users guerreiros
 [goku sara tina]
 $users familia
-[sara tina]
+[sara]
 
 #__case leaving
 $leave sara guerreiros
@@ -165,7 +165,7 @@ System.out.println(whatsapp.allUsers());
 //[goku sara tina]
 whatsapp.createChat("goku", "guerreiros");
 whatsapp.createChat("goku", "homens");
-whatsapp.createChat("sara", "familia"));
+whatsapp.createChat("sara", "familia");
 
 whatsapp.createChat("sara", "guerreiros");
 //fail: chat guerreiros ja existe
@@ -201,34 +201,37 @@ System.out.println(whatsapp.getChatsUser("sara"));
 //[familia]
 
 //case mensagens
+System.out.println("2");
 whatsapp.sendMessage("goku", "guerreiros", "oi, eu sou o goku");
 whatsapp.sendMessage("tina", "guerreiros", "oi goku");
 
-whatsapp.getNotify("goku");
+System.out.println(whatsapp.getNotifyUser("goku"));
 //[guerreiros(1) homens]
-whatsapp.getNotify("tina");
+System.out.println(whatsapp.getNotifyUser("tina"));
 //[guerreiros(1)]
 
-whatsapp.readMessageUserChat("goku", "guerreiros");
+System.out.println(whatsapp.readMessageUserChat("goku", "guerreiros"));
 //[tina: oi goku]
-whatsapp.readMessageUserChat("tina", "guerreiros");
+
+System.out.println(whatsapp.readMessageUserChat("tina", "guerreiros"));
 //[goku: oi, eu sou o goku]
 
-whatsapp.readMessageUserChat("sara", "guerreiros");
+System.out.println(whatsapp.readMessageUserChat("sara", "guerreiros"));
 //fail: user sara nao esta no chat guerreiros
+
 
 whatsapp.sendMessage("goku", "guerreiros", "vamos sair tina?");
 whatsapp.sendMessage("tina", "guerreiros", "voce ta com fome goku?");
 whatsapp.sendMessage("goku", "guerreiros", "to com saudade de voce.");
 
-whatsapp.getNotify("tina");
+System.out.println(whatsapp.getNotifyUser("tina"));
 //[guerreiros(2)]
-whatsapp.getNotify("goku");
+System.out.println(whatsapp.getNotifyUser("goku"));
 //[guerreiros(1) homens]
 
-whatsapp.readMessageUserChat("goku", "guerreiros");
+System.out.println(whatsapp.readMessageUserChat("goku", "guerreiros"));
 //[tina: voce ta com fome goku?]
-whatsapp.readMessageUserChat("tina", "guerreiros");
+System.out.println(whatsapp.readMessageUserChat("tina", "guerreiros"));
 //[goku: vamos sair tina?]
 //[goku: to com saudade de voce.]
 ```
