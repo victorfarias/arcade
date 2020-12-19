@@ -1,6 +1,5 @@
 Scanner scanner = new Scanner(System.in);
     WhatsappService zap = new WhatsappService();
-
     while(true){
       String line = scanner.nextLine();
       //System.out.println("$" + line);

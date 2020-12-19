@@ -1,12 +1,14 @@
 # Whatsapp I - Chat Grupo
 
 <!--TOC_BEGIN-->
-- [Funcionalidades](#funcionalidades)
+- [Whatsapp I - Chat Grupo](#whatsapp-i---chat-grupo)
+  - [Funcionalidades](#funcionalidades)
     - [Seu sistema deverá:](#seu-sistema-deverá)
-- [Shell](#shell)
-- [Guia de Resolução](#guia-de-resolução)
-- [Main não interativa](#main-não-interativa)
-- [Créditos](#créditos)
+  - [- Ao pedir a lista de notificações, o usuário vê ao lado de cada grupo se ele possui mensagens não lidas.](#--ao-pedir-a-lista-de-notificações-o-usuário-vê-ao-lado-de-cada-grupo-se-ele-possui-mensagens-não-lidas)
+  - [Shell](#shell)
+  - [Guia de Resolução](#guia-de-resolução)
+  - [Main não interativa](#main-não-interativa)
+  - [Créditos](#créditos)
 
 <!--TOC_END-->
 
@@ -181,7 +183,7 @@ whatsapp.addByInvite("sara", "tina", "guerreiros");
 whatsapp.addByInvite("tina", "goku", "familia");
 //fail: user tina nao esta em chat familia
 System.out.println(whatsapp.getChatsUser("sara"));
-//[familia guerreiros]
+//[guerreiros familia]
 System.out.println(whatsapp.getChatsUser("tina"));
 //[guerreiros]
 System.out.println(whatsapp.getChatsUser("goku"));
@@ -189,7 +191,7 @@ System.out.println(whatsapp.getChatsUser("goku"));
 System.out.println(whatsapp.getUsersChat("guerreiros"));
 //[goku sara tina]
 System.out.println(whatsapp.getUsersChat("familia"));
-//[sara tina]
+//[sara]
 
 //case leaving
 whatsapp.removerUserChat("sara", "guerreiros");
@@ -199,7 +201,6 @@ System.out.println(whatsapp.getChatsUser("sara"));
 //[familia]
 
 //case mensagens
-System.out.println("2");
 whatsapp.sendMessage("goku", "guerreiros", "oi, eu sou o goku");
 whatsapp.sendMessage("tina", "guerreiros", "oi goku");
 

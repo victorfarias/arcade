@@ -1,23 +1,23 @@
 import java.util.*;
 
 class WhatsappService{
-  private ArrayList<Chat> rep_chat = new ArrayList<Chat>();
-  private ArrayList<User> rep_user = new ArrayList<User>();
+  private HashMap<String, Chat> rep_chat = new HashMap<String, Chat>();
+  private HashMap<String, User> rep_user = new HashMap<String, User>();
 
   protected User getUser(String userId){
     Boolean userExiste = false;
-    for(User user : rep_user){
+    for(User user : rep_user.values()){
       if(user.getId().equals(userId)){
         return user;
       }
     }
-    System.out.println("fail: User não encontrado!");
+    System.out.println("fail: User nao encontrado!");
     return null;
   }
 
   protected Chat getChat(String chatId){
     Boolean chatExiste = false;
-    for(Chat chat : rep_chat){
+    for(Chat chat : rep_chat.values()){
       if(chat.getId().equals(chatId)){
         return chat;
       }
@@ -36,7 +36,7 @@ class WhatsappService{
       return;
     }
     chat.addUserChat(user);
-    rep_chat.add(chat);
+    rep_chat.put(chatId, chat);
   }
 
   public void addByInvite(String guessId, String invitedId, String chatId){
@@ -47,13 +47,13 @@ class WhatsappService{
   }
 
   public void createUser(String userId){
-    rep_user.add(new User(userId));
+    rep_user.put(userId, new User(userId));
   }
 
   public String allUsers(){
     StringBuilder users = new StringBuilder();
     users.append("[");
-    for(User user : rep_user){
+    for(User user : rep_user.values()){
       users.append(user.getId() + " ");
     }
     if(users.length() > 1)
@@ -66,7 +66,7 @@ class WhatsappService{
     Chat chat = getChat(chatId);
     StringBuilder users = new StringBuilder();
     users.append("[");
-    for(User user : chat.getUsers()){
+    for(User user : chat.getUsers().values()){
       users.append(user.getId()+ " ");
     }
     if(users.length() > 1)
@@ -79,7 +79,7 @@ class WhatsappService{
     User user = getUser(userId);
     StringBuilder chats = new StringBuilder();
     chats.append("[");
-    for(Chat chat : user.getChats()){
+    for(Chat chat : user.getChats().values()){
       chats.append(chat.getId() + " ");
     }
     if(chats.length() > 1)
@@ -92,7 +92,7 @@ class WhatsappService{
     User user = getUser(userId);
     StringBuilder chats = new StringBuilder();  
     chats.append("[");
-    for(Chat chat : user.getChats()){
+    for(Chat chat : user.getChats().values()){
             chats.append(chat.getId());
             if(user.getNotifyUser(chat.getId()).getUnreadCout() > 0)
               chats.append("("+ user.getNotifyUser(chat.getId()).getUnreadCout() +") ");
@@ -116,27 +116,42 @@ class WhatsappService{
   public String readMessageUserChat(String userId, String chatId){
     User user = getUser(userId);
     Chat chat = getChat(chatId);
-    if(user != null && chat != null && chat.hasUser(user)){
-      user.getNotifyUser(chatId).rmNotifi();
-      return chat.getMsgs(user);
-    }else if(chat != null && !chat.hasUser(user))
-      return "fail: user "+userId+" nao esta no chat "+chatId;
-    else if(chat == null)
-      return "fail: chat não encontrado";
-    return "fail: chat e user não encontrado";
+    if(user != null && chat != null){
+      if(chat.hasUser(user)){
+        int unRead = user.getNotifyUser(chatId).getUnreadCout();
+        int i = 0;
+        int sizeChat = chat.getInboxUser(user).getMsgs().size();
+        StringBuilder mensagensUnRead = new StringBuilder();
+        for(Msg msg : chat.getInboxUser(user).getMsgs()){
+          if(i >= sizeChat - unRead){
+            mensagensUnRead.append(msg.toString());
+            if(i != sizeChat -1){
+              mensagensUnRead.append("\n");
+            }
+          }
+          i++;
+        }
+        user.getNotifyUser(chatId).rmNotifi();
+        return mensagensUnRead.toString();
+      }else{
+        return "fail: user "+userId+" nao esta no chat "+chatId;
+      }
+    }else{
+      return "fail: chat e user nao encontrado";
+    }
   }
 }
 
 class User{
   private String id;
-  protected ArrayList<Chat> chats  = new ArrayList<Chat>();
+  protected HashMap<String, Chat> chats  = new HashMap<String, Chat>();
   protected ArrayList<Notify> notify = new ArrayList<Notify>();
 
   public User(String nome){
     id = nome;
   }
 
-  public ArrayList<Chat> getChats(){
+  public HashMap<String, Chat> getChats(){
     return chats;
   }
 
@@ -153,7 +168,7 @@ class User{
   }
 
   public void addChat(Chat chat){
-    chats.add(chat);
+    chats.put(chat.getId(), chat);
   }
 
   public void addNotify(Chat Chat){
@@ -161,7 +176,7 @@ class User{
   }
 
   public void rmChat(Chat chat){
-    chats.remove(chat);
+    chats.remove(chat.getId());
   }
 
   public String getId(){
@@ -196,8 +211,8 @@ class Notify{
 
 class Chat{
   private String id;
-  protected ArrayList<Inbox> inboxes = new ArrayList<Inbox>();
-  protected ArrayList<User> users  = new ArrayList<User>();
+  protected HashMap<String, Inbox> inboxes = new HashMap<String, Inbox>();
+  protected HashMap<String, User> users = new HashMap<String, User>();
 
   public Chat(String idChat){
     id = idChat;
@@ -215,12 +230,12 @@ class Chat{
     return msgs.toString();
   }
 
-  public ArrayList<User> getUsers(){
+  public HashMap<String, User> getUsers(){
     return users;
   }
 
   public void deliverZap(User userSend, String message){
-    for(User user : users){
+    for(User user : users.values()){
       if(userSend != user){
         getInboxUser(user).addMsg(userSend.getId(), message);
         user.getNotifyUser(this.id).addCout();
@@ -229,16 +244,11 @@ class Chat{
   }
 
   public Inbox getInboxUser(User user){
-    for(Inbox x : inboxes){
-      if(user == x.user){
-        return x;
-      }
-    }
-    return null;
+    return inboxes.get(user.getId());
   }
 
   public int unreadCount(User user){
-    for(Inbox inbox : inboxes){
+    for(Inbox inbox : inboxes.values()){
       if(inbox.user == user){
         return inbox.msgs.size();
       }
@@ -247,15 +257,12 @@ class Chat{
   }
 
   public Boolean hasUser(User user){
-    for(User u : users){
-      if(u == user) return true;
-    }
-    return false;
+    return users.containsValue(user);
   }
 
   public void addUserChat(User user){
-    users.add(user);
-    inboxes.add(new Inbox(user));
+    users.put(user.getId(), user);
+    inboxes.put(user.getId(), new Inbox(user));
     user.addNotify(this);
     user.addChat(this);
   }
@@ -264,12 +271,12 @@ class Chat{
     if(hasUser(guess))
       addUserChat(invited);
     else
-      System.out.println("fail: user "+ guess.getId() +" não esta no grupo "+ this.id);
+      System.out.println("fail: user "+ guess.getId() +" nao esta no grupo "+ this.id);
   }
 
   public void rmUserChat(User user){
     user.rmChat(this);
-    users.remove(user);
+    users.remove(user.getId());
     inboxes.remove(getInboxUser(user));
   }
 
@@ -306,6 +313,10 @@ class Msg{
   public Msg(String userId, String msg){
     this.userId = userId;
     text = msg;
+  }
+
+  public String toString(){
+    return "["+userId+":"+" "+text+"]";
   }
 }
 
