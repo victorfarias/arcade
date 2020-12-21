@@ -26,7 +26,7 @@ Seu programa deve:
     - Adapte o print para apresentar os índices.
 ```sh
 # Exemplo de saída
-- ana [0:tim:3434] [1:casa:4567] [2:oi:8754] [0:casa:4567] [1:oi:8754]
+- ana [0:tim:3434] [1:casa:4567] [2:oi:8754] [3:casa:4567] [4:oi:8754]
 ```
 
 - **Remover telefones do contato.**    
