@@ -46,7 +46,7 @@ $addUser goku
 $addUser sara
 $addUser tina
 $allUsers
-  [goku sara tina]
+[goku sara tina]
 
 #__case novo Chat, mostrar chats do usuário
 # O comando "$newChat nomeUser nomeChat" cria um novo chat.
@@ -66,21 +66,19 @@ $chats sara
 [familia]
 $chats tina
 []
-```
 
-- Adicionar pessoas a um grupo.
-    - A pessoa que adiciona deve já estar no grupo.
-- Ver quem está em um grupo.
-- Sair de um grupo.
+#- Adicionar pessoas a um grupo.
+#    - A pessoa que adiciona deve já estar no grupo.
+#- Ver quem está em um grupo.
+#- Sair de um grupo.
 
-```sh
 #__case invite
 $invite goku sara guerreiros
 $invite sara tina guerreiros
 $invite tina goku familia
 fail: user tina nao esta em chat familia
 $chats sara
-[familia guerreiros]
+[guerreiros familia]
 $chats tina
 [guerreiros]
 $chats goku
@@ -96,18 +94,16 @@ $users guerreiros
 [goku tina]
 $chats sara
 [familia]
-```
 
-- Mandar mensagens para um grupo.
-    - A pessoa que manda as mensagens, tem que estar no grupo.
-    - Apenas quem está no grupo, poderá ler as mensagens.
-- Ler as mensagens de um grupo.    
-    - Um usuário pode ser as mensagens do grupo se ele está no grupo.
-    - Ao pedir as mensagens, o usuário receberá as mensagens não lidas que ele tem no grupo.
-    - Ao pedir as mensagens, o usuário não recebe as mensagens que ele mesmo enviou.
-- Ao pedir a lista de notificações, o usuário vê ao lado de cada grupo se ele possui mensagens não lidas.
+#- Mandar mensagens para um grupo.
+#    - A pessoa que manda as mensagens, tem que estar no grupo.
+#    - Apenas quem está no grupo, poderá ler as mensagens.
+#- Ler as mensagens de um grupo.    
+#    - Um usuário pode ser as mensagens do grupo se ele está no grupo.
+#    - Ao pedir as mensagens, o usuário receberá as mensagens não lidas que ele tem no grupo.
+#    - Ao pedir as mensagens, o usuário não recebe as mensagens que ele mesmo enviou.
+#- Ao pedir a lista de notificações, o usuário vê ao lado de cada grupo se ele possui mensagens não lidas.
 
-```sh
 #__case mensagens
 $zap goku guerreiros oi, eu sou o goku
 $zap tina guerreiros oi goku

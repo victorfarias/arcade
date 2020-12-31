@@ -5,7 +5,6 @@ class WhatsappService{
   private HashMap<String, User> rep_user = new HashMap<String, User>();
 
   protected User getUser(String userId){
-    Boolean userExiste = false;
     for(User user : rep_user.values()){
       if(user.getId().equals(userId)){
         return user;
@@ -16,7 +15,6 @@ class WhatsappService{
   }
 
   protected Chat getChat(String chatId){
-    Boolean chatExiste = false;
     for(Chat chat : rep_chat.values()){
       if(chat.getId().equals(chatId)){
         return chat;
@@ -96,6 +94,9 @@ class WhatsappService{
             chats.append(chat.getId());
             if(user.getNotifyUser(chat.getId()).getUnreadCout() > 0)
               chats.append("("+ user.getNotifyUser(chat.getId()).getUnreadCout() +") ");
+            else{
+              chats.append(" ");
+            }
     }
     if(chats.length() > 1)
       chats.deleteCharAt(chats.length()-1);
@@ -271,13 +272,13 @@ class Chat{
     if(hasUser(guess))
       addUserChat(invited);
     else
-      System.out.println("fail: user "+ guess.getId() +" nao esta no grupo "+ this.id);
+      System.out.println("fail: user "+ guess.getId() +" nao esta em chat "+ this.id);
   }
 
   public void rmUserChat(User user){
     user.rmChat(this);
     users.remove(user.getId());
-    inboxes.remove(getInboxUser(user));
+    inboxes.remove(user.getId());
   }
 
   public String getId(){
@@ -326,7 +327,7 @@ public class Solver {
     WhatsappService zap = new WhatsappService();
     while(true){
       String line = scanner.nextLine();
-      //System.out.println("$" + line);
+      System.out.println("$" + line);
       String[] ui = line.split(" ");
       if(ui[0].equals("end")){
         break;
@@ -341,7 +342,7 @@ public class Solver {
       }else if(ui[0].equals("invite")){
         zap.addByInvite(ui[1], ui[2], ui[3]);
       }else if(ui[0].equals("users")){
-        zap.getUsersChat(ui[1]);
+        System.out.println(zap.getUsersChat(ui[1]));
       }else if(ui[0].equals("leave")){
         zap.removerUserChat(ui[1], ui[2]);
       }else if(ui[0].equals("zap")){
@@ -349,14 +350,16 @@ public class Solver {
         for(int i = 3; i < ui.length; i++){
           msg.append(ui[i]+" ");
         }
+        msg.deleteCharAt(msg.length()-1);
         zap.sendMessage(ui[1], ui[2], msg.toString());
       }else if(ui[0].equals("notify")){
-        zap.getNotifyUser(ui[1]);
+        System.out.println(zap.getNotifyUser(ui[1]));
       }else if(ui[0].equals("ler")){
-        zap.readMessageUserChat(ui[1], ui[2]);
+        System.out.println(zap.readMessageUserChat(ui[1], ui[2]));
       }else{
         System.out.println("fail: comando invalido");
       }
     }
+    scanner.close();
   }
 }
