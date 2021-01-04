@@ -7,70 +7,21 @@ import java.util.*;
 class WhatsappService{
   private HashMap<String, Chat> rep_chat = new HashMap<String, Chat>();
   private HashMap<String, User> rep_user = new HashMap<String, User>();
-
+  
   protected User getUser(String userId){
-    for(User user : rep_user.values()){
-      if(user.getId().equals(userId)){
-        return user;
-      }
-    }
-    System.out.println("fail: User nao encontrado!");
-    return null;
+    return rep_user.get(userId);
   }
-
+  
   protected Chat getChat(String chatId){
-    for(Chat chat : rep_chat.values()){
-      if(chat.getId().equals(chatId)){
-        return chat;
-      }
-    }
-    return null;
+    return rep_chat.get(chatId);
   }
-
-  public void createChat(String userId, String chatId){
-    if(getChat(chatId) != null){
-      System.out.println("fail: chat "+ chatId +" ja existe");
-      return;
-    }
-    Chat chat = new Chat(chatId);
-    User user = getUser(userId);
-    if(user == null){
-      return;
-    }
-    chat.addUserChat(user);
-    rep_chat.put(chatId, chat);
-  }
-
-  public void addByInvite(String guessId, String invitedId, String chatId){
-    Chat chat = getChat(chatId);
-    User guess = getUser(guessId);
-    User invited = getUser(invitedId);
-    chat.addByInvite(guess, invited);
-  }
-
-  public void createUser(String userId){
-    rep_user.put(userId, new User(userId));
-  }
-
-  public String allUsers(){
-    StringBuilder users = new StringBuilder();
-    users.append("[");
-    for(User user : rep_user.values()){
-      users.append(user.getId() + " ");
-    }
-    if(users.length() > 1)
-      users.deleteCharAt(users.length()-1);
-    users.append("]");
-    return(users.toString());
-  }
-
+  
   public String getUsersChat(String chatId){
     Chat chat = getChat(chatId);
     StringBuilder users = new StringBuilder();
     users.append("[");
-    for(User user : chat.getUsers().values()){
+    for(User user : chat.getUsers().values())
       users.append(user.getId()+ " ");
-    }
     if(users.length() > 1)
       users.deleteCharAt(users.length()-1);
     users.append("]");
@@ -81,9 +32,8 @@ class WhatsappService{
     User user = getUser(userId);
     StringBuilder chats = new StringBuilder();
     chats.append("[");
-    for(Chat chat : user.getChats().values()){
+    for(Chat chat : user.getChats().values())
       chats.append(chat.getId() + " ");
-    }
     if(chats.length() > 1)
       chats.deleteCharAt(chats.length()-1);
     chats.append("]");
@@ -91,21 +41,79 @@ class WhatsappService{
   }
 
   public String getNotifyUser(String userId ){
-    User user = getUser(userId);
-    StringBuilder chats = new StringBuilder();  
-    chats.append("[");
-    for(Chat chat : user.getChats().values()){
-            chats.append(chat.getId());
-            if(user.getNotifyUser(chat.getId()).getUnreadCout() > 0)
-              chats.append("("+ user.getNotifyUser(chat.getId()).getUnreadCout() +") ");
-            else{
-              chats.append(" ");
-            }
+      User user = getUser(userId);
+      StringBuilder chats = new StringBuilder();  
+      chats.append("[");
+      for(Chat chat : user.getChats().values()){
+        chats.append(chat.getId());
+        if(user.getNotifyUser(chat.getId()).getUnreadCout() > 0)
+          chats.append("("+ user.getNotifyUser(chat.getId()).getUnreadCout() +") ");
+        else
+          chats.append(" ");
+      }
+      if(chats.length() > 1)
+        chats.deleteCharAt(chats.length()-1);
+      chats.append("]");
+      return(chats.toString());
     }
-    if(chats.length() > 1)
-      chats.deleteCharAt(chats.length()-1);
-    chats.append("]");
-    return(chats.toString());
+
+  protected boolean chatExiste(Chat chat){
+    if(chat == null){
+      return false;
+    }
+    return true;
+  }
+
+  protected boolean userExiste(User user){
+    if(user == null){
+      return false;
+    }
+    return true;
+  }
+
+  public void createChat(String userId, String chatId){
+    if(chatExiste(getChat(chatId))){
+      System.out.println("fail: chat "+ chatId +" ja existe");
+      return;
+    }
+    Chat chat = new Chat(chatId);
+    User user = getUser(userId);
+    if(!userExiste(user)){
+      System.out.println("fail: User nao encontrado!");
+      return;
+    }
+    chat.addUserChat(user);
+    rep_chat.put(chatId, chat);
+  }
+
+  public void addByInvite(String guessId, String invitedId, String chatId){
+    Chat chat = getChat(chatId);
+    User guess = getUser(guessId);
+    User invited = getUser(invitedId);
+    if(!userExiste(guess))
+      System.out.println("fail: User "+ guessId +" nao encontrado!");
+    else if(!userExiste(invited))
+      System.out.println("fail: User "+ invitedId +" nao encontrado!");
+    else if(!chatExiste(chat))
+      System.out.println("fail: Chat "+ chatId +" nao encontrado!");
+    chat.addByInvite(guess, invited);
+  }
+
+  public void createUser(String userId){
+    if(userExiste(rep_user.get(userId)))
+      System.out.println("fail: User "+ userId +" já existe!");
+    rep_user.put(userId, new User(userId));
+  }
+
+  public String allUsers(){
+    StringBuilder users = new StringBuilder();
+    users.append("[");
+    for(User user : rep_user.values())
+      users.append(user.getId() + " ");
+    if(users.length() > 1)
+      users.deleteCharAt(users.length()-1);
+    users.append("]");
+    return(users.toString());
   }
 
   public void removerUserChat(String userId, String chatId){
@@ -121,29 +129,27 @@ class WhatsappService{
   public String readMessageUserChat(String userId, String chatId){
     User user = getUser(userId);
     Chat chat = getChat(chatId);
-    if(user != null && chat != null){
+    if(userExiste(user) && chatExiste(chat)){
       if(chat.hasUser(user)){
-        int unRead = user.getNotifyUser(chatId).getUnreadCout();
-        int i = 0;
-        int sizeChat = chat.getInboxUser(user).getMsgs().size();
         StringBuilder mensagensUnRead = new StringBuilder();
+        int unreadCount = user.getNotifyUser(chatId).getUnreadCout();
+        int sizeChat = chat.getInboxUser(user).getMsgs().size();
+        int readCount = sizeChat - unreadCount;
+        int i = 0;
         for(Msg msg : chat.getInboxUser(user).getMsgs()){
-          if(i >= sizeChat - unRead){
+          if(i >= readCount){
             mensagensUnRead.append(msg.toString());
-            if(i != sizeChat -1){
+            if(i != sizeChat -1)
               mensagensUnRead.append("\n");
-            }
           }
           i++;
         }
         user.getNotifyUser(chatId).rmNotifi();
         return mensagensUnRead.toString();
-      }else{
+      }else
         return "fail: user "+userId+" nao esta no chat "+chatId;
-      }
-    }else{
-      return "fail: chat e user nao encontrado";
-    }
+    }else
+      return "fail: chat ou user nao encontrado";
   }
 }
 
@@ -165,10 +171,9 @@ class User{
   }
 
   public Notify getNotifyUser(String chat){
-    for(Notify noty : notify){
+    for(Notify noty : notify)
       if(chat.equals(noty.getId()))
         return noty;
-    }
     return null;
   }
 
@@ -176,8 +181,8 @@ class User{
     chats.put(chat.getId(), chat);
   }
 
-  public void addNotify(Chat Chat){
-    notify.add(new Notify(Chat.getId()));
+  public void addNotify(Chat chat){
+    notify.add(new Notify(chat.getId()));
   }
 
   public void rmChat(Chat chat){
@@ -224,14 +229,10 @@ class Chat{
   }
 
   public String getMsgs(User user){
-
     StringBuilder msgs = new StringBuilder();
-
-    for(Msg m : getInboxUser(user).getMsgs()){
+    for(Msg m : getInboxUser(user).getMsgs())
       msgs.append("["+ m.userId +": "+ m.text+"]\n");
-    }
     msgs.deleteCharAt(msgs.length()-1);
-
     return msgs.toString();
   }
 
@@ -240,12 +241,11 @@ class Chat{
   }
 
   public void deliverZap(User userSend, String message){
-    for(User user : users.values()){
+    for(User user : users.values())
       if(userSend != user){
         getInboxUser(user).addMsg(userSend.getId(), message);
         user.getNotifyUser(this.id).addCout();
       }
-    }
   }
 
   public Inbox getInboxUser(User user){
@@ -253,11 +253,9 @@ class Chat{
   }
 
   public int unreadCount(User user){
-    for(Inbox inbox : inboxes.values()){
-      if(inbox.user == user){
+    for(Inbox inbox : inboxes.values())
+      if(inbox.user == user)
         return inbox.msgs.size();
-      }
-    }
     return 0;
   }
 
@@ -333,36 +331,34 @@ public class Solver {
       String line = scanner.nextLine();
       System.out.println("$" + line);
       String[] ui = line.split(" ");
-      if(ui[0].equals("end")){
+      if(ui[0].equals("end"))
         break;
-      }else if(ui[0].equals("addUser")){
+      else if(ui[0].equals("addUser"))
         zap.createUser(ui[1]);
-      }else if(ui[0].equals("allUsers")){
+      else if(ui[0].equals("allUsers"))
         System.out.println(zap.allUsers());
-      }else if(ui[0].equals("newChat")){
+      else if(ui[0].equals("newChat"))
         zap.createChat(ui[1], ui[2]);
-      }else if(ui[0].equals("chats")){
+      else if(ui[0].equals("chats"))
         System.out.println(zap.getChatsUser(ui[1]));
-      }else if(ui[0].equals("invite")){
+      else if(ui[0].equals("invite"))
         zap.addByInvite(ui[1], ui[2], ui[3]);
-      }else if(ui[0].equals("users")){
+      else if(ui[0].equals("users"))
         System.out.println(zap.getUsersChat(ui[1]));
-      }else if(ui[0].equals("leave")){
+      else if(ui[0].equals("leave"))
         zap.removerUserChat(ui[1], ui[2]);
-      }else if(ui[0].equals("zap")){
+      else if(ui[0].equals("zap")){
         StringBuilder msg = new StringBuilder();
-        for(int i = 3; i < ui.length; i++){
+        for(int i = 3; i < ui.length; i++)
           msg.append(ui[i]+" ");
-        }
         msg.deleteCharAt(msg.length()-1);
         zap.sendMessage(ui[1], ui[2], msg.toString());
-      }else if(ui[0].equals("notify")){
+      }else if(ui[0].equals("notify"))
         System.out.println(zap.getNotifyUser(ui[1]));
-      }else if(ui[0].equals("ler")){
+      else if(ui[0].equals("ler"))
         System.out.println(zap.readMessageUserChat(ui[1], ui[2]));
-      }else{
+      else
         System.out.println("fail: comando invalido");
-      }
     }
     scanner.close();
   }
