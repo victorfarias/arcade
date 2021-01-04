@@ -147,7 +147,7 @@ $end
 [GUIA](_guide.md)
 
 ![](diagrama.png)
-
+ 
 ---
 
 ## Main não interativa
