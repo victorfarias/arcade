@@ -110,7 +110,7 @@ $end
 
 ***
 ## Diagrama UML
-![](resources/diagrama.png)
+![](diagrama.png)
 
 ***
 ## Main em Java
