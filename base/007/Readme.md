@@ -5,6 +5,7 @@
 - [Shell](#shell)
 - [Diagrama UML](#diagrama-uml)
 - [Main em Java](#main-em-java)
+- [Dicas](#dicas)
 - [Recursos Extras](#recursos-extras)
 
 <!--TOC_END-->
@@ -184,6 +185,48 @@ fail: indice 50 invalido
 }
 
 ```
+
+***
+
+## Dicas
+- Nas operações de saque, depósito, tarifa, você precisa criar uma operação e adicionar no extrato para registrar essa operação. Cada operação deve ter um id único e incremental. O atributo nextId da classe conta deve ser utilizado para numerar as operações. 
+- O método `adicionarOperacao(descricao, valor)` serve para fazer isso.
+```java
+void adicionarOperacao(descricao, valor)
+    cria a operacao(nextId, descricao, valor, getSaldo)
+    incrementa o nextId
+    adiciona a operacoa criada no extrato
+```
+- Então, no saque, depósito, basta você invocar o método `adicionarOperacao`
+```java
+void saque(float valor)
+    ...
+    this.saldo -= valor;
+    adicionarOperacao("saque", -valor);
+    ...
+}
+```
+- Para processar várias tarifas em linha, utilize um `for` na main.
+
+```java
+class Conta{
+    void extornar(int indice){
+        //a lógica de extorna UMA tarifa
+        ...
+    }
+}
+
+main(){
+    ...
+    String[] ui = line.split(" ")
+    ...
+    if(ui[0].equals("extornar"){ //extornar 1 4 7 21
+        for(int i = 1; i < ui.lenght; i++)
+            conta.extornar(Integer.parseInt(ui[i]));
+    ...
+}
+```
+
 
 ***
 ## Recursos Extras
