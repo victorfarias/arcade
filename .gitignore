@@ -7,3 +7,9 @@ solver.cpp.out
 build*
 *.pro
 *.pro.user
+.links
+crude
+drafts
+scripts
+trash
+.config.ini
