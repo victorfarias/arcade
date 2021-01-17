@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
+  <help_text>*WhatsappService*
+bg=yellow
+--
+- rep_chat: Map&lt;String, Chat&gt;
+
+--
+# getUser(userId: string): User
+</help_text>
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>510</y>
+      <w>270</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>*Setor*
+bg=yellow
+--
+- nome: String
+- preco: double
+--
++ getNome(): String
++ getPreco(): double
++ toString(): String
+--
++ constructor(nome, preco)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>280</y>
+      <w>270</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>*Pessoa*
+bg=yellow
+--
+- nome: String
+- idade: int
+- estudante: boolean
+--
++ getNome(): String
++ getIdade(): int
++ isEstudante(): boolean
++ toString(): String
+--
+constructor(nome, idade, estudante)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>300</y>
+      <w>270</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>*Venda*
+bg=yellow
+--
+- cliente: Pessoa
+- evento: Evento
+- setor: Setor
+- valor: double
+--
++ getValor(): double
++ getCliente(): Pessoa
++ getEvento(): Evento
++ getSetor(): Setor
++ toString(): String
+--
++ constructor(cliente, evento, setor)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>470</x>
+      <y>510</y>
+      <w>270</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>*Evento*
+bg=yellow
+--
+- nome: String
+- repSetores: Repository&lt;Setor&gt;
+--
++ getNome(): String
++ toString(): String
+--
++ constructor(nome)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>260</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>260</y>
+      <w>50</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0;30.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>590</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>420</x>
+      <y>260</y>
+      <w>70</w>
+      <h>300</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;280.0;50.0;280.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>40</y>
+      <w>440</w>
+      <h>230</h>
+    </coordinates>
+    <panel_attributes>*Bilheteria*
+bg=yellow
+--
+- repVendas: List&lt;Venda&gt;
+- repPessoas: List&lt;Pessoa&gt;
+- repEvento: List&lt;Evento&gt;
+- caixa: double
+--
++ vender(cliente: Pessoa, evento: Evento, setor: Setor): void
++ getCaixa(): double
++ showVendas(): stirng
++ showPessoas(): string
++ showEventos(): string
++ showSetores(idEvento: string): string
++ addPessoa(pessoa: Pessoa): void
++ addEvento(evento: Evento): void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
