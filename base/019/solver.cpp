@@ -10,7 +10,7 @@ public:
     string idFone;
     string number;
 
-    Fone(string id, string number) {
+    Fone(string id = "", string number = "") {
         idFone = id;
         this->number = number;
     }
