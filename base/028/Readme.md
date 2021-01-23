@@ -27,19 +27,17 @@ $addPessoa tony 43 sim
 $addPessoa steve 24 sim
 fail: pessoa steve ja existe
 $showP
-[steve, 32, nao],
-[tony, 43, sim]
-```
+[tony, 43, sim],
+[steve, 32, nao]
 
-- Cadastrar evento pelo nome.
-    - Assim como pessoa, nome do evento é único
-    - Um evento pode ter vários setores
-- Cadastrar setor pelo nome.
-    - Setor tem nome e preço
-    - Setores do MESMO EVENTO não podem ter o mesmo nome
-- Mostrar evento e setores de um evento cadastrados
+#- Cadastrar evento pelo nome.
+#    - Assim como pessoa, nome do evento é único
+#    - Um evento pode ter vários setores
+#- Cadastrar setor pelo nome.
+#    - Setor tem nome e preço
+#    - Setores do MESMO EVENTO não podem ter o mesmo nome
+#- Mostrar evento e setores de um evento cadastrados
 
-```sh
 #__case cadastro eventos e setores
 
 # addEvento _nome
