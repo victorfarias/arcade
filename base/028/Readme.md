@@ -13,7 +13,6 @@ Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado par
 
 Você deve desenvolver um sistema para gerenciar as vendas de uma bilheteria de shows.
 
-
 ## Requisitos
 
 - Cadastrar uma pessoa pelo nome.
