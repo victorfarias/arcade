@@ -12,7 +12,7 @@ bg=yellow
     <id>UMLClass</id>
     <coordinates>
       <x>130</x>
-      <y>510</y>
+      <y>450</y>
       <w>270</w>
       <h>140</h>
     </coordinates>
@@ -32,10 +32,10 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>470</x>
+      <x>440</x>
       <y>280</y>
       <w>270</w>
-      <h>170</h>
+      <h>160</h>
     </coordinates>
     <panel_attributes>*Pessoa*
 bg=yellow
@@ -45,7 +45,6 @@ bg=yellow
 - estudante: boolean
 --
 + getNome(): String
-+ getIdade(): int
 + isEstudante(): boolean
 + toString(): String
 --
@@ -58,7 +57,7 @@ constructor(nome, idade, estudante)</panel_attributes>
       <x>130</x>
       <y>300</y>
       <w>270</w>
-      <h>200</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>*Venda*
 bg=yellow
@@ -68,10 +67,6 @@ bg=yellow
 - setor: Setor
 - valor: double
 --
-+ getValor(): double
-+ getCliente(): Pessoa
-+ getEvento(): Evento
-+ getSetor(): Setor
 + toString(): String
 --
 + constructor(cliente, evento, setor)</panel_attributes>
@@ -80,18 +75,19 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>470</x>
-      <y>510</y>
+      <x>440</x>
+      <y>450</y>
       <w>270</w>
-      <h>130</h>
+      <h>140</h>
     </coordinates>
     <panel_attributes>*Evento*
 bg=yellow
 --
 - nome: String
-- repSetores: Repository&lt;Setor&gt;
+- repSetores: Map&lt;String, Setor&gt;
 --
 + getNome(): String
++ addSetor(setor: Setor): void
 + toString(): String
 --
 + constructor(nome)</panel_attributes>
@@ -111,50 +107,50 @@ bg=yellow
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
+      <x>420</x>
       <y>260</y>
-      <w>50</w>
+      <w>40</w>
       <h>130</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;30.0;110.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;110.0;20.0;110.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>390</x>
-      <y>590</y>
-      <w>100</w>
+      <y>530</y>
+      <w>70</w>
       <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
+      <x>400</x>
       <y>260</y>
-      <w>70</w>
-      <h>300</h>
+      <w>60</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;280.0;50.0;280.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;220.0;40.0;220.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>130</x>
-      <y>40</y>
-      <w>440</w>
-      <h>230</h>
+      <y>20</y>
+      <w>580</w>
+      <h>250</h>
     </coordinates>
     <panel_attributes>*Bilheteria*
 bg=yellow
 --
 - repVendas: List&lt;Venda&gt;
-- repPessoas: List&lt;Pessoa&gt;
-- repEvento: List&lt;Evento&gt;
+- repPessoas: Map&lt;String, Pessoa&gt;
+- repEvento: Map&lt;String, Evento&gt;
 - caixa: double
 --
 + vender(cliente: Pessoa, evento: Evento, setor: Setor): void
@@ -165,6 +161,7 @@ bg=yellow
 + showSetores(idEvento: string): string
 + addPessoa(pessoa: Pessoa): void
 + addEvento(evento: Evento): void
++ addSetor(idEvento: String, setor: Setor): void
 
 
 </panel_attributes>
