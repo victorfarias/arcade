@@ -4,6 +4,8 @@
 <!--TOC_BEGIN-->
 - [Bilheteria](#bilheteria)
   - [Requisitos](#requisitos)
+  - [Diagrama](#diagrama)
+  - [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 
@@ -78,3 +80,41 @@ R$ 35,00
 $end
 ```
 ***
+## Diagrama
+
+![](diagrama.png)
+ 
+---
+
+## Main não interativa
+
+```java
+Bilheteria bilheteria = new Bilheteria();
+bilheteria.addPessoa(new Pessoa("steve", 32, false));
+bilheteria.addPessoa(new Pessoa("steve", 32, false));
+bilheteria.addPessoa(new Pessoa("tony", 43, true));
+bilheteria.addPessoa(new Pessoa("steve", 24, true));
+//fail: pessoa steve ja existe
+bilheteria.showPessoas();
+//[tony, 43, sim],
+//[steve, 32, nao]
+
+bilheteria.addEvento(new Evento("orappa"));
+bilheteria.addSetor("orappa", new Setor("front", 70f));
+bilheteria.addSetor("orappa", new Setor("pista", 35));
+bilheteria.showEvento();
+//[orappa]
+bilheteria.showSetor("orappa");
+//[front],
+//[pista]
+
+bilheteria.vender("tony", "orappa", "front");
+bilheteria.vender("steve", "orappa", "camarote");
+//fail: setor camarote nao existe
+
+bilheteria.showVenda();
+//[tony, orappa, front, 35,00]
+
+bilheteria.showCaixa();
+//R$ 35,00
+```
