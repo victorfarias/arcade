@@ -15,10 +15,6 @@ class Pessoa {
     return this.nome;
   }
 
-  public int getIdade() {
-    return this.idade;
-  }
-
   public boolean isEstudante() {
     return this.estudante;
   }
@@ -57,18 +53,15 @@ class Evento {
   private HashMap<String, Setor> repSetores = new HashMap<String, Setor>();
 
   public Evento(String nome) {
-
+    this.nome = nome;
   };
 
   public String getNome() {
     return this.nome;
   };
 
-  public String toString() {
-    return null;
-  };
-
   public void addSetor(Setor setor) {
+    repSetores.put(setor.getNome(), setor);
   };
 
   public HashMap<String, Setor> getSetores() {
@@ -83,26 +76,14 @@ class Venda {
   private double valor;
 
   public Venda(Pessoa cliente, Evento evento, Setor setor) {
-  }
-
-  public double getValor() {
-    return this.valor;
-  }
-
-  public Pessoa getCliente() {
-    return cliente;
-  }
-
-  public Evento getEvento() {
-    return evento;
-  }
-
-  public Setor getSetor() {
-    return setor;
+    this.cliente = cliente;
+    this.evento = evento;
+    this.setor = setor;
+    this.valor = setor.getPreco();
   }
 
   public String toString() {
-    return cliente + " " + evento + " " + setor + " " + valor;
+    return "["+ cliente.getNome() + ", " + evento.getNome() + ", " + setor.getNome() + ", "+ String.format("%.2f", valor)+"]";
   }
 }
 
@@ -115,7 +96,22 @@ class Bilheteria {
   public void vender(String idCliente, String idEvento, String idSetor) {
     Pessoa cliente = repPessoas.get(idCliente);
     Evento evento = repEvento.get(idEvento);
-    Setor setor = evento.getSetores().get(idEvento);
+    Setor setor = evento.getSetores().get(idSetor);
+    if(cliente == null){
+      System.out.println("fail:⸱cliente "+ idCliente +" nao⸱existe");
+      return;
+    }else if(evento == null){
+      System.out.println("fail:⸱evento "+ idEvento +" nao⸱existe");
+      return;
+    }else if(setor == null){
+      System.out.println("fail:⸱setor "+ idSetor +" nao⸱existe");
+      return;
+    }
+    if(cliente.isEstudante()){
+      caixa += setor.getPreco() / 2;
+    }else{
+    caixa += setor.getPreco();
+    }
     repVenda.add(new Venda(cliente, evento, setor));
   }
 
@@ -124,7 +120,13 @@ class Bilheteria {
   }
 
   public String showVendas() {
-    return "show";
+    StringBuilder vendas = new StringBuilder();
+    for(Venda venda : repVenda)
+      vendas.append(venda +",\n");
+    if(vendas.length() > 1){
+      vendas.delete(vendas.length()-2, vendas.length());
+    }
+    return vendas.toString();
   }
 
   public String showPessoas() {
@@ -132,18 +134,29 @@ class Bilheteria {
     for(Pessoa pessoa : repPessoas.values())
       pessoas.append(pessoa +",\n");
     if(pessoas.length() > 1){
-      pessoas.deleteCharAt(pessoas.length()-2);
-      pessoas.deleteCharAt(pessoas.length()-1);
+      pessoas.delete(pessoas.length()-2, pessoas.length());
     }
     return pessoas.toString();
   }
 
   public String showEventos() {
-    return "show";
+    StringBuilder eventos = new StringBuilder();
+    for(Evento evento : repEvento.values())
+      eventos.append("["+ evento.getNome() +"],\n");
+    if(eventos.length() > 1){
+      eventos.delete(eventos.length()-2, eventos.length());
+    }
+    return eventos.toString();
   }
 
   public String showSetores(String idEvento) {
-    return "show";
+    StringBuilder setores = new StringBuilder();
+    for(Setor setor : repEvento.get(idEvento).getSetores().values())
+      setores.append("["+ setor.getNome() +"],\n");
+    if(setores.length() > 1){
+      setores.delete(setores.length()-2, setores.length());
+    }
+    return setores.toString();
   }
 
   public void addPessoa(Pessoa pessoa) {
@@ -177,8 +190,22 @@ public class Solver {
         boolean estudante = false;
         if (ui[3].equals("sim")) estudante = true;
         bilheteria.addPessoa(new Pessoa(ui[1], Integer.parseInt(ui[2]), estudante));
-      } else if (ui[0].equals("showP")) {
+      }else if (ui[0].equals("addEvento")) {
+        bilheteria.addEvento(new Evento(ui[1]));
+      }else if (ui[0].equals("addSetor")) {
+        bilheteria.addSetor(ui[1], new Setor(ui[2], Double.parseDouble(ui[3])));
+      }else if (ui[0].equals("vender")) {
+        bilheteria.vender(ui[1], ui[2], ui[3]);
+      }else if (ui[0].equals("showE")) {
+        System.out.println(bilheteria.showEventos());
+      }else if (ui[0].equals("showS")) {
+        System.out.println(bilheteria.showSetores(ui[1]));
+      }else if (ui[0].equals("showP")) {
         System.out.println(bilheteria.showPessoas());
+      }else if (ui[0].equals("showC")) {
+        System.out.println("R$ "+ String.format("%.2f",bilheteria.getCaixa()));
+      }else if (ui[0].equals("showV")) {
+        System.out.println(bilheteria.showVendas());
       }
     }
     scanner.close();

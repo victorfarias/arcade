@@ -2,8 +2,8 @@
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Requisitos](#requisitos)
-- [Raio X](#raio-x)
+- [Bilheteria](#bilheteria)
+  - [Requisitos](#requisitos)
 
 <!--TOC_END-->
 
@@ -44,25 +44,22 @@ $showP
 $addEvento orappa
 # addSetor _nome-evento _nome _preco
 $addSetor orappa front 70
-addSetor orappa pista 35
+$addSetor orappa pista 35
 $showE
 [orappa]
 $showS orappa
 [front],
 [pista]
 
-```
+#- Realizar venda
+#    - Uma venda deve ter pessoa, evento, setor e preco
+#    - O atributo preco da venda será obtido através do atributo preco do setor
+#    - O identificador único da venda é o nome do cliente(Pessoa)
+#    - Se o cliente for menor de 2 anos, não paga
+#    - Se o cliente tiver até 12 anos ou for estudante, paga meia
+#    - O valor da venda deve ser contabilizado em um caixa
+#- Mostrar vendas realizadas e o valor atual em caixa
 
-- Realizar venda
-    - Uma venda deve ter pessoa, evento, setor e preco
-    - O atributo preco da venda será obtido através do atributo preco do setor
-    - O identificador único da venda é o nome do cliente(Pessoa)
-    - Se o cliente for menor de 2 anos, não paga
-    - Se o cliente tiver até 12 anos ou for estudante, paga meia
-    - O valor da venda deve ser contabilizado em um caixa
-- Mostrar vendas realizadas e o valor atual em caixa
-
-```sh
 #__case vender ingressos
 
 # vender _Pessoa _Evento _Setor
@@ -72,70 +69,12 @@ fail: setor camarote nao existe
 
 #showV
 $showV
-[tony, orappa, front, 35]
+[tony, orappa, front, 35,00]
 
 #showC
 $showC
-R$ 35.00
+R$ 35,00
 
 $end
 ```
 ***
-## Raio X
-
-````java
-class Pessoa
-- nome: String
-- idade: int
-- estudante: boolean
---
-+ getNome(): String
-+ getIdade(): int
-+ isEstudante(): boolean
-+ toString(): String
---
-constructor(nome, idade, estudante)
-
-class Setor
-- nome: String
-- preco: double
---
-+ getNome(): String
-+ getPreco(): double
-+ toString(): String
---
-+ constructor(nome, preco)
-
-class Evento
-- nome: String
-- rsetores: Repository<Setor>
---
-+ getNome(): String
-+ toString(): String
---
-+ constructor(nome)
-
-class Venda
-- cliente: Pessoa
-- evento: Evento
-- setor: Setor
-- valor: double
---
-+ getValor(): double
-+ getCliente(): Pessoa
-+ getEvento(): Evento
-+ getSetor(): Setor
-+ toString(): String
---
-+ constructor(cliente, evento, setor)
-````
-
-```c++
-class Bilheteria
-- rvendas: Repository<Venda>
-- caixa: double
---
-+ vender(cliente: Pessoa, evento:Evento, setor:Setor): void
-+ getVendas(): Repository<Venda>
-+ getCaixa(): double
-```
