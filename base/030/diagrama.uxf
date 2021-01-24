@@ -2,7 +2,7 @@
 <diagram program="umlet" version="14.3.0">
   <help_text>// Uncomment the following line to change the fontsize and font:
 // fontsize=14
-fontfamily=Monospaced
+fontfamily= Monospaced
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Welcome to UMLet!
@@ -28,7 +28,7 @@ fontfamily=Monospaced
     <id>UMLClass</id>
     <coordinates>
       <x>216</x>
-      <y>280</y>
+      <y>256</y>
       <w>192</w>
       <h>112</h>
     </coordinates>
@@ -38,10 +38,9 @@ bg=yellow
 - label: string
 - number: string
 --
-_+ validate(number): bool_
++ _validate_(number): bool
 --
 + Fone(label, number)
-+ Fone(serial)
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -49,7 +48,7 @@ _+ validate(number): bool_
     <id>UMLClass</id>
     <coordinates>
       <x>216</x>
-      <y>104</y>
+      <y>80</y>
       <w>168</w>
       <h>144</h>
     </coordinates>
@@ -72,9 +71,9 @@ bg=yellow
     <id>UMLClass</id>
     <coordinates>
       <x>440</x>
-      <y>104</y>
+      <y>80</y>
       <w>376</w>
-      <h>160</h>
+      <h>144</h>
     </coordinates>
     <panel_attributes>*Agenda*
 bg=yellow
@@ -94,9 +93,9 @@ bg=yellow
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>456</x>
-      <y>272</y>
-      <w>344</w>
+      <x>440</x>
+      <y>256</y>
+      <w>280</w>
       <h>392</h>
     </coordinates>
     <panel_attributes>*Ajuda Lógica*
@@ -134,7 +133,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>376</x>
-      <y>120</y>
+      <y>96</y>
       <w>80</w>
       <h>24</h>
     </coordinates>
@@ -145,7 +144,7 @@ bg=blue
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>240</y>
+      <y>216</y>
       <w>24</w>
       <h>56</h>
     </coordinates>
@@ -155,10 +154,10 @@ bg=blue
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>152</x>
-      <y>416</y>
+      <x>144</x>
+      <y>440</y>
       <w>280</w>
-      <h>136</h>
+      <h>208</h>
     </coordinates>
     <panel_attributes>*Agenda*
 bg=pink

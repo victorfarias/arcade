@@ -10,11 +10,13 @@ class Fone{
 public:
     string id;
     string number;
+
     Fone(string serial = ""){
         stringstream ss(serial);
         getline(ss, this->id, ':');
         ss >> this->number;
     }
+    
     Fone(string id, string number){
         this->id = id;
         this->number = number;

@@ -5,44 +5,44 @@
 
 using namespace std;
 
-class Fone{
+class Fone {
 public:
-    string id;
-    string number;
+    string idFone;
+    string numero;
 
-    Fone(string serial = ""){
-        stringstream ss(serial);
-        getline(ss, this->id, ':');
-        ss >> this->number;
-    }
-    
-    Fone(string id, string number){
-        this->id = id;
-        this->number = number;
+    Fone(string id, string numero) {
+        idFone = id;
+        this->numero = numero;
     }
 
-    static bool validar(string number){
-        string valid = "0123456789()-.";
-        for(char c : number)
-            if(valid.find(c) == string::npos)
+    static bool validate(string numero) {
+        string data = "1234567890()- ";
+        for(auto c : numero)
+            if(data.find(c) == string::npos)
                 return false;
         return true;
     }
-    friend ostream& operator<<(ostream& out, const Fone& fone){
-        out << fone.id << ":" << fone.number;
+
+    bool operator==(const Fone& other){
+        return this->idFone == other.idFone;
+    }
+
+    friend ostream& operator<<(ostream& out, Fone fone){
+        out << fone.idFone << ":" << fone.numero;
         return out;
     }
 };
+    
+
 
 class Contact {
 public:
     string id;
     vector<Fone> fones;
     bool starred;
-    int calls;
 
     Contact(string id = string(""), vector<Fone> fones= {}) : 
-        id{id}, fones{fones}, starred{false}, calls{0} {
+        id{id}, fones{fones}, starred{false}{
     }
 
     void addFone(Fone fone){
@@ -57,22 +57,9 @@ public:
         return fones;
     }
 
-    bool matchNumber(string number){
-        for(Fone fone : fones)
-            if(fone.number == number)
-                return true;
-        return false;
-    }
-
-    void increaseCallCount(){
-        this->calls += 1;
-    }
-
     friend ostream& operator<<(ostream& out, Contact contact){
         out << (contact.starred ? "@ " : "- ");
         out << contact.id;
-        if(contact.calls > 0)
-            out << " {" << contact.calls << " call}";
         int i = 0;
         for(auto fone: contact.fones)
             out << " [" << i++ << ":" << fone << "]";
@@ -150,10 +137,10 @@ public:
         return resp;
     }
 
-    vector<Contact*> getContacts(){
-        vector<Contact*> resp;
+    vector<Contact> getContacts(){
+        vector<Contact> resp;
         for(auto par : contacts)
-            resp.push_back(par.second);
+            resp.push_back(*par.second);
         return resp;
     }
 
@@ -167,27 +154,6 @@ public:
     }
 };
 
-
-class CallManager{
-    Agenda & agenda;
-    CallManager(Agenda & ag): agenda{ag}{
-    }
-
-    vector<Contact*> searchByNumber(string number){
-        vector<Contact*> output;
-        for(Contact * contact : agenda.getContacts())
-            if(contact->matchNumber(number))
-                output.push_back(contact);
-        return output;
-    }
-
-    void call(string number){
-        auto matches = searchByNumber(number);
-        if(matches.size() > 0)
-            matches[0]->increaseCallCount();
-        
-    }
-}
 
 Fone format_fone(string sfone){
     stringstream ss(sfone);
