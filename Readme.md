@@ -10,9 +10,10 @@
 - [07. Troca de Dados e Ordenação](#07-troca-de-dados-e-ordenação)
 - [08. Mapas](#08-mapas)
 - [09. Excessões](#09-excessões)
-- [10. Associação NxN](#10-associação-nxn)
-- [11. Herança](#11-herança)
-- [12. Lógica](#12-lógica)
+- [10. Herança](#10-herança)
+- [11. Lógica I](#11-lógica-i)
+- [13. Lógica II](#13-lógica-ii)
+- [14. Herança III](#14-herança-iii)
 
 <!--TOC_END-->
 
@@ -27,7 +28,6 @@
 - [@003 Motoca infantil no parque](base/003/Readme.md) 
 
 ## 03. Modificadores de Acesso
-
 - [@006 Tamagotchi](base/006/Readme.md) 
 
 ## 04. ArrayList I
@@ -45,7 +45,7 @@
 
 
 ## 07. Troca de Dados e Ordenação
-- [@024 Mensagens](base/024/Readme.md)
+- [@024 Mensagens](base/024/Readme.md) 
 - [@015 Busca - Agenda 2](base/015/Readme.md) 
 
 ## 08. Mapas
@@ -54,25 +54,30 @@
 
 ## 09. Excessões
 - [@029 Anotações](base/029/Readme.md) 
+- [@028 Bilheteria](base/028/Readme.md) 
+- Todo
+    - [@031 Clinica Veterinária](base/031/Readme.md) 
 
-## 10. Associação NxN
+## 10. Herança I
+- [@013 Cadastro - Agência 2](base/013/Readme.md) 
+- [@030 ContatoStar - Agenda 4](base/030/Readme.md) 
+
+## 11. Lógica I
 - [@021 Matrícula - Associação NxN](base/021/Readme.md) 
 - [@025 Twitter - Associação reflexiva](base/025/Readme.md) 
-- Todo
-    - [@026 Whatsapp I - Chat Grupo](base/026/Readme.md) 
 
-## 11. Herança
-- [@013 Cadastro - Agência 2](base/013/Readme.md) 
-
+# 12. Herança II
 - Todo
     - [@023 Salário](base/023/Readme.md) 
     - [@022 Hospital](base/022/Readme.md) 
-    - [@027 Whatsapp II - Chat Pessoa](base/027/Readme.md) 
-    - [@034 Trem 2](base/034/Readme.md) 
 
-## 12. Lógica
+## 13. Lógica II
 - Todo
+    - [@026 Whatsapp I - Chat Grupo](base/026/Readme.md) 
     - [@033 Trem 1](base/033/Readme.md) 
-    - [@028 Bilheteria](base/028/Readme.md) 
-    - [@031 Clinica Veterinária](base/031/Readme.md) 
-    - [@019 Ligações - Agenda 4](base/019/Readme.md) 
+
+## 14. Herança III
+- Todo
+    - [@034 Trem 2](base/034/Readme.md) 
+    - [@027 Whatsapp II - Chat Pessoa](base/027/Readme.md) 
+

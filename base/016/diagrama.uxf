@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
-  <help_text>// Uncomment the following line to change the fontsize and font:
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>// Uncomment the following line to change the fontsize and font:
 // fontsize=14
 fontfamily=Monospaced
 
@@ -22,17 +20,7 @@ fontfamily=Monospaced
 //////////////////////////////////////////////////////////////////////////////////////////////
 
 
-// This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>8</zoom_level>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>216</x>
-      <y>280</y>
-      <w>192</w>
-      <h>112</h>
-    </coordinates>
-    <panel_attributes>*Fone*
+// This text will be stored with each diagram;  use it for notes.</help_text><element><id>UMLClass</id><coordinates><x>97</x><y>220</y><w>240</w><h>140</h></coordinates><panel_attributes>*Fone*
 bg=yellow
 --
 - label: string
@@ -42,18 +30,7 @@ _+ validate(number): bool_
 --
 + Fone(label, number)
 + Fone(serial)
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>216</x>
-      <y>104</y>
-      <w>168</w>
-      <h>144</h>
-    </coordinates>
-    <panel_attributes>*Contact*
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>97</x><y>0</y><w>210</w><h>180</h></coordinates><panel_attributes>*Contact*
 bg=yellow
 --
 - name: string
@@ -64,47 +41,36 @@ bg=yellow
 + rmFone(index)
 + setBookmark(value)
 --
-+ Contact(id)
-+ toString(): String</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>440</x>
-      <y>104</y>
-      <w>376</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>*Agenda*
++ Contact(name)
++ toString(): String</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>377</x><y>0</y><w>470</w><h>230</h></coordinates><panel_attributes>*Agenda*
 bg=yellow
 --
-- map&lt;string, Contact&gt;  contacts;
-- map&lt;string, Contact*&gt; bookmarks;
+- contacts: map&lt;string, Contact&gt;
+- bookmarks: map&lt;string, Contact&gt;
 --
-+ addContact(idContact: string, fones: Fones): void
-+ getContact(id): Contact*
-+ rmContact(id) : void
++ addContact(name: string, fones: Fone[])
++ rmContact(name: string): bool
++ search(pattern: string): Contact[]
++ getContacts(): Contact[]
++ getContact(name: string): Contact
 + bookmark(id)  : void
 + unBookmark(id): void
-+ getContacts() : Contact[]
-+ getBookmarks(): Contact[]</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>456</x>
-      <y>272</y>
-      <w>344</w>
-      <h>392</h>
-    </coordinates>
-    <panel_attributes>*Ajuda Lógica*
++ getBookmarks(): Contact[]
+--
++ Agenda()
++ toString()
+
+--
+
+
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>397</x><y>270</y><w>430</w><h>430</h></coordinates><panel_attributes>*Ajuda Lógica*
 bg=blue
 --
 *addContact(idContact, Contact)*
     se idContact ainda nao existe:
-    	contacts.add(novo contact(idContact))
+        contacts.add(novo contact(idContact))
 
 *rmContact(id)*
     se contact existe
@@ -127,47 +93,14 @@ bg=blue
         bookmarks.remove(id)
     
 *getBookmarks()*
-    retorna bookmarks</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>376</x>
-      <y>120</y>
-      <w>80</w>
-      <h>24</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>288</x>
-      <y>240</y>
-      <w>24</w>
-      <h>56</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>152</x>
-      <y>416</y>
-      <w>280</w>
-      <h>136</h>
-    </coordinates>
-    <panel_attributes>*Agenda*
+    retorna bookmarks</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>297</x><y>20</y><w>100</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>80;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>187</x><y>170</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;50</additional_attributes></element><element><id>UMLNote</id><coordinates><x>17</x><y>390</y><w>350</w><h>170</h></coordinates><panel_attributes>*OBS*
 bg=pink
 --
-Para Java:
-- utilize TreeMap ao invés de map
+Java
 - utilize ArrayList para []
-- Quando encontrar Contato*, 
-  utilize apenas Contato.</panel_attributes>
-    <additional_attributes/>
-  </element>
-</diagram>
+--
+C++
+- utilize vector para []
+Na classe Agenda:
++ getContact(name: string): Contact*
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

@@ -3,10 +3,9 @@
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Requisitos Novos](#requisitos-novos)
+- [Requisitos](#requisitos)
 - [Shell](#shell)
 - [Diagrama UML](#diagrama-uml)
-- [Ajuda](#ajuda)
 
 <!--TOC_END-->
 
@@ -14,20 +13,9 @@ Vamos reescrever a atividade dos Favoritos utilizando Herança.
 
 Fique bem atendo ao diagrama e tente implementá-lo com exatidão.
 
-
 ## Requisitos
 
-O sistema deverá:
-
-- Mostrando
-    - Ordenar os contatos pelo idContato.
-    - Se o contato não for favorito (starred) use - antes do idContato.
-    - Marque os contatos que são favoritados com um @ antes do idContato. 
-
-- Favoritando
-    - Favoritar contatos. (star)
-    - Desfavoritar contatos. (unstar)
-    - Mostrar apenas os favoritos. (starred)
+- Os mesmos do projeto Favoritos original.
 
 ## Shell
 
@@ -99,16 +87,6 @@ $end
 ***
 ## Diagrama UML
 ![](diagrama.png)
-
-***
-## Ajuda
-- Favoritar
-    - Favoritar no nosso exemplo, implica tanto em colocar o contato na lista de favoritos, como também definir o atribuito favorito do contato para `true`. 
-    - Você pode utilizar um vetor de Contatos para guardar os favoritos ou uma estrutura chave valor.
-- Remover
-    - Quando remover um contato, lembre de removê-lo dos favoritos se necessário.
-- Desfavoritar
-    - Quando desfavoritar um contato, lembre de tanto remover da lista de favoritos como também alterar o valor do atributo `starred` no próprio contato.
 
 
 ```java

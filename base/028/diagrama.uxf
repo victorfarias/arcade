@@ -1,22 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><diagram program="umlet" version="13.3">
-  <help_text>*WhatsappService*
-bg=yellow
---
-- rep_chat: Map&lt;String, Chat&gt;
-
---
-# getUser(userId: string): User
-</help_text>
-  <zoom_level>10</zoom_level>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>130</x>
-      <y>450</y>
-      <w>270</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>*Setor*
+<diagram program="umletino" version="14.4.0-SNAPSHOT"><zoom_level>10</zoom_level><help_text>fontfamily=Monospaced</help_text><element><id>UMLClass</id><coordinates><x>130</x><y>450</y><w>270</w><h>140</h></coordinates><panel_attributes>*Setor*
 bg=yellow
 --
 - nome: String
@@ -26,18 +8,7 @@ bg=yellow
 + getPreco(): double
 + toString(): String
 --
-+ constructor(nome, preco)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>440</x>
-      <y>280</y>
-      <w>270</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>*Pessoa*
++ constructor(nome, preco)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>280</y><w>270</w><h>160</h></coordinates><panel_attributes>*Pessoa*
 bg=yellow
 --
 - nome: String
@@ -48,18 +19,7 @@ bg=yellow
 + isEstudante(): boolean
 + toString(): String
 --
-constructor(nome, idade, estudante)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>130</x>
-      <y>300</y>
-      <w>270</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>*Venda*
+constructor(nome, idade, estudante)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>300</y><w>270</w><h>140</h></coordinates><panel_attributes>*Venda*
 bg=yellow
 --
 - cliente: Pessoa
@@ -69,18 +29,7 @@ bg=yellow
 --
 + toString(): String
 --
-+ constructor(cliente, evento, setor)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>440</x>
-      <y>450</y>
-      <w>270</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>*Evento*
++ constructor(cliente, evento, setor)</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>440</x><y>450</y><w>270</w><h>140</h></coordinates><panel_attributes>*Evento*
 bg=yellow
 --
 - nome: String
@@ -90,62 +39,7 @@ bg=yellow
 + addSetor(setor: Setor): void
 + toString(): String
 --
-+ constructor(nome)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>260</x>
-      <y>260</y>
-      <w>30</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>420</x>
-      <y>260</y>
-      <w>40</w>
-      <h>130</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;20.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>390</x>
-      <y>530</y>
-      <w>70</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>50.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>400</x>
-      <y>260</y>
-      <w>60</w>
-      <h>240</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;220.0;40.0;220.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>130</x>
-      <y>20</y>
-      <w>580</w>
-      <h>250</h>
-    </coordinates>
-    <panel_attributes>*Bilheteria*
++ constructor(nome)</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>260</x><y>260</y><w>30</w><h>60</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;40</additional_attributes></element><element><id>Relation</id><coordinates><x>420</x><y>260</y><w>40</w><h>130</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;110;20;110</additional_attributes></element><element><id>Relation</id><coordinates><x>390</x><y>530</y><w>70</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>50;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>400</x><y>260</y><w>60</w><h>240</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;220;40;220</additional_attributes></element><element><id>UMLClass</id><coordinates><x>130</x><y>20</y><w>580</w><h>250</h></coordinates><panel_attributes>*Bilheteria*
 bg=yellow
 --
 - repVendas: List&lt;Venda&gt;
@@ -164,7 +58,4 @@ bg=yellow
 + addSetor(idEvento: String, setor: Setor): void
 
 
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-</diagram>
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

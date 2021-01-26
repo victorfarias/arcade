@@ -2,7 +2,7 @@
 <diagram program="umlet" version="14.3.0">
   <help_text>// Uncomment the following line to change the fontsize and font:
 // fontsize=14
-fontfamily= Monospaced
+fontfamily=Monospaced
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 // Welcome to UMLet!
@@ -23,14 +23,14 @@ fontfamily= Monospaced
 
 
 // This text will be stored with each diagram;  use it for notes.</help_text>
-  <zoom_level>8</zoom_level>
+  <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>216</x>
-      <y>256</y>
-      <w>192</w>
-      <h>112</h>
+      <x>110</x>
+      <y>20</y>
+      <w>240</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>*Fone*
 bg=yellow
@@ -47,95 +47,159 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>216</x>
-      <y>80</y>
-      <w>168</w>
-      <h>144</h>
+      <x>110</x>
+      <y>480</y>
+      <w>210</w>
+      <h>110</h>
     </coordinates>
-    <panel_attributes>*Contact*
+    <panel_attributes>*ContactPlus*
 bg=yellow
 --
-- name: string
-- fones: vector&lt;Fone&gt;
 - starred: bool
 --
-+ addFone(label, number)
-+ rmFone(index)
 + setBookmark(value)
 --
-+ Contact(id)
-+ toString(): String</panel_attributes>
++ ContactPlus(id)
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>440</x>
-      <y>80</y>
-      <w>376</w>
-      <h>144</h>
+      <x>430</x>
+      <y>480</y>
+      <w>470</w>
+      <h>160</h>
     </coordinates>
-    <panel_attributes>*Agenda*
+    <panel_attributes>*AgendaPlus*
 bg=yellow
 --
-- map&lt;string, Contact&gt;  contacts;
-- map&lt;string, Contact*&gt; bookmarks;
+- bookmarks: map&lt;string, ContactPlus&gt;
 --
-+ addContact(idContact: string, fones: Fones): void
-+ getContact(id): Contact*
-+ rmContact(id) : void
++ rmContact(name: string) #override
 + bookmark(id)  : void
 + unBookmark(id): void
-+ getContacts() : Contact[]
-+ getBookmarks(): Contact[]</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>440</x>
-      <y>256</y>
-      <w>280</w>
-      <h>392</h>
-    </coordinates>
-    <panel_attributes>*Ajuda Lógica*
-bg=blue
++ getBookmarks(): ContactPlus[]
 --
-*addContact(idContact, Contact)*
-    se idContact ainda nao existe:
-    	contacts.add(novo contact(idContact))
++ AgendaPlus()
++ toString()              #override
 
-*rmContact(id)*
-    se contact existe
-        unBookmark(id)
-        remover da lista de contatos
-
-*getAllContacts()*
-    retorna todos contatos
-
-*bookmark(id)*
-    contact = getContact(id)
-    if not contact.starred:
-        contato.starred = true
-        bookmarks[id] = contact
-
-*unBookmark(id)*
-    contact = getContact(id)
-    if contact.starred:
-        contact.starred = false
-        bookmarks.remove(id)
-    
-*getBookmarks()*
-    retorna bookmarks</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>376</x>
-      <y>96</y>
-      <w>80</w>
-      <h>24</h>
+      <x>190</x>
+      <y>150</y>
+      <w>30</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>220</y>
+      <w>360</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>*Contact*
+bg=yellow
+--
+- name: string
+- fones: Fone[]
+--
++ addFone(label: string, number: string)
++ rmFone(index: int)
+--
++ Contact(name: string)
++ getFones(): Fone[]
++ getName(): string
++ toString()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>460</x>
+      <y>210</y>
+      <w>370</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>*Agenda*
+bg=yellow
+--
+- contacts: map&lt;string, Contact&gt;
+--
++ addContact(name: string, fones: Fone[])
++ rmContact(name: string): bool
++ search(pattern: string): Contact[]
++ getContacts(): Contact[]
++ getContact(name: string): Contact
+--
++ Agenda()
++ toString()
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>430</x>
+      <y>0</y>
+      <w>450</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>bg=pink
+OBS:
+--
+- Java
+  - Utilizar TreeMap para map
+  - Utilizar ArrayList para []
+
+- C++
+  - utilizar vector e map
+  - Agenda:
+    + getContact(name: string): Contato* (c++)
+  - AgendaPlus
+    - bookmarks: map&lt;string, Contact*&gt; (c++) </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>390</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>200</x>
+      <y>390</y>
+      <w>30</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>290</y>
+      <w>100</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
     <additional_attributes>80.0;10.0;10.0;10.0</additional_attributes>
@@ -143,30 +207,12 @@ bg=blue
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>288</x>
-      <y>216</y>
-      <w>24</w>
-      <h>56</h>
+      <x>310</x>
+      <y>540</y>
+      <w>140</w>
+      <h>30</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>144</x>
-      <y>440</y>
-      <w>280</w>
-      <h>208</h>
-    </coordinates>
-    <panel_attributes>*Agenda*
-bg=pink
---
-Para Java:
-- utilize TreeMap ao invés de map
-- utilize ArrayList para []
-- Quando encontrar Contato*, 
-  utilize apenas Contato.</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>120.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

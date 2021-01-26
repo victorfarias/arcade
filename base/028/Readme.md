@@ -2,10 +2,9 @@
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Bilheteria](#bilheteria)
-  - [Requisitos](#requisitos)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
+- [Requisitos](#requisitos)
+- [Diagrama](#diagrama)
+- [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 
