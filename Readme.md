@@ -4,14 +4,15 @@
 - [01. Uma classe](#01-uma-classe)
 - [02. Duas classes](#02-duas-classes)
 - [03. Modificadores de Acesso](#03-modificadores-de-acesso)
-- [04. ArrayList I](#04-arraylist-i)
-- [05. ArrayList II - Agregação e Vetores com Null](#05-arraylist-ii---agregação-e-vetores-com-null)
-- [06. ArrayList III - Cruds mais elaborados](#06-arraylist-iii---cruds-mais-elaborados)
+- [04. ArrayList I - Manipulação](#04-arraylist-i---manipulação)
+- [05. ArrayList II - Agregação](#05-arraylist-ii---agregação)
+- [06. ArrayList III - Organização](#06-arraylist-iii---organização)
 - [07. Troca de Dados e Ordenação](#07-troca-de-dados-e-ordenação)
 - [08. Mapas](#08-mapas)
 - [09. Excessões](#09-excessões)
-- [10. Herança](#10-herança)
+- [10. Herança I](#10-herança-i)
 - [11. Lógica I](#11-lógica-i)
+- [12. Herança II](#12-herança-ii)
 - [13. Lógica II](#13-lógica-ii)
 - [14. Herança III](#14-herança-iii)
 
@@ -30,15 +31,15 @@
 ## 03. Modificadores de Acesso
 - [@006 Tamagotchi](base/006/Readme.md) 
 
-## 04. ArrayList I
+## 04. ArrayList I - Manipulação
 - [@005 Mestre dos Vetores](base/005/Readme.md) 
 - [@009 Pula pula no parquinho](base/009/Readme.md) 
 
-## 05. ArrayList II - Agregação e Vetores com Null
+## 05. ArrayList II - Agregação
 - [@010 Sala de Cinema](base/010/Readme.md) 
 - [@012 Topic de Luxo](base/012/Readme.md) 
 
-## 06. ArrayList III - Cruds mais elaborados
+## 06. ArrayList III - Organização
 - [@014 Contato - Agenda 1](base/014/Readme.md) 
 - [@007 Tarifas - Agência 1](base/007/Readme.md) 
 - [@011 JunkFood](base/011/Readme.md) 
@@ -66,7 +67,7 @@
 - [@021 Matrícula - Associação NxN](base/021/Readme.md) 
 - [@025 Twitter - Associação reflexiva](base/025/Readme.md) 
 
-# 12. Herança II
+## 12. Herança II
 - Todo
     - [@023 Salário](base/023/Readme.md) 
     - [@022 Hospital](base/022/Readme.md) 
