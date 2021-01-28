@@ -89,11 +89,45 @@ $end
 
 ***
 ## Ajuda
-- Inserção
-    - Utilizar uma estrutura linear, tal como um vector(c++) ou ArrayList(Java), mas lembrar de reordenar o vetor para cada nova inserção de contato.
-- Busca: 
-    - Na busca por pattern verifique faça uma busca usando a substring com o valor toString() to contato.
+- Você pode criar mais métodos auxiliares para lhe ajudar.
 - Crie um construtor para o Fone que aceite um único parâmetro, no caso o serial "oi:13123"
+- Para receber vários telefones por linha você pode fazer um laço pegando a partir do índice 2.
+- O construtor que recebe um serial pode ser utilizado para instanciar um Fone
+```java
+if(ui[0].equals("add")){ //add julia tim:99 oi:123 vivo:123544
+    for(int i = 2; i < ui.length; i++)
+        agenda.add(ui[1], new Fone(ui[i]));
+}
+```
+
+- A sua função add deve criar um contato novo se o contato não existir e então adicionar o telefone
+```java
+void add(String name, Fone fone){
+    Contact contact = this.getContact(name);
+    if(contact == null){ //cria e adiciona o contato se ele nao existir
+        contact = new Contact(name);
+        this.contacts.add(contact);
+    }
+    contact.addFone(fone);  //aproveita para adicionar o telefone
+    //ordene ser vetor
+}
+```
+
+- Para fazer a busca por padrão você pode criar uma lista auxiliar de contatos.
+- Na busca por pattern verifique faça uma busca usando a substring com o valor toString() to contato.
+
+```java
+ArrayList<Contact> search(String pattern){
+    ArrayList<Contact> result = new ArrayList<>();
+    for(Contact contact : this.contacts){
+        if ... //se esse contato bater com o padrão
+            result.add(contact);
+    }
+    return result;
+}
+```
+
+
 
 ***
 ## Main não interativa

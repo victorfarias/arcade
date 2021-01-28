@@ -28,8 +28,8 @@ fontfamily=Monospaced //possible: SansSerif,Serif,Monospaced
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>208</x>
-      <y>352</y>
+      <x>240</x>
+      <y>368</y>
       <w>384</w>
       <h>208</h>
     </coordinates>
@@ -42,35 +42,36 @@ bg=yellow
 _+ validate_(number): bool_
 --
 + Fone(label, number)
++ toString(): String
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>208</x>
-      <y>0</y>
-      <w>336</w>
+      <x>240</x>
+      <y>16</y>
+      <w>352</w>
       <h>288</h>
     </coordinates>
-    <panel_attributes>*Contato*
+    <panel_attributes>*Contact*
 bg=yellow
 --
 - name: string
-- fones: vector&lt;Fone&gt;
+- fones: Fone[]
 --
 + addFone(label, number)
-+ rmFone(index)
++ rmFone(index: int)
 --
-+ Contato(id)
++ Contact(name)
 + toString(): String</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>352</x>
-      <y>272</y>
+      <x>384</x>
+      <y>288</y>
       <w>48</w>
       <h>112</h>
     </coordinates>
