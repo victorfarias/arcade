@@ -26,9 +26,9 @@ $addPessoa steve 32 nao
 $addPessoa tony 43 sim
 $addPessoa steve 24 sim
 fail: pessoa steve ja existe
-$showP
-[tony, 43, sim],
+$pessoas
 [steve, 32, nao]
+[tony, 43, sim]
 
 #- Cadastrar evento pelo nome.
 #    - Assim como pessoa, nome do evento é único
@@ -42,21 +42,30 @@ $showP
 
 # addEvento _nome
 $addEvento orappa
+# addSetor _nome-evento _nome _preco _capacidade
+$addSetor orappa front 70 5
+$addSetor orappa pista 35 3
+$eventos
+orappa
+- [front:70.0:0/5]
+- [pista:35.0:0/3]
+
+# addEvento _nome
+$addEvento discoteca
 # addSetor _nome-evento _nome _preco
-$addSetor orappa front 70
-$addSetor orappa pista 35
-$showE
-[orappa]
-$showS orappa
-[front],
-[pista]
+$addSetor discoteca camarote 100 5
+$addSetor discoteca arquibancade 50 2
+$eventos
+discoteca
+- [arquibancade:50.0:0/2]
+- [camarote:100.0:0/5]
+orappa
+- [front:70.0:0/5]
+- [pista:35.0:0/3]
 
 #- Realizar venda
-#    - Uma venda deve ter pessoa, evento, setor e preco
-#    - O atributo preco da venda será obtido através do atributo preco do setor
+#    - Uma venda deve ter pessoa, evento, setor
 #    - O identificador único da venda é o nome do cliente(Pessoa)
-#    - Se o cliente for menor de 2 anos, não paga
-#    - Se o cliente tiver até 12 anos ou for estudante, paga meia
 #    - O valor da venda deve ser contabilizado em um caixa
 #- Mostrar vendas realizadas e o valor atual em caixa
 
@@ -64,16 +73,26 @@ $showS orappa
 
 # vender _Pessoa _Evento _Setor
 $vender tony orappa front
+$vendas
+[tony, orappa, front]
+R$ 35.0
+
 $vender steve orappa camarote
 fail: setor camarote nao existe
 
-#showV
-$showV
-[tony, orappa, front, 35,00]
+$vender steve orappa front
+$vendas
+[tony, orappa, front]
+[steve, orappa, front]
+R$ 105.0
 
-#showC
-$showC
-R$ 35,00
+$eventos
+discoteca
+- [arquibancade:50.0:0/2]
+- [camarote:100.0:0/5]
+orappa
+- [front:70.0:2/5]
+- [pista:35.0:0/3]
 
 $end
 ```

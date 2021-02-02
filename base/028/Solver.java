@@ -31,10 +31,13 @@ class Pessoa {
 class Setor {
     private String nome;
     private double preco;
+    private int qtd;
+    private int capacidade;
 
-    Setor(String nome, double preco) {
+    Setor(String nome, double preco, int capacidade) {
         this.nome = nome;
         this.preco = preco;
+        this.capacidade = capacidade;
     }
 
     public String getNome() {
@@ -45,8 +48,12 @@ class Setor {
         return this.preco;
     }
 
+    public void vender(){
+        this.qtd += 1;
+    }
+
     public String toString() {
-        return nome + ":" + preco;
+        return "[" + nome + ":" + preco + ":" + this.qtd + "/" + capacidade + "]";
     }
 }
 
@@ -69,6 +76,13 @@ class Evento {
     public TreeMap<String, Setor> getSetores() {
         return repSetores;
     }
+
+    public String toString(){
+        String output = this.nome + "\n";
+        for(Setor setor : this.repSetores.values())
+            output += "- " + setor + "\n";
+        return output;
+    }
 }
 
 class Venda {
@@ -81,12 +95,10 @@ class Venda {
         this.cliente = cliente;
         this.evento = evento;
         this.setor = setor;
-        this.valor = setor.getPreco();
     }
 
     public String toString() {
-        return "[" + cliente.getNome() + ", " + evento.getNome() + ", " + setor.getNome() + ", "
-                + String.format("%.2f", valor) + "]";
+        return "[" + cliente.getNome() + ", " + evento.getNome() + ", " + setor.getNome() + "]";
     }
 }
 
@@ -121,7 +133,9 @@ class Bilheteria {
         Pessoa cliente = this.getCliente(idCliente);
         Evento evento = this.getEvento(idEvento);
         Setor setor = this.getSetor(evento, idSetor);
-        caixa += cliente.isEstudante() ? setor.getPreco() / 2 : setor.getPreco();
+        double valor = cliente.isEstudante() ? setor.getPreco() / 2 : setor.getPreco();
+        setor.vender();
+        caixa += valor;
         repVenda.add(new Venda(cliente, evento, setor));
     }
 
@@ -132,41 +146,22 @@ class Bilheteria {
     public String showVendas() {
         StringBuilder vendas = new StringBuilder();
         for (Venda venda : repVenda)
-            vendas.append(venda + ",\n");
-        if (vendas.length() > 1) {
-            vendas.delete(vendas.length() - 2, vendas.length());
-        }
+            vendas.append(venda + "\n");
         return vendas.toString();
     }
 
     public String showPessoas() {
         StringBuilder pessoas = new StringBuilder();
         for (Pessoa pessoa : repPessoas.values())
-            pessoas.append(pessoa + ",\n");
-        if (pessoas.length() > 1) {
-            pessoas.delete(pessoas.length() - 2, pessoas.length());
-        }
+            pessoas.append(pessoa + "\n");
         return pessoas.toString();
     }
 
     public String showEventos() {
         StringBuilder eventos = new StringBuilder();
         for (Evento evento : repEvento.values())
-            eventos.append("[" + evento.getNome() + "],\n");
-        if (eventos.length() > 1) {
-            eventos.delete(eventos.length() - 2, eventos.length());
-        }
+            eventos.append(evento);
         return eventos.toString();
-    }
-
-    public String showSetores(String idEvento) {
-        StringBuilder setores = new StringBuilder();
-        for (Setor setor : repEvento.get(idEvento).getSetores().values())
-            setores.append("[" + setor.getNome() + "],\n");
-        if (setores.length() > 1) {
-            setores.delete(setores.length() - 2, setores.length());
-        }
-        return setores.toString();
     }
 
     public void addPessoa(Pessoa pessoa) {
@@ -202,19 +197,16 @@ public class Solver {
                 } else if (ui[0].equals("addEvento")) {
                     bilheteria.addEvento(new Evento(ui[1]));
                 } else if (ui[0].equals("addSetor")) {
-                    bilheteria.addSetor(ui[1], new Setor(ui[2], Double.parseDouble(ui[3])));
+                    bilheteria.addSetor(ui[1], new Setor(ui[2], Double.parseDouble(ui[3]), Integer.parseInt(ui[4])));
                 } else if (ui[0].equals("vender")) {
                     bilheteria.vender(ui[1], ui[2], ui[3]);
-                } else if (ui[0].equals("showE")) {
-                    System.out.println(bilheteria.showEventos());
-                } else if (ui[0].equals("showS")) {
-                    System.out.println(bilheteria.showSetores(ui[1]));
-                } else if (ui[0].equals("showP")) {
-                    System.out.println(bilheteria.showPessoas());
-                } else if (ui[0].equals("showC")) {
-                    System.out.println("R$ " + String.format("%.2f", bilheteria.getCaixa()));
-                } else if (ui[0].equals("showV")) {
-                    System.out.println(bilheteria.showVendas());
+                } else if (ui[0].equals("eventos")) {
+                    System.out.print(bilheteria.showEventos());
+                } else if (ui[0].equals("pessoas")) {
+                    System.out.print(bilheteria.showPessoas());
+                } else if (ui[0].equals("vendas")) {
+                    System.out.print(bilheteria.showVendas());
+                    System.out.println("R$ " + bilheteria.getCaixa());
                 } else {
                     System.out.println("fail: comando invalido");
                 }
