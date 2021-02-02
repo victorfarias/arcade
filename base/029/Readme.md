@@ -91,35 +91,13 @@ $end
 
 ```
 
-***
-## Raio X
+## Diagrama
+![](diagrama.png)
 
-````java
-class Nota
-+ titulo: String
-+ texto: String
---
-+ toString(): String
-
-
-class User
-- username: String
-- password: String
-- notas: List<Nota>
---
-+ addNote(title: string, text: string): boolean
-+ rmNote(index: int): boolean
-+ checkPass(pass: String): boolean
-+ toString(): String
-
-
-class Sistema
-- currentUser: User
-- users: User[]
---
-+ addUser(userName: String, password: String): boolean
-+ login(username: string, pass: string)
-+ logout()
-+ getCurrentUser(): User
-+ getUsers(): String[]
-````
+## Ajuda
+- O objetivo é dividir as responsabilidades entre o Sistema e o Gerenciador de Login.
+- Ambos compartilham a mesma estrutura de dados que contém os usuários `users: map<string, User>`.
+- O Sistema é responsável por adicionar e remover Usuários e Notas.
+- O Gerenciador de Login é responsável por efetuar as operações de `login`, `logout` e `getCurrentUser`.
+- O getCurrentUser pode ser utilizado para obter o usuário corrente ou disparar uma exceção caso ninguém esteja logado.
+- 
