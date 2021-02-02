@@ -100,4 +100,3 @@ $end
 - O Sistema é responsável por adicionar e remover Usuários e Notas.
 - O Gerenciador de Login é responsável por efetuar as operações de `login`, `logout` e `getCurrentUser`.
 - O getCurrentUser pode ser utilizado para obter o usuário corrente ou disparar uma exceção caso ninguém esteja logado.
-- 
