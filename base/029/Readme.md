@@ -3,7 +3,6 @@
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Vídeo Explicativo](#vídeo-explicativo)
 - [Funcionalidades](#funcionalidades)
 - [Shell](#shell)
 - [Raio X](#raio-x)
@@ -11,10 +10,6 @@
 <!--TOC_END-->
 
 O objetivo dessa atividade é criar um pequeno serviço de anotações. O sistema terá vários usuários que vão logar utilizando login e senha. Cada usuário pode armazenar notas de texto contendo título e texto.
-
-## Vídeo Explicativo
-
-<iframe width="640" height="360" src="https://www.youtube.com/embed/ggOdp0Eh7fc" frameborder="0" allowfullscreen></iframe>
 
 ## Funcionalidades
 
@@ -41,7 +36,6 @@ $addUser luana 541
 $users
 [ david luana ]
 
-
 #__case login
 #login _username _pass
 
@@ -55,14 +49,12 @@ $show
 user: david
 
 #__case logout
-
 #logout
 #fail: ninguem logado
 $logout
 
 $logout
 fail: ninguem logado
-
 
 #__case notes
 

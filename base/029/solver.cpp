@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <map>
 
 using namespace std;
 
@@ -75,12 +76,11 @@ public:
     }
 };
 
-
 class LoginManager{
-    vector<User> * users;
+    map<string, User> &users;
     User * currentUser;
 public:
-    LoginManager(vector<User> * users):
+    LoginManager(map<string, User> &users):
         users(users), currentUser{nullptr}{
     }
     
@@ -91,9 +91,8 @@ public:
     }
 
     User * getUser(string username){
-        for(auto& user : *users)
-            if((user.getUsername() == username))
-                return &user;
+        if(users.count(username) == 1)
+            return &users.at(username);
         return nullptr;
     }
 
@@ -116,24 +115,23 @@ public:
 };
 
 class System{
-    vector<User> users;
+    map<string, User> users;
     LoginManager lm;
 public:
     
-    System():  lm(&users){
+    System(): lm(users){
     }
 
     //não pode ter dois usernames iguais
     void addUser(string username, string password){
-        for(auto user : users)
-            if(user.getUsername() == username)
-                throw string("fail: username duplicado");
-        users.push_back(User(username, password));
+        if(users.count(username) == 1)
+            throw string("fail: username duplicado");
+        this->users[username] = User(username, password);
     }
 
     string getUsernames(){
         string output = "[ ";
-        for(auto& user : users)
+        for(auto& [key, user] : users)
             output += user.getUsername() + " ";
         return output + "]\n";
     }
@@ -142,11 +140,8 @@ public:
         lm.getCurrent()->addNote(title, content);
     }
 
-    void login(string username, string password){
-        lm.login(username, password);
-    }
-    void logout(){
-        lm.logout();
+    LoginManager& getLoginManager(){
+        return this->lm;
     }
 
     friend ostream& operator<<(ostream& os, System& system){
@@ -181,11 +176,11 @@ int main(){
             }else if(cmd == "addUser"){
                 sistema.addUser(ui[1], ui[2]);
             }else if(cmd == "login"){
-                sistema.login(ui[1], ui[2]);
+                sistema.getLoginManager().login(ui[1], ui[2]);
             }else if(cmd == "show"){
                 cout << sistema;    
             }else if(cmd == "logout"){
-                sistema.logout();
+                sistema.getLoginManager().logout();
             }else if(cmd == "addNote"){
                 string output;
                 for(int i = 2; i < (int) ui.size(); i++)
