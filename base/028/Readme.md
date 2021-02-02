@@ -16,19 +16,19 @@ Você deve desenvolver um sistema para gerenciar as vendas de uma bilheteria de 
 
 - Cadastrar uma pessoa pelo nome.
     - nome da pessoa é único
-    - pessoa deve ter nome, idade e pode ou não ser estudante
+    - a pessoa pode ou não pagar meia
 - Mostrar todos os clientes
 
 ```sh
 #__case cadastro pessoas
-# addPessoa _nome _idade _estudante
-$addPessoa steve 32 nao
-$addPessoa tony 43 sim
-$addPessoa steve 24 sim
+# addPessoa _nome _meia
+$addPessoa steve inteira
+$addPessoa tony meia
+$addPessoa steve meia
 fail: pessoa steve ja existe
 $pessoas
-[steve, 32, nao]
-[tony, 43, sim]
+[steve, inteira]
+[tony, meia]
 
 #- Cadastrar evento pelo nome.
 #    - Assim como pessoa, nome do evento é único

@@ -1,30 +1,16 @@
 import java.util.*;
 
 class Pessoa {
-    private String nome;
-    private int idade;
-    private boolean estudante;
+    public String nome;
+    public boolean meia;
 
-    Pessoa(String nome, int idade, boolean estudante) {
+    Pessoa(String nome, boolean meia) {
         this.nome = nome;
-        this.idade = idade;
-        this.estudante = estudante;
-    }
-
-    public String getNome() {
-        return this.nome;
-    }
-
-    public boolean isEstudante() {
-        return this.estudante;
+        this.meia = meia;
     }
 
     public String toString() {
-        String stringEstudante = "nao";
-        if (estudante == true) {
-            stringEstudante = "sim";
-        }
-        return "[" + nome + ", " + idade + ", " + stringEstudante + "]";
+        return "[" + nome + ", " + (meia ? "meia" : "inteira") + "]";
     }
 }
 
@@ -98,7 +84,7 @@ class Venda {
     }
 
     public String toString() {
-        return "[" + cliente.getNome() + ", " + evento.getNome() + ", " + setor.getNome() + "]";
+        return "[" + cliente.nome + ", " + evento.getNome() + ", " + setor.getNome() + "]";
     }
 }
 
@@ -133,7 +119,7 @@ class Bilheteria {
         Pessoa cliente = this.getCliente(idCliente);
         Evento evento = this.getEvento(idEvento);
         Setor setor = this.getSetor(evento, idSetor);
-        double valor = cliente.isEstudante() ? setor.getPreco() / 2 : setor.getPreco();
+        double valor = cliente.meia ? setor.getPreco() / 2 : setor.getPreco();
         setor.vender();
         caixa += valor;
         repVenda.add(new Venda(cliente, evento, setor));
@@ -165,11 +151,11 @@ class Bilheteria {
     }
 
     public void addPessoa(Pessoa pessoa) {
-        if (repPessoas.get(pessoa.getNome()) != null) {
-            System.out.println("fail: pessoa " + pessoa.getNome() + " ja existe");
+        if (repPessoas.get(pessoa.nome) != null) {
+            System.out.println("fail: pessoa " + pessoa.nome + " ja existe");
             return;
         }
-        repPessoas.put(pessoa.getNome(), pessoa);
+        repPessoas.put(pessoa.nome, pessoa);
     }
 
     public void addEvento(Evento evento) {
@@ -193,7 +179,7 @@ public class Solver {
                 if (ui[0].equals("end"))
                     break;
                 else if (ui[0].equals("addPessoa")) {
-                    bilheteria.addPessoa(new Pessoa(ui[1], Integer.parseInt(ui[2]), ui[3].equals("sim")));
+                    bilheteria.addPessoa(new Pessoa(ui[1], ui[2].equals("meia")));
                 } else if (ui[0].equals("addEvento")) {
                     bilheteria.addEvento(new Evento(ui[1]));
                 } else if (ui[0].equals("addSetor")) {
