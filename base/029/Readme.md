@@ -5,7 +5,8 @@
 <!--TOC_BEGIN-->
 - [Funcionalidades](#funcionalidades)
 - [Shell](#shell)
-- [Raio X](#raio-x)
+- [Diagrama](#diagrama)
+- [Ajuda](#ajuda)
 
 <!--TOC_END-->
 

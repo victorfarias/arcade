@@ -28,7 +28,7 @@ bg=yellow
     <coordinates>
       <x>440</x>
       <y>280</y>
-      <w>280</w>
+      <w>310</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>*Pessoa*
@@ -64,7 +64,7 @@ bg=yellow
     <coordinates>
       <x>440</x>
       <y>400</y>
-      <w>280</w>
+      <w>310</w>
       <h>120</h>
     </coordinates>
     <panel_attributes>*Evento*
@@ -127,9 +127,9 @@ bg=yellow
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>130</x>
+      <x>90</x>
       <y>20</y>
-      <w>590</w>
+      <w>660</w>
       <h>250</h>
     </coordinates>
     <panel_attributes>*Bilheteria*
