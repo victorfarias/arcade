@@ -6,7 +6,7 @@
 - [Funcionalidades](#funcionalidades)
 - [Comandos e Exemplos](#comandos-e-exemplos)
 - [Orientações](#orientações)
-
+- [Main Interativa](#main-interativa)
 <!--TOC_END-->
 
 Vamos implementar o modelo do twitter. Os usuários se cadastram e podem follow outros usuários do sistema. Ao twittar, a mensagem vai para timeline de todas as pessoas que a seguem.
@@ -125,18 +125,29 @@ $like sara 3
 
 $timeline sara
 0:sara( hoje estou triste )
-1:tina( ganhei chocolate )[ sara goku ]
+1:tina( ganhei chocolate )[ goku sara ]
 2:sara( partiu ru )
 3:tina( chocolate ruim )[ sara ]
 
 $timeline goku
 0:sara( hoje estou triste )
-1:tina( ganhei chocolate )[ sara goku ]
+1:tina( ganhei chocolate )[ goku sara ]
 2:sara( partiu ru )
 3:tina( chocolate ruim )[ sara ]
 4:goku( internet maldita )
 
-
+#__case unfollow
+$unfollow goku tina
+$show
+goku
+  seguidos   [ sara ]
+  seguidores [ ]
+sara
+  seguidos   [ tina ]
+  seguidores [ goku ]
+tina
+  seguidos   [ ]
+  seguidores [ sara ]
 ##################################
 # Errinhos
 ##################################
@@ -179,11 +190,11 @@ class User:
 
     naoLidos: int
 
-    timeline: Tweet[]
-    myTweets: Tweet[]
+    timeline: Tweet []
+    myTweets: Tweet []
 
-    seguidores: User[]
-    seguidos: User[]
+    seguidores: Map<str, User>
+    seguidos  : Map<str, User>
 
     def constructor(username):
         # nao esqueca de inicializar nenhum atributo
@@ -214,23 +225,83 @@ class User:
     def toString():
         # retorne username
 
-# Tem como responsabilidade gerar um tweet com 
-# id unico, guardando o tweet gerado no repositorio
-# de tweets. 
-class TweetGenerator:
-    # referencia para o repositorio de tweet
-    r_tw: Repository<Tweet>*
-    nextId: int
+class Controller:
+    repUser : Map<str, User>  # guarda todos os usuário do sistema
+    repTweet: Map<int, Tweet> # guarda todos os tweets do sistema
+    nextTwId: int # guarda o id para o próximo Tweet a ser gerado
 
-    def construtor(r_tw):
-        # o controller vai criar o gerador
-        # passando como referencia o repositorio
-        # de tweets. Assim o gerador sabe como 
-        # guardar os tweets armazenados.
+    def sendTweet(username, msg):
+        user = this.getUser(username)
+        # verifique se o usuário existe
+        # crie um objeto Tweet, preencha os dados, armazene no repTweet
+        # invoque o método enviar twittar para que os tweets sejam entregues
+        user.twittar(tweet)
 
-    def create(username, msg): Tweet*
-        # cria um tweet para esse usuario
-        # adiciona no repositorio
-        # incrementa o nextId
-        # retorna a referencia ao tweet criado
+    def addUser(username):
+        # se esse username nao existir
+        # crie e adicione o usuario no repUsuarios
+
+    def getUser(username):
+        user = repUsers.get(username)
+        # se nao existir, lance uma excessão
+        return user
+
+    def follow(one: str, two: str):
+        getUser(from).follow(getUser(to))
+
+    def unfollow(one: str, two: str):
+        getUser(from).unfollow(getUser(to))
+
+```
+
+
+## Main Interativa
+
+```java
+Scanner scanner = new Scanner(System.in);
+Controller sistema = new Controller();
+
+while(true){
+    String line = scanner.nextLine();
+    System.out.println("$" + line);
+    String ui[] = line.split(" ");
+    try {
+        if (ui[0].equals("end"))
+            break;
+        else if (ui[0].equals("addUser")) {
+            sistema.addUser(ui[1]);
+        } else if (ui[0].equals("show")) {
+            System.out.print(sistema);
+        } else if (ui[0].equals("follow")) {//goku tina
+            User one = sistema.getUser(ui[1]);
+            User two = sistema.getUser(ui[2]);
+            one.follow(two);
+        }
+        else if (ui[0].equals("twittar")) {//goku msg
+            String username = ui[1];
+            String msg = "";
+            for(int i = 2; i < ui.length; i++)
+                msg += ui[i] + " ";
+            sistema.sendTweet(username, msg);
+        }
+        else if (ui[0].equals("timeline")) {//goku tina
+            User user = sistema.getUser(ui[1]);
+            System.out.print(user.getTimeline());
+        }
+        else if (ui[0].equals("like")) {//goku tina
+            User user = sistema.getUser(ui[1]);
+            Tweet tw = user.getTweet(Integer.parseInt(ui[2]));
+            tw.like(ui[1]);
+        }else if (ui[0].equals("unfollow")) {//goku tina
+            User user = sistema.getUser(ui[1]);
+            user.unfollow(ui[2]);
+        }else{
+            System.out.println("fail: comando invalido");
+        }
+    }catch(RuntimeException rt){
+        System.out.println(rt.getMessage());
+    }
+}
+scanner.close();
+
 ```
