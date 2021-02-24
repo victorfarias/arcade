@@ -7,6 +7,7 @@
 - [Comandos e Exemplos](#comandos-e-exemplos)
 - [Orientações](#orientações)
 - [Main Interativa](#main-interativa)
+
 <!--TOC_END-->
 
 Vamos implementar o modelo do twitter. Os usuários se cadastram e podem follow outros usuários do sistema. Ao twittar, a mensagem vai para timeline de todas as pessoas que a seguem.

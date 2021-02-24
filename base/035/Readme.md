@@ -2,11 +2,10 @@
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
-- [Clínica Veterinária](#clínica-veterinária)
-  - [Requisitos](#requisitos)
-  - [Regras de negócio](#regras-de-negócio)
-  - [Diagrama](#diagrama)
-  - [Main não interativa](#main-não-interativa)
+- [Requisitos](#requisitos)
+- [Regras de negócio](#regras-de-negócio)
+- [Diagrama](#diagrama)
+- [Main não interativa](#main-não-interativa)
 
 <!--TOC_END-->
 
