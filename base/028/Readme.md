@@ -5,7 +5,6 @@
 - [Requisitos](#requisitos)
 - [Diagrama](#diagrama)
 - [Main não interativa](#main-não-interativa)
-
 <!--TOC_END-->
 
 Fazer vendas usando papel e caneta é coisa do passado. Você foi contratado para modernizar a bilheteria do seu bairro e trazer ela pro século XXI

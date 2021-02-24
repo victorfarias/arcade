@@ -6,7 +6,6 @@
 - [Regras de negócio](#regras-de-negócio)
 - [Diagrama](#diagrama)
 - [Main não interativa](#main-não-interativa)
-
 <!--TOC_END-->
 
 Você foi contratado por uma clínica veterinária para implementar um sistema que vai administrar o sistemas dos hóspedes.

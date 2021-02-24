@@ -4,7 +4,6 @@
 - [Requisitos](#requisitos)
 - [Shell](#shell)
 - [Diagrama](#diagrama)
-
 <!--TOC_END-->
 ![](figura.jpg)
 

@@ -6,7 +6,6 @@
 - [Requisitos](#requisitos)
 - [Shell](#shell)
 - [Diagrama UML](#diagrama-uml)
-
 <!--TOC_END-->
 
 Vamos reescrever a atividade dos Favoritos utilizando Herança.

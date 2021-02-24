@@ -6,7 +6,6 @@
 - [Shell](#shell)
 - [Diagrama UML](#diagrama-uml)
 - [Ajuda](#ajuda)
-
 <!--TOC_END-->
 
 

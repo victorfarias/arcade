@@ -4,7 +4,6 @@
 <!--TOC_BEGIN-->
 - [Guia de Atividade](#guia-de-atividade)
 - [Créditos](#créditos)
-
 <!--TOC_END-->
 
 - Usuários podem ser adicionados ao sistema e devem ter id único.

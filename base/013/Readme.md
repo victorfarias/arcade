@@ -5,7 +5,6 @@
 - [Requisitos](#requisitos)
 - [Shell](#shell)
 - [Diagrama](#diagrama)
-
 <!--TOC_END-->
 
 O objetivo dessa atividade é implementar uma agência bancária simplificada. Deve ser capaz de cadastrar cliente. Cada cliente inicia com uma conta poupança e uma conta corrente. Contas correntes tem taxa de administração e contas poupanças rendem juros.

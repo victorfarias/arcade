@@ -11,7 +11,6 @@
 - [Requisitos Novos](#requisitos-novos)
 - [Shell](#shell)
 - [Diagrama de Classes](#diagrama-de-classes)
-
 <!--TOC_END-->
 
 _Você digita o número de Maria no celular e aparece que você está ligando pra João. Hum, alguma coisa errada não está certa._

@@ -7,7 +7,6 @@
 - [Ajuda](#ajuda)
 - [Main não interativa](#main-não-interativa)
 - [Respostas](#respostas)
-
 <!--TOC_END-->
 
 ![](figura.jpg)

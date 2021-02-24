@@ -7,7 +7,6 @@
 - [Main em Java](#main-em-java)
 - [Dicas](#dicas)
 - [Recursos Extras](#recursos-extras)
-
 <!--TOC_END-->
 ![](figura.jpg)
 

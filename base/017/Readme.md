@@ -7,7 +7,6 @@
 - [UML](#uml)
 - [Enum](#enum)
 - [Main](#main)
-
 <!--TOC_END-->
 
 ## Descrição

@@ -4,7 +4,6 @@
 - [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
 - [Funcionalidades](#funcionalidades)
 - [Diagrama de Classes](#diagrama-de-classes)
-
 <!--TOC_END-->
 
 ![](figura.jpg)

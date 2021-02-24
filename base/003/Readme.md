@@ -8,7 +8,6 @@
 - [Shell](#shell)
 - [Diagrama](#diagrama)
 - [Main não interativa](#main-não-interativa)
-
 <!--TOC_END-->
 ![](figura.jpg)
 

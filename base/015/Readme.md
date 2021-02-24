@@ -6,7 +6,6 @@
 - [Diagrama](#diagrama)
 - [Ajuda](#ajuda)
 - [Main não interativa](#main-não-interativa)
-
 <!--TOC_END-->
 ![](figura.jpg)
 
