@@ -64,7 +64,7 @@ bg=yellow
 - username   : String
 - followers  : Map&lt;String, User*&gt;
 - following  : Map&lt;String, User*&gt;
-- timeline   : List&lt;Tweet*&gt;
+- timeline   : Map&lt;Integer, Tweet*&gt;
 - unreadCount: int
 --
 + follow  (user:  User*): void

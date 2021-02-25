@@ -1,2 +1,2 @@
 kkmanual Readme.md
-mdpp base/*
+mdpp base/* -q
