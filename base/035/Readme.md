@@ -10,9 +10,9 @@
 
 <!--TOC_END-->
 
-Você foi contratado por uma clínica veterinária para implementar um sistema que vai administrar o sistemas dos hóspedes.
+Você foi contratado por uma clínica veterinária para implementar um sistema que vai administrar os hóspedes.
 Na clínica em que você trabalha os veterinários querem um sistema que tem como objetivo diminuir a saudade dos donos enquanto seus queridos pets estão hospedados na sua clínica.
-A grande sacada do dono foi mandar áudios, videos ou fotos dos animaizinhos para que os donos possam lembrar do seu tão amados animaizinhos.
+A grande sacada da gestão da clinica foi mandar áudios, videos ou fotos dos animaizinhos para que os donos possam matar um pouco da saudade dos seus tão amados animaizinhos.
  
 ## Requisitos
  
