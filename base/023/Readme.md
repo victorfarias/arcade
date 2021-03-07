@@ -6,7 +6,6 @@
 - [Requisitos e Regras de negócio parte 3](#requisitos-e-regras-de-negócio-parte-3)
 - [Instruções](#instruções)
 - [Raio X](#raio-x)
-
 <!--TOC_END-->
 
 A UFC está precisando de um novo sistema de geração de folhas de pagamento, você aceita o desafio?'

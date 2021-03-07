@@ -7,7 +7,6 @@
 - [Diagrama UML](#diagrama-uml)
 - [Main interativa](#main-interativa)
 - [Recursos Extras](#recursos-extras)
-
 <!--TOC_END-->
 
 ![](figura.png)

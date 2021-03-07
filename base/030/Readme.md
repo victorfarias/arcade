@@ -6,7 +6,6 @@
 - [Requisitos](#requisitos)
 - [Shell](#shell)
 - [Diagrama UML](#diagrama-uml)
-
 <!--TOC_END-->
 
 Vamos reescrever a atividade dos Favoritos utilizando Herança.
@@ -90,11 +89,11 @@ $end
 
 
 ```java
-Agenda agenda = new Agenda();
-agenda.addContact("eva", Arrays.asList(new Fone("oio", 8585), new Fone("cla", 9999)));
-agenda.addContact("ana", Arrays.asList(new Fone("Tim", 3434)));
-agenda.addContact("bia", Arrays.asList(new Fone("viv", 5454)));
-agenda.addContact("ana", Arrays.asList(new Fone("cas", 4567), new Fone("oio", 8754)));
+Agenda agenda = new AgendaPlus();
+agenda.addContact(new ContatoPlus("eva", Arrays.asList(new Fone("oio", 8585), new Fone("cla", 9999))));
+agenda.addContact(new ContatoPlus("ana", Arrays.asList(new Fone("Tim", 3434))));
+agenda.addContact(new ContatoPlus("bia", Arrays.asList(new Fone("viv", 5454))));
+agenda.addContact(new ContatoPlus("ana", Arrays.asList(new Fone("cas", 4567), new Fone("oio", 8754))));
 System.out.println(agenda);
 /*
 - ana [0:casa:4567][1:oi:8754]

@@ -3,7 +3,6 @@
 <!--TOC_BEGIN-->
 - [Requisitos Parte 1](#requisitos-parte-1)
 - [Raio X](#raio-x)
-
 <!--TOC_END-->
 
 Totó tá com a perna dodói. Faça o sistema da clínica veterinária para cadastrar clientes, animais, servicos e vendas.

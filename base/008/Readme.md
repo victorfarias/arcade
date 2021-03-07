@@ -6,7 +6,6 @@
 - [Diagrama](#diagrama)
 - [Main](#main)
 - [Fim da história](#fim-da-história)
-
 <!--TOC_END-->
 ![](figura.jpg)
 

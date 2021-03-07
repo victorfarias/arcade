@@ -5,8 +5,8 @@
 - [Habilidades](#habilidades)
 - [Funcionalidades](#funcionalidades)
 - [Comandos e Exemplos](#comandos-e-exemplos)
-- [Orientações](#orientações)
-- [Main Interativa](#main-interativa)
+- [Diagrama](#diagrama)
+- [Main interativa](#main-interativa)
 <!--TOC_END-->
 
 Vamos implementar o modelo do twitter. Os usuários se cadastram e podem follow outros usuários do sistema. Ao twittar, a mensagem vai para timeline de todas as pessoas que a seguem.
@@ -167,141 +167,59 @@ $end
 ```
 
 ***
-## Orientações
-
-```python
-
-class Tweet:
-    # nao esqueca de nenhum atributo
-    def constructor(idTw, username, msg):
-        # inicialize tudo direitinho
-
-    def darLike(username):
-        # adicione username na lista se ja nao existir
-
-    def toString():
-        # saida = _idTw _username: _msg {likes}
-
-class User:
-    # adicione o resto dos atributos
-
-    # utilize alguma estrutura de dados de lista ligada
-    # que permita inserção no começo da lista
-
-    naoLidos: int
-
-    timeline: Tweet []
-    myTweets: Tweet []
-
-    seguidores: Map<str, User>
-    seguidos  : Map<str, User>
-
-    def constructor(username):
-        # nao esqueca de inicializar nenhum atributo
-
-    def follow(other: User):
-        # other entra na minha lista de seguidos
-        # this  entra na lista de seguidores de other
-
-    def twittar(tweet):
-        # adiciono o tweet na minha lista de myTweets
-        # para cada um dos meus seguidores
-            # incremente a contagem de nao lidas
-            # adicione o tweet na timeline deles
-
-    def darLike(idTw):
-        # procure o tweet na sua timeline
-        # se existir, chame o tweet.darLike(this.username)
-
-    def get unread():
-        # verifica contador de naoLidos
-        # pega as mensagens da timeline até a quantidade necessária
-        # lembre de zerar a contagem de nao lidos
-
-    def get timeline():
-        # retorna a timeline
-        # lembre de zerar a contagem de nao lidos
-
-    def toString():
-        # retorne username
-
-class Controller:
-    repUser : Map<str, User>  # guarda todos os usuário do sistema
-    repTweet: Map<int, Tweet> # guarda todos os tweets do sistema
-    nextTwId: int # guarda o id para o próximo Tweet a ser gerado
-
-    def sendTweet(username, msg):
-        user = this.getUser(username)
-        # verifique se o usuário existe
-        # crie um objeto Tweet, preencha os dados, armazene no repTweet
-        # invoque o método enviar twittar para que os tweets sejam entregues
-        user.twittar(tweet)
-
-    def addUser(username):
-        # se esse username nao existir
-        # crie e adicione o usuario no repUsuarios
-
-    def getUser(username):
-        user = repUsers.get(username)
-        # se nao existir, lance uma excessão
-        return user
-
-    def follow(one: str, two: str):
-        getUser(from).follow(getUser(to))
-
-    def unfollow(one: str, two: str):
-        getUser(from).unfollow(getUser(to))
-
-```
+## Diagrama
+![](diagrama.png)
 
 
-## Main Interativa
+***
+## Main interativa
 
 ```java
-Scanner scanner = new Scanner(System.in);
-Controller sistema = new Controller();
-
-while(true){
-    String line = scanner.nextLine();
-    System.out.println("$" + line);
-    String ui[] = line.split(" ");
-    try {
-        if (ui[0].equals("end"))
-            break;
-        else if (ui[0].equals("addUser")) {
-            sistema.addUser(ui[1]);
-        } else if (ui[0].equals("show")) {
-            System.out.print(sistema);
-        } else if (ui[0].equals("follow")) {//goku tina
-            User one = sistema.getUser(ui[1]);
-            User two = sistema.getUser(ui[2]);
-            one.follow(two);
+public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    Controller sistema = new Controller();
+    
+    while(true){
+        String line = scanner.nextLine();
+        System.out.println("$" + line);
+        String ui[] = line.split(" ");
+        try {
+            if (ui[0].equals("end"))
+                break;
+            else if (ui[0].equals("addUser")) {
+                sistema.addUser(ui[1]);
+            } else if (ui[0].equals("show")) {
+                System.out.print(sistema);
+            } else if (ui[0].equals("follow")) {//goku tina
+                User one = sistema.getUser(ui[1]);
+                User two = sistema.getUser(ui[2]);
+                one.follow(two);
+            }
+            else if (ui[0].equals("twittar")) {//goku msg
+                String username = ui[1];
+                String msg = "";
+                for(int i = 2; i < ui.length; i++)
+                    msg += ui[i] + " ";
+                sistema.sendTweet(username, msg);
+            }
+            else if (ui[0].equals("timeline")) {//goku tina
+                User user = sistema.getUser(ui[1]);
+                System.out.print(user.getTimeline());
+            }
+            else if (ui[0].equals("like")) {//goku tina
+                User user = sistema.getUser(ui[1]);
+                Tweet tw = user.getTweet(Integer.parseInt(ui[2]));
+                tw.like(ui[1]);
+            }else if (ui[0].equals("unfollow")) {//goku tina
+                User user = sistema.getUser(ui[1]);
+                user.unfollow(ui[2]);
+            }else{
+                System.out.println("fail: comando invalido");
+            }
+        }catch(RuntimeException rt){
+            System.out.println(rt.getMessage());
         }
-        else if (ui[0].equals("twittar")) {//goku msg
-            String username = ui[1];
-            String msg = "";
-            for(int i = 2; i < ui.length; i++)
-                msg += ui[i] + " ";
-            sistema.sendTweet(username, msg);
-        }
-        else if (ui[0].equals("timeline")) {//goku tina
-            User user = sistema.getUser(ui[1]);
-            System.out.print(user.getTimeline());
-        }
-        else if (ui[0].equals("like")) {//goku tina
-            User user = sistema.getUser(ui[1]);
-            Tweet tw = user.getTweet(Integer.parseInt(ui[2]));
-            tw.like(ui[1]);
-        }else if (ui[0].equals("unfollow")) {//goku tina
-            User user = sistema.getUser(ui[1]);
-            user.unfollow(ui[2]);
-        }else{
-            System.out.println("fail: comando invalido");
-        }
-    }catch(RuntimeException rt){
-        System.out.println(rt.getMessage());
     }
+    scanner.close();
 }
-scanner.close();
-
 ```

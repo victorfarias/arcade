@@ -4,7 +4,6 @@
 - [Shell](#shell)
 - [Main](#main)
 - [Diagrama](#diagrama)
-
 <!--TOC_END-->
 
 ![](figura.png)

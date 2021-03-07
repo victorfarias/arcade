@@ -7,7 +7,6 @@
 - [Shell](#shell)
 - [Diagrama UML](#diagrama-uml)
 - [Ajuda](#ajuda)
-
 <!--TOC_END-->
 
 Ampliando a atividade de agenda 2, vamos criar uma agenda que gerencia os nossos contatos.

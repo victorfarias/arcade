@@ -9,7 +9,6 @@
     - [Parte 2 - Embarque e Desembarque](#parte-2---embarque-e-desembarque)
     - [Parte 3 - Cadastro de Passeiros e Registro de Embarque](#parte-3---cadastro-de-passeiros-e-registro-de-embarque)
 - [Raio X](#raio-x)
-
 <!--TOC_END-->
 
 Vamos ampliar a atividade do trem colocando vagões de carga para carregar bagagens.

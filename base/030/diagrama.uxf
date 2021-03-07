@@ -115,7 +115,7 @@ bg=yellow
 + addFone(label: string, number: string)
 + rmFone(index: int)
 --
-+ Contact(name: string)
++ Contact(name: string, fones: Fones[])
 + getFones(): Fone[]
 + getName(): string
 + toString()</panel_attributes>
@@ -134,7 +134,7 @@ bg=yellow
 --
 - contacts: map&lt;string, Contact&gt;
 --
-+ addContact(name: string, fones: Fone[])
++ addContact(contato: Contato)
 + rmContact(name: string): bool
 + search(pattern: string): Contact[]
 + getContacts(): Contact[]
