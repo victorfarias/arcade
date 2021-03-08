@@ -62,7 +62,7 @@ fontsize=16
 --
 #rendimento: float
 --
-+ContaPoupanca(id: string, idClient: string)
++ContaPoupanca(id: int, idClient: string)
 +atualizacaoMensal(): void
 </panel_attributes>
     <additional_attributes/>
@@ -80,7 +80,7 @@ fontsize=16
 --
 #tarifaMensal: float
 --
-+ContaCorrente(id: string, idClient: string)
++ContaCorrente(id: int, idClient: string)
 +atualizacaoMensal(): void
 </panel_attributes>
     <additional_attributes/>
