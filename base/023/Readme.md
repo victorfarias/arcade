@@ -56,7 +56,7 @@ $show
 prof:david:C:7000
 prof:elvis:D:9000
 sta:gilmario:3:3900
-ter:helder:40:sim:860
+ter:helder:40:sim:660
 $rm elvis
 $show
 prof:david:C:7000
