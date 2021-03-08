@@ -61,7 +61,7 @@ $rm elvis
 $show
 prof:david:C:7000
 sta:gilmario:3:3900
-ter:helder:40:sim:860
+ter:helder:40:sim:660
 
 #__case diaria
 $addDiaria david
