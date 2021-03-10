@@ -1,11 +1,12 @@
 # Salário
 <!--TOC_BEGIN-->
-- [Requisitos parte 1](#requisitos-parte-1)
-- [Regras de negócio parte 1](#regras-de-negócio-parte-1)
-- [Regras de negócio parte 2](#regras-de-negócio-parte-2)
-- [Requisitos e Regras de negócio parte 3](#requisitos-e-regras-de-negócio-parte-3)
-- [Instruções](#instruções)
-- [Raio X](#raio-x)
+- [Salário](#salário)
+  - [Requisitos parte 1](#requisitos-parte-1)
+  - [Regras de negócio parte 1](#regras-de-negócio-parte-1)
+  - [Regras de negócio parte 2](#regras-de-negócio-parte-2)
+  - [Requisitos e Regras de negócio parte 3](#requisitos-e-regras-de-negócio-parte-3)
+  - [Instruções](#instruções)
+  - [Diagrama](#diagrama)
 <!--TOC_END-->
 
 A UFC está precisando de um novo sistema de geração de folhas de pagamento, você aceita o desafio?'
@@ -69,14 +70,12 @@ $addDiaria david
 $addDiaria david
 fail: limite de diarias atingido
 $show david
-Prof david classe C
-salario 7200
+prof:david:C:7200
 $addDiaria gilmario
 $addDiaria gilmario
 fail: limite de diarias atingido
 $show gilmario
-Sta gilmario nivel 3
-salario 4000
+sta:gilmario:3:4000
 $addDiaria bismark
 fail: terc nao pode receber diaria
 
@@ -85,13 +84,11 @@ fail: terc nao pode receber diaria
 # um bonus de 600, para 3 funcionários vai dar 200 reais pra cada
 $setBonus 600
 $show gilmario 
-Sta gilmario nivel 3
-salario 4200
+sta:gilmario:3:4200
 
 $setBonus 300
 $show gilmario
-Sta gilmario nivel 3
-salario 4100
+sta:gilmario:3:4100
 $end
 ```
 
@@ -102,47 +99,5 @@ $end
 - As classes filhas devem sobrescrever os métodos herdados da classe pai sempre que você achar necessário
 
 ***
-## Raio X
-
-```c
-abstract class Funcionario
-- nome: String
-- max_diarias: int //o maximo de diarias que ele pode receber
-- qtd_diarias: int //a qtd de diarias que ja recebeu
-- bonus: double //o quanto de bonus ele recebeu
---
-+ setBonus(double bonus): void
-+ addDiaria(): void
-+ _calcSalario()_: double //calculo parcial das diarias e o bonus
---
-constructor(nome, max_diarias)
-````
-
-````c
-class Professor extends Funcionario
-- classe: char
---
-+ calcSalario(): double //sobrescreve adicionando o calculo do salario
---
-+ constructor(nome, classe)
-````
-
-````java
-class STA extends Funcionario
-- nivel: int
---
-+ calcSalario(): double //sobrescreve adicionando o calculo do salario
---
-+ constructor(nome, int)
-````
-
-````c
-class Terceirizado extends Funcionario
-- horas_trab: int
-- insalubre: boolean
---
-+ calcSalario(): double //sobrescreve adicionando o calculo do salario
-+ addDiaria(): void //sobrescrever
---
-+ constructor(nome, horas, insalubre)
-````
+## Diagrama
+![](diagrama.png)
