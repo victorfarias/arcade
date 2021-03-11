@@ -1,10 +1,9 @@
-package s12e02_hospital;
-
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Hospital{
-	Map<String, IPaciente> pacientes;
-	Map<String, IMedico> medicos;
+	TreeMap<String, IPaciente> pacientes = new TreeMap<String, IPaciente>();
+	TreeMap<String, IMedico> medicos = new TreeMap<String, IMedico>();
 	
 	void removerPaciente(String id) {
 		IPaciente paciente = pacientes.get(id);
@@ -14,6 +13,7 @@ public class Hospital{
 			medico.removerPaciente(id);
 		pacientes.remove(id);
 	}
+	
 	void removerMedico(String id) {
 		IMedico medico = medicos.get(id);
 		if(medico == null)
@@ -21,5 +21,20 @@ public class Hospital{
 		for(IPaciente paciente : medico.getPacientes()) 
 			paciente.removerMedico(id);
 		medicos.remove(id);
+	}
+
+	void addPaciente(Paciente paciente){
+		pacientes.put(paciente.getId(), paciente);
+	}
+
+	void addMedico(Medico medico){
+		medicos.put(medico.getId(), medico);
+	}
+
+	String showAll(){
+		StringBuilder lista = new StringBuilder();
+		for(IPaciente paciente : pacientes.values()) lista.append(paciente);
+		for(IMedico medico : medicos.values()) lista.append(medico);
+		return lista.toString();
 	}
 }

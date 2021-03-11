@@ -1,5 +1,3 @@
-package s12e02_hospital;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +8,6 @@ class Mensagem{
 		this.idUser = id;
 		this.text = text;
 	}
-}
-
-interface IBatePapense {
-	String getId();
-	void sendMessage(Mensagem msg, IBatePapense batePapense);
-	void addMessage(Mensagem msg);
-	List<Mensagem> getInbox();
-
 }
 
 abstract class BatePapense {

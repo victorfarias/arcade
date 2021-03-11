@@ -1,9 +1,11 @@
 # Hospital
 
 <!--TOC_BEGIN-->
-- [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
-- [Funcionalidades](#funcionalidades)
-- [Diagrama de Classes](#diagrama-de-classes)
+- [Hospital](#hospital)
+  - [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
+  - [Funcionalidades](#funcionalidades)
+  - [Interfaces](#interfaces)
+  - [Diagrama de Classes](#diagrama-de-classes)
 <!--TOC_END-->
 
 ![](figura.jpg)
@@ -18,6 +20,8 @@ Na UTI do nosso hospital existem vários pacientes. Cada paciente é atendico po
 - informar quais pacientes que são atendidos por um médico.
 - enviar mensagens de um paciente para seus médicos.
 - enviar mensagens de um médicos para seus pacientes.
+
+Use as [Interfaces](#interfaces)
 
 ***
 ## Funcionalidades
@@ -34,21 +38,19 @@ Na UTI do nosso hospital existem vários pacientes. Cada paciente é atendico po
 $addPacs fred-fratura alvis-avc goku-hemorragia silva-sinusite
 $addMeds bisturi-cirurgia snif-alergologia facada-cirurgia
 $seeAll
-Pac: fred:fratura     Meds: []
-Pac: alvis:avc        Meds: []
-Pac: goku:hemorragia  Meds: []
-Pac: silva:sinusite   Meds: []
-Med: bisturi:cirurgia Pacs: []
-Med: snif:alergologia Pacs: []
-Med: facada:cirurgia  Pacs: []
-```
+Pac: alvis:avc        Meds: [ ]
+Pac: fred:fratura     Meds: [ ]
+Pac: goku:hemorragia  Meds: [ ]
+Pac: silva:sinusite   Meds: [ ]
+Med: bisturi:cirurgia Pacs: [ ]
+Med: facada:cirurgia  Pacs: [ ]
+Med: snif:alergologia Pacs: [ ]
 
-- **Vinculos - 3.0 P**
-    - Vincular pacientes e médicos.
-        - Dois médicos da mesma especialidade não podem ser responsáveis pelo mesmo paciente.
-        - O paciente não deve entrar duas vezes na lista do médico e vice-versa.
+#- **Vinculos - 3.0 P**
+#    - Vincular pacientes e médicos.
+#        - Dois médicos da mesma especialidade não podem ser responsáveis pelo mesmo paciente.
+#        - O paciente não deve entrar duas vezes na lista do médico e vice-versa.
 
-```
 #__case vincular
 # tie _med _pac _pac ...
 $tie bisturi fred alvis goku
@@ -62,16 +64,14 @@ Pac: goku:hemorragia  Meds: [bisturi]
 Pac: silva:sinusite   Meds: [snif]
 Med: bisturi:cirurgia Pacs: [fred alvis goku]
 Med: snif:alergologia Pacs: [silva alvis]
-Med: facada:cirurgia  Pacs: []
-```
+Med: facada:cirurgia  Pacs: [ ]
 
-- **Mensagens - 3.0 P**
-    - Pacientes podem enviar mensagens para seus medicos.
-    - Médicos podem enviar mensagens para seus pacientes.
-    - Qualquer pessoa pode olhar suas mensagens.
-    - Depois de ver as mensagens elas são apagadas automaticamente.
+#- **Mensagens - 3.0 P**
+#    - Pacientes podem enviar mensagens para seus medicos.
+#    - Médicos podem enviar mensagens para seus pacientes.
+#    - Qualquer pessoa pode olhar suas mensagens.
+#    - Depois de ver as mensagens elas são apagadas automaticamente.
 
-```
 #__case mensagens
 $msg alvis bisturi posso tomar homeprazol?
 $msg goku bisturi coceira no reto eh normal?
@@ -86,6 +86,30 @@ $msg goku facada
 fail: goku nao conhece facada
 $end
 ```
+---
+## Interfaces
+```java
+public interface IMedico{
+	public String getId();
+	public void addPaciente(IPaciente paciente);
+	public void removerPaciente(String idPaciente);
+	public Collection<IPaciente> getPacientes();
+}
 
+public interface IPaciente{
+	public String getId();
+	public void addMedico(IMedico medico);
+	public void removerMedico(String idMedico);
+	public Collection<IMedico> getMedicos();
+}
+
+interface IBatePapense {
+	String getId();
+	void sendMessage(Mensagem msg, IBatePapense batePapense);
+	void addMessage(Mensagem msg);
+	List<Mensagem> getInbox();
+}
+```
+---
 ## Diagrama de Classes
 

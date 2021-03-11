@@ -1,5 +1,3 @@
-package s12e02_hospital;
-
 import java.util.Collection;
 
 public interface IMedico{
@@ -7,4 +5,6 @@ public interface IMedico{
 	public void addPaciente(IPaciente paciente);
 	public void removerPaciente(String idPaciente);
 	public Collection<IPaciente> getPacientes();
+	public String getClasse();
+	public String toString();
 }
