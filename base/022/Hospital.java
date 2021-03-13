@@ -31,6 +31,21 @@ public class Hospital{
 		medicos.put(medico.getId(), medico);
 	}
 
+	void vincular(String nomeMedico, String nomePaciente){
+		IMedico medico = medicos.get(nomeMedico);
+		IPaciente paciente = pacientes.get(nomePaciente);
+		if(medico == null)
+			return;
+		for(IMedico med : paciente.getMedicos()){
+			if(medico.getClasse().equals(med.getClasse())){
+				System.out.println("fail: ja existe outro medico da especialidade cirurgia");
+				return;
+			}
+		}
+		medico.addPaciente(paciente);
+		paciente.addMedico(medico);
+	}
+
 	String showAll(){
 		StringBuilder lista = new StringBuilder();
 		for(IPaciente paciente : pacientes.values()) lista.append(paciente);

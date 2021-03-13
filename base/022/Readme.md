@@ -2,10 +2,10 @@
 
 <!--TOC_BEGIN-->
 - [Hospital](#hospital)
-  - [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
-  - [Funcionalidades](#funcionalidades)
-  - [Interfaces](#interfaces)
-  - [Diagrama de Classes](#diagrama-de-classes)
+	- [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
+	- [Funcionalidades](#funcionalidades)
+	- [Interfaces](#interfaces)
+	- [Diagrama de Classes](#diagrama-de-classes)
 <!--TOC_END-->
 
 ![](figura.jpg)
@@ -58,13 +58,13 @@ $tie snif silva alvis
 $tie facada goku
 fail: ja existe outro medico da especialidade cirurgia
 $seeAll
-Pac: fred:fratura     Meds: [bisturi]
-Pac: alvis:avc        Meds: [bisturi snif]
-Pac: goku:hemorragia  Meds: [bisturi]
-Pac: silva:sinusite   Meds: [snif]
-Med: bisturi:cirurgia Pacs: [fred alvis goku]
-Med: snif:alergologia Pacs: [silva alvis]
+Pac: alvis:avc        Meds: [ bisturi snif ]
+Pac: fred:fratura     Meds: [ bisturi ]
+Pac: goku:hemorragia  Meds: [ bisturi ]
+Pac: silva:sinusite   Meds: [ snif ]
+Med: bisturi:cirurgia Pacs: [⸱alvis⸱fred⸱goku⸱]
 Med: facada:cirurgia  Pacs: [ ]
+Med: snif:alergologia Pacs: [ alvis⸱silva ]
 
 #- **Mensagens - 3.0 P**
 #    - Pacientes podem enviar mensagens para seus medicos.
@@ -112,4 +112,4 @@ interface IBatePapense {
 ```
 ---
 ## Diagrama de Classes
-
+![](diagrama.png)

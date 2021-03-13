@@ -23,6 +23,10 @@ public class Solver {
 				}
 			}else if (ui[0].equals("seeAll")) {
 				System.out.print(hospital.showAll());
+			}else if(ui[0].equals("tie")){
+				for(int i = 2; i < ui.length;i++){
+					hospital.vincular(ui[1], ui[i]);
+				}
 			}
 		}
 	}
