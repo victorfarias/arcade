@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.List;
 
-class Tweet{
+class Tweet {
     int id;
     String username;
     String msg;
