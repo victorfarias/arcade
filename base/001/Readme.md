@@ -6,7 +6,7 @@
 - [Diagrama](#diagrama)
 - [Ajuda](#ajuda)
 - [Esqueleto](#esqueleto)
-- [Testes](#testes)
+- [Testes ](#testes)
 <!--TOC_END-->
 
 ![](figura.jpg)
@@ -28,7 +28,7 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 
 ```bash
 #__case iniciar mostrar e recarregar
-# O comando "$init M" inicia uma calculadora com carga inicial 0 e bateria máxima M.
+# O comando "$init M" inicia uma calculadora passando por parâmetro a bateria máxima.
 # O comando "$show" mostra o valor da última operação bem sucedida no display e o estado da bateria
 # O comando "$charge V" recarrega a bateria de V
 $init 5
@@ -54,7 +54,6 @@ $end
 ```	
 ```bash
 #__case somando
-# O comando "$sum V1 V2" soma e mostra o resultado da soma. Para isso ele precisa gastar uma unidade de bateria. Caso não exista bateria suficiente informe.
 $init 2
 $charge 2
 $sum 4 3
@@ -75,7 +74,6 @@ $end
 ```
 ```bash
 #__case dividindo
-# O comando "$div A B" consome uma unidade de bateria e apresenta o resultado da divisão inteira entre os números inteiros A e B. Se B for 0 ou não houver bateria, informe os erros. Tentar dividir por 0 consome uma unidade de bateria.
 $init 3
 $charge 3
 $div 6 3
@@ -165,204 +163,5 @@ class Solver{
 ```
 <!--FILTER_END-->
 
-## Testes
-
-<!--ADD t.tio py-->
-```py
->>>>>>>> iniciar mostrar e recarregar !%
-init 5
-show
-charge 3
-show
-charge 1
-show
-charge 2
-show
-init 4
-charge 2
-show
-charge 3
-show
-end
-========
-$init 5
-$show
-display = 0.00, battery = 0
-$charge 3
-$show
-display = 0.00, battery = 3
-$charge 1
-$show
-display = 0.00, battery = 4
-$charge 2
-$show
-display = 0.00, battery = 5
-$init 4
-$charge 2
-$show
-display = 0.00, battery = 2
-$charge 3
-$show
-display = 0.00, battery = 4
-$end
-<<<<<<<<
-
->>>>>>>> somando !%
-init 2
-charge 2
-sum 4 3
-show
-sum 2 3
-show
-sum -4 -1
-charge 1
-show
-sum -4 -2
-show
-end
-========
-$init 2
-$charge 2
-$sum 4 3
-$show
-display = 7.00, battery = 1
-$sum 2 3
-$show
-display = 5.00, battery = 0
-$sum -4 -1
-fail: bateria insuficiente
-$charge 1
-$show
-display = 5.00, battery = 1
-$sum -4 -2
-$show
-display = -6.00, battery = 0
-$end
-<<<<<<<<
-
->>>>>>>> dividindo !%
-init 3
-charge 3
-div 6 3
-div 7 0
-show
-div 7 2
-div 10 2
-show
-end
-========
-$init 3
-$charge 3
-$div 6 3
-$div 7 0
-fail: divisao por zero
-$show
-display = 2.00, battery = 1
-$div 7 2
-$div 10 2
-fail: bateria insuficiente
-$show
-display = 3.50, battery = 0
-$end
-<<<<<<<<
-```
-<!--ADD_END-->
-```py
->>>>>>>> iniciar mostrar e recarregar !%
-init 5
-show
-charge 3
-show
-charge 1
-show
-charge 2
-show
-init 4
-charge 2
-show
-charge 3
-show
-end
-========
-$init 5
-$show
-display = 0.00, battery = 0
-$charge 3
-$show
-display = 0.00, battery = 3
-$charge 1
-$show
-display = 0.00, battery = 4
-$charge 2
-$show
-display = 0.00, battery = 5
-$init 4
-$charge 2
-$show
-display = 0.00, battery = 2
-$charge 3
-$show
-display = 0.00, battery = 4
-$end
-<<<<<<<<
-
->>>>>>>> somando !%
-init 2
-charge 2
-sum 4 3
-show
-sum 2 3
-show
-sum -4 -1
-charge 1
-show
-sum -4 -2
-show
-end
-========
-$init 2
-$charge 2
-$sum 4 3
-$show
-display = 7.00, battery = 1
-$sum 2 3
-$show
-display = 5.00, battery = 0
-$sum -4 -1
-fail: bateria insuficiente
-$charge 1
-$show
-display = 5.00, battery = 1
-$sum -4 -2
-$show
-display = -6.00, battery = 0
-$end
-<<<<<<<<
-
->>>>>>>> dividindo !%
-init 3
-charge 3
-div 6 3
-div 7 0
-show
-div 7 2
-div 10 2
-show
-end
-========
-$init 3
-$charge 3
-$div 6 3
-$div 7 0
-fail: divisao por zero
-$show
-display = 2.00, battery = 1
-$div 7 2
-$div 10 2
-fail: bateria insuficiente
-$show
-display = 3.50, battery = 0
-$end
-<<<<<<<<
-```
-<!--ADD_END-->
+## Testes 
+- [LINK](t.tio)
