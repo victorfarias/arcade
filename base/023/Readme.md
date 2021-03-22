@@ -1,12 +1,11 @@
 # Salário
 <!--TOC_BEGIN-->
-- [Salário](#salário)
-  - [Requisitos parte 1](#requisitos-parte-1)
-  - [Regras de negócio parte 1](#regras-de-negócio-parte-1)
-  - [Regras de negócio parte 2](#regras-de-negócio-parte-2)
-  - [Requisitos e Regras de negócio parte 3](#requisitos-e-regras-de-negócio-parte-3)
-  - [Instruções](#instruções)
-  - [Diagrama](#diagrama)
+- [Requisitos parte 1](#requisitos-parte-1)
+- [Regras de negócio parte 1](#regras-de-negócio-parte-1)
+- [Regras de negócio parte 2](#regras-de-negócio-parte-2)
+- [Requisitos e Regras de negócio parte 3](#requisitos-e-regras-de-negócio-parte-3)
+- [Instruções](#instruções)
+- [Diagrama](#diagrama)
 <!--TOC_END-->
 
 A UFC está precisando de um novo sistema de geração de folhas de pagamento, você aceita o desafio?'

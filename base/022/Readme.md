@@ -1,11 +1,10 @@
 # Hospital
 
 <!--TOC_BEGIN-->
-- [Hospital](#hospital)
-	- [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
-	- [Funcionalidades](#funcionalidades)
-	- [Interfaces](#interfaces)
-	- [Diagrama de Classes](#diagrama-de-classes)
+- [Cadastrar Pacientes, Médicos e Plantões.](#cadastrar-pacientes-médicos-e-plantões)
+- [Funcionalidades](#funcionalidades)
+- [Interfaces](#interfaces)
+- [Diagrama de Classes](#diagrama-de-classes)
 <!--TOC_END-->
 
 ![](figura.jpg)

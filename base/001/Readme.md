@@ -5,8 +5,8 @@
 - [Shell](#shell)
 - [Diagrama](#diagrama)
 - [Ajuda](#ajuda)
-- [Main não interativa](#main-não-interativa)
-- [Respostas](#respostas)
+- [Esqueleto](#esqueleto)
+- [Testes](#testes)
 <!--TOC_END-->
 
 ![](figura.jpg)
@@ -21,8 +21,7 @@ O objetivo dessa atividade é implementar uma calculadora a bateria. Se há bate
 - Recarregar a bateria.
 - Realizar operações matemáticas de soma e divisão.
 - Se o usuário tentar realizar operações e a bateria estiver vazia, deverá ser mostrada uma notificação sobre falta de bateria.
-- Se o resultado da divisão for zero, deve ser notificado o erro.
-
+- Se for tentada divisão por zero, deve ser notificado o erro.
 
 ***
 ## Shell
@@ -91,11 +90,12 @@ $show
 display = 3.50, battery = 0
 $end
 ```
+
+***
 ## Diagrama
 ![](diagrama.png)
 
-***    
-
+***
 ## Ajuda
 
 Você pode formatar floats com duas casas decimais em java usando essa classe
@@ -112,62 +112,257 @@ class Decimals {
 }
 ```
 
-## Main não interativa
+***
+## Esqueleto
+<!--FILTER Solver.java java-->
 ```java
-Calculadora calc = new Calculadora(5);
-System.out.println(calc);
-//display = 0.00, battery = 0
-calc.charge(3);
-System.out.println(calc);
-//display = 0.00, battery = 3
-calc.charge(1);
-System.out.println(calc);
-//display = 0.00, battery = 4
-calc.charge(2);
-System.out.println(calc);
-//display = 0.00, battery = 5
-
-calc = new Calculadora(4);
-calc.charge(2);
-System.out.println(calc);
-//display = 0.00, battery = 2
-calc.charge(3);
-System.out.println(calc);
-//display = 0.00, battery = 4
-
-calc = new Calculadora(2);
-calc.charge(2);
-calc.soma(4, 3);
-System.out.println(calc);
-//display = 7.00, battery = 1
-calc.soma(2, 3);
-System.out.println(calc);
-//display = 5.00, battery = 0
-calc.soma(-4, -1);
-//fail: bateria insuficiente
-calc.charge(1);
-System.out.println(calc);
-//display = 5.00, battery = 1
-calc.soma(-4, -2);
-System.out.println(calc);
-//display = -6.00, battery = 0
-
-calc = new Calculadora(3);
-calc.charge(3);
-calc.div(6, 3);
-calc.div(7, 0);
-//fail: divisao por zero
-System.out.println(calc);
-//display = 2.00, battery = 1
-calc.div(7, 2);
-calc.div(10, 2);
-//fail: bateria insuficiente
-System.out.println(calc);
-//display = 3.50, battery = 0
+class Calculator {
+    int batteryMax;
+    int battery;
+    float display;
+    //Inicia os atributos, battery e display começam com o zero.
+    public Calculator(int batteryMax);
+    //Aumenta a bateria, porém não além do máximo.
+    void chargeBattery(int value); 
+    //Tenta gastar uma unidade da bateria e emite um erro se não conseguir.
+    boolean useBattery(); 
+    //Se conseguir gastar bateria, armazene a soma no atributo display.
+    void sum(int a, int b); 
+    //Se conseguir gastar bateria e não for divisão por 0.
+    void division(int num, int den);
+    //Retorna o conteúdo do display com duas casas decimais.
+    public String toString(); 
+}
+class Solver{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Calculator calc = new Calculator(0);
+        while(true){
+            String line = scanner.nextLine();
+            System.out.println("$" + line);
+            String ui[] = line.split(" ");
+            if(line.equals("end")) {
+                break;
+            } else if(ui[0].equals("help")) {
+                System.out.println("sum _a _b; show; division _a _b; chargeBattery _value");
+            } else if(ui[0].equals("init")) { //batteryMax
+                calc = new Calculator(Integer.parseInt(ui[1]));
+            } else if(ui[0].equals("show")) {
+                System.out.println(calc);
+            } else if(ui[0].equals("charge")) {
+                calc.chargeBattery(Integer.parseInt(ui[1]));
+            } else if(ui[0].equals("sum")) {//value value
+                calc.sum(Integer.parseInt(ui[1]), Integer.parseInt(ui[2]));
+            } else if(ui[0].equals("div")) {//value value
+                calc.division(Integer.parseInt(ui[1]), Integer.parseInt(ui[2]));
+            } else {
+                System.out.println("fail: comando invalido");
+            }
+        }
+        scanner.close();
+    }
+}
 ```
+<!--FILTER_END-->
 
-## Respostas
+## Testes
 
-- Respostas
-    - [C++](solver.cpp)
-    - [Java](Solver.java)
+<!--ADD t.tio py-->
+```py
+>>>>>>>> iniciar mostrar e recarregar !%
+init 5
+show
+charge 3
+show
+charge 1
+show
+charge 2
+show
+init 4
+charge 2
+show
+charge 3
+show
+end
+========
+$init 5
+$show
+display = 0.00, battery = 0
+$charge 3
+$show
+display = 0.00, battery = 3
+$charge 1
+$show
+display = 0.00, battery = 4
+$charge 2
+$show
+display = 0.00, battery = 5
+$init 4
+$charge 2
+$show
+display = 0.00, battery = 2
+$charge 3
+$show
+display = 0.00, battery = 4
+$end
+<<<<<<<<
+
+>>>>>>>> somando !%
+init 2
+charge 2
+sum 4 3
+show
+sum 2 3
+show
+sum -4 -1
+charge 1
+show
+sum -4 -2
+show
+end
+========
+$init 2
+$charge 2
+$sum 4 3
+$show
+display = 7.00, battery = 1
+$sum 2 3
+$show
+display = 5.00, battery = 0
+$sum -4 -1
+fail: bateria insuficiente
+$charge 1
+$show
+display = 5.00, battery = 1
+$sum -4 -2
+$show
+display = -6.00, battery = 0
+$end
+<<<<<<<<
+
+>>>>>>>> dividindo !%
+init 3
+charge 3
+div 6 3
+div 7 0
+show
+div 7 2
+div 10 2
+show
+end
+========
+$init 3
+$charge 3
+$div 6 3
+$div 7 0
+fail: divisao por zero
+$show
+display = 2.00, battery = 1
+$div 7 2
+$div 10 2
+fail: bateria insuficiente
+$show
+display = 3.50, battery = 0
+$end
+<<<<<<<<
+```
+<!--ADD_END-->
+```py
+>>>>>>>> iniciar mostrar e recarregar !%
+init 5
+show
+charge 3
+show
+charge 1
+show
+charge 2
+show
+init 4
+charge 2
+show
+charge 3
+show
+end
+========
+$init 5
+$show
+display = 0.00, battery = 0
+$charge 3
+$show
+display = 0.00, battery = 3
+$charge 1
+$show
+display = 0.00, battery = 4
+$charge 2
+$show
+display = 0.00, battery = 5
+$init 4
+$charge 2
+$show
+display = 0.00, battery = 2
+$charge 3
+$show
+display = 0.00, battery = 4
+$end
+<<<<<<<<
+
+>>>>>>>> somando !%
+init 2
+charge 2
+sum 4 3
+show
+sum 2 3
+show
+sum -4 -1
+charge 1
+show
+sum -4 -2
+show
+end
+========
+$init 2
+$charge 2
+$sum 4 3
+$show
+display = 7.00, battery = 1
+$sum 2 3
+$show
+display = 5.00, battery = 0
+$sum -4 -1
+fail: bateria insuficiente
+$charge 1
+$show
+display = 5.00, battery = 1
+$sum -4 -2
+$show
+display = -6.00, battery = 0
+$end
+<<<<<<<<
+
+>>>>>>>> dividindo !%
+init 3
+charge 3
+div 6 3
+div 7 0
+show
+div 7 2
+div 10 2
+show
+end
+========
+$init 3
+$charge 3
+$div 6 3
+$div 7 0
+fail: divisao por zero
+$show
+display = 2.00, battery = 1
+$div 7 2
+$div 10 2
+fail: bateria insuficiente
+$show
+display = 3.50, battery = 0
+$end
+<<<<<<<<
+```
+<!--ADD_END-->
