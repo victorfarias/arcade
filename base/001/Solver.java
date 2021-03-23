@@ -1,9 +1,9 @@
 import java.util.Scanner;
 import java.text.*;
 class Calculator {
-    int batteryMax;
-    int battery;
-    float display;
+    public int batteryMax;
+    public int battery;
+    public float display;
 
     //Inicia os atributos, battery e display começam com o zero.
     public Calculator(int batteryMax) {
@@ -13,7 +13,7 @@ class Calculator {
     }
 
     //Aumenta a bateria, porém não além do máximo.
-    void chargeBattery(int value) { 
+    public void chargeBattery(int value) { 
         if(value < 0)
             return;
         this.battery += value;
@@ -22,7 +22,7 @@ class Calculator {
     }
 
     //Tenta gastar uma unidade da bateria e emite um erro se não conseguir.
-    boolean useBattery() { 
+    public boolean useBattery() { 
         if(this.battery == 0){
             System.out.println("fail: bateria insuficiente");
             return false;
@@ -32,13 +32,13 @@ class Calculator {
     }
 
     //Se conseguir gastar bateria, armazene a soma no atributo display.
-    void sum(int a, int b) { 
+    public void sum(int a, int b) { 
         if(useBattery())
             this.display = (a + b);
     }
 
     //Se conseguir gastar bateria e não for divisão por 0.
-    void division(int num, int den) {
+    public void division(int num, int den) {
         if(!useBattery())
             return;
         if(den == 0){
@@ -66,8 +66,6 @@ class Solver{
             String ui[] = line.split(" ");
             if(line.equals("end")) {
                 break;
-            } else if(ui[0].equals("help")) {
-                System.out.println("sum _a _b; show; division _a _b; chargeBattery _value");
             } else if(ui[0].equals("init")) { //batteryMax
                 calc = new Calculator(Integer.parseInt(ui[1]));
             } else if(ui[0].equals("show")) {

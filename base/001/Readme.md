@@ -116,19 +116,19 @@ class Decimals {
 <!--FILTER Solver.java java-->
 ```java
 class Calculator {
-    int batteryMax;
-    int battery;
-    float display;
+    public int batteryMax;
+    public int battery;
+    public float display;
     //Inicia os atributos, battery e display começam com o zero.
     public Calculator(int batteryMax);
     //Aumenta a bateria, porém não além do máximo.
-    void chargeBattery(int value); 
+    public void chargeBattery(int value); 
     //Tenta gastar uma unidade da bateria e emite um erro se não conseguir.
-    boolean useBattery(); 
+    public boolean useBattery(); 
     //Se conseguir gastar bateria, armazene a soma no atributo display.
-    void sum(int a, int b); 
+    public void sum(int a, int b); 
     //Se conseguir gastar bateria e não for divisão por 0.
-    void division(int num, int den);
+    public void division(int num, int den);
     //Retorna o conteúdo do display com duas casas decimais.
     public String toString(); 
 }
@@ -142,8 +142,6 @@ class Solver{
             String ui[] = line.split(" ");
             if(line.equals("end")) {
                 break;
-            } else if(ui[0].equals("help")) {
-                System.out.println("sum _a _b; show; division _a _b; chargeBattery _value");
             } else if(ui[0].equals("init")) { //batteryMax
                 calc = new Calculator(Integer.parseInt(ui[1]));
             } else if(ui[0].equals("show")) {

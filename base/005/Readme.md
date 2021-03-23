@@ -3,10 +3,8 @@
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
 - [Shell](#shell)
-- [Diagrama](#diagrama)
 - [Dica](#dica)
-- [Main não interativa](#main-não-interativa)
-- [Respostas](#respostas)
+- [Esqueleto](#esqueleto)
 <!--TOC_END-->
 
 ![](figura.jpg)
@@ -78,7 +76,7 @@ $show
 [ 4 5 6 8 1 2 2 9 2 2 2 8 9 0 1 4 3 3 2 1 ]
 
 #__case find_elemento
-# o comando "$find V [V ...]" retorna o índice da primeira ocorrência dos valores procurado ou -1 se ele não existir.
+# O comando "$find V [V ...]" retorna o índice da primeira ocorrência dos valores procurado ou -1 se ele não existir.
 $find 7
 [ -1 ]
 $find 6 8 9
@@ -116,7 +114,8 @@ $end
 
 ```bash
 #__case remover_por_indice
-# o comando "$rmi ind" remove o elemento dado o índice. Se o índice não existir, informe a falha.
+# o comando "$rmi ind" remove o elemento dado o índice. 
+# Se o índice não existir, informe a falha.
 $add 4 5 6 8 1 2 2 9
 $rmi 0
 $show
@@ -141,7 +140,7 @@ $end
 
 ```bash
 #__case remove_all
-# o comando "$rma V" remove todos os elemento que contém esse valor. Observe que você deve caminhar pela estrutura UMA ÚNICA VEZ removendo os elementos. NÃO utilize find + remover por índice.
+# o comando "$rma V" remove todos os elemento que contém esse valor. 
 $add 2 2 2 2
 $rma 2
 $show
@@ -158,9 +157,6 @@ $show
 [ 1 3 ]
 $end
 ```
-***
-## Diagrama
-![](diagrama.png)
 
 ***
 ## Dica
@@ -176,121 +172,45 @@ $end
 - **Object set(int index, Object element)**: Substitui o i-ésimo elemento da lista pelo elemento especificado.
 - int size(): Retorna o número de elementos da lista.
 ***
-## Main não interativa
+
+## Esqueleto
+<!--FILTER Solver.java java-->
 ```java
+public class Solver{	
+    
+    public static void main(String[] args) {
+        ArrayList<Integer> vet = new ArrayList<Integer>();
+        Scanner scan = new Scanner(System.in);
 
-    //__case inicio
-    ArrayManip vet = new ArrayManip();
-    System.out.print(vet.show());
-    //[ ]
-    vet.add(new int[] {1, 2, 3, 4});
-    System.out.print(vet.show());
-    //[ 1 2 3 4 ]
-    
-    //__case inicio
-    vet = new ArrayManip();
-    System.out.print(vet.show());
-    //[ ]
-    vet.add(new int[] {1, 2, 3, 4});
-    vet.get(0);
-    //1
-    vet.get(3);
-    //4
-    vet.set(0, 9);
-    System.out.print(vet.show());
-    //[ 9 2 3 4 ]
-    
-    //__case rshow
-    vet = new ArrayManip();
-    System.out.print(vet.rshow());
-    //[ ]
-    vet.add(1);
-    System.out.print(vet.rshow());
-    //[ 1 ]
-    vet.add(new int[] {2, 3, 5});
-    System.out.print(vet.rshow());
-    //[ 5 3 2 1 ]
-    
-    //__case add_mais_elementos
-    vet = new ArrayManip();
-    vet.add(new int[] {4, 5, 6, 8, 1, 2, 2, 9});
-    vet.add(new int[] {2, 2, 2, 8, 9, 0, 1, 4});
-    vet.add(new int[] {3, 3, 2, 1});
-    System.out.print(vet.show());
-    //[ 4 5 6 8 1 2 2 9 2 2 2 8 9 0 1 4 3 3 2 1 ]
+        while(true) {
+            String line = scan.nextLine();
+            System.out.println("$" + line);
+            String ui[] = line.split(" ");
+            String cmd = ui[0];
 
-    //__case find_elemento
-    vet = new ArrayManip();
-    vet.find(new int[] {7});
-    //[ -1 ]
-    vet.find(new int[] {6, 8, 9});
-    //[ 2 3 7 ]
-    vet.find(new int[] {2, 0, 1, 7, 10});
-    //[ 5 13 4 -1 -1 ]
-    
-    //__case insert_indice
-    vet = new ArrayManip();
-    vet.add(new int[] {3, 7});
-    System.out.print(vet.show());
-    //[ 3 7 ]
-    vet.ins(0, 2);
-    System.out.print(vet.show());
-    //[ 2 3 7 ]
-    vet.ins(3, 1);
-    System.out.print(vet.show());
-    //[ 2 3 7 1 ]
-    vet.ins(-2, 5);
-    System.out.print(vet.show());
-    //[ 2 3 7 1 ]
-    vet.ins(9, 5);
-    System.out.print(vet.show());
-    //[ 2 3 7 1 5 ]
-    vet.ins(2, 6);
-    System.out.print(vet.show());
-    //[ 2 3 6 7 1 5 ]
-    
-    //__case remover_por_indice
-    vet = new ArrayManip();
-    vet.add(new int[] {4, 5, 6, 8, 1, 2, 2, 9});
-    vet.rmi(0);
-    System.out.print(vet.show());
-    //[ 5 6 8 1 2 2 9 ]
-    vet.rmi(5);
-    System.out.print(vet.show());
-    //[ 5 6 8 1 2 9 ]
-    vet.rmi(5);
-    System.out.print(vet.show());
-    //[ 5 6 8 1 2 ]
-    vet.rmi(2);
-    System.out.print(vet.show());
-    //[ 5 6 1 2 ]
-    vet.rmi(-1);
-    //fail
-    vet.rmi(4);
-    //fail
-    System.out.print(vet.show());
-    //[ 5 6 1 2 ]
-    
-    //__case remove_all
-    vet = new ArrayManip();
-    vet.add(new int[] {2, 2, 2, 2});
-    vet.rma(2);
-    System.out.print(vet.show());
-    //[ ]
-    vet.add(new int[] {4, 4, 4, 4, 2, 2, 2, 4, 4, 4, 1, 2, 3, 4});
-    vet.rma(7);
-    System.out.print(vet.show());
-    //[ 4 4 4 4 2 2 2 4 4 4 1 2 3 4 ]
-    vet.rma(2);
-    System.out.print(vet.show());
-    //[ 4 4 4 4 4 4 4 1 3 4 ]
-    vet.rma(4);
-    System.out.print(vet.show());
-    //[ 1 3 ]
+            if(line.equals("end")) {
+                break;
+            } else if(cmd.equals("show")) {
+                System.out.print("[ ");
+                for(Integer value : vet)
+                    System.out.print(value + " ");
+                System.out.print("]\n");
+            } else if(cmd.equals("rshow")) {
+            } else if(cmd.equals("add")) {
+                for(int i = 1; i < ui.length; i++)
+                    vet.add(Integer.parseInt(ui[i]));
+            } else if(cmd.equals("find")) {
+            } else if(cmd.equals("get")) {
+            } else if(cmd.equals("set")) {
+            } else if(cmd.equals("ins")) {
+            } else if(cmd.equals("rmi")) {
+            } else if(cmd.equals("rma")) {
+            } else {
+                System.out.print("fail: command not found\n");
+            }
+        }
+        scan.close();
+    }
+}
 ```
-***
-## Respostas
-
-- [C++](solver.cpp)
-- [Java](Solver.java)
-
+<!--FILTER_END-->
