@@ -2,11 +2,11 @@ import java.text.DecimalFormat;
 import java.util.Scanner;
 
 class Grafite {
-    float calibre;
-    String dureza;
-    int tamanho;
+    public float calibre;
+    public String dureza;
+    public int tamanho;
 
-    Grafite(float calibre, String dureza, int tamanho) {
+    public Grafite(float calibre, String dureza, int tamanho) {
         this.calibre = calibre;
         this.dureza = dureza;
         this.tamanho = tamanho;
@@ -15,7 +15,7 @@ class Grafite {
         DecimalFormat form = new DecimalFormat("0.0");
         return form.format(calibre) + ":" + dureza + ":" + tamanho;
     }
-    int desgastePorFolha() {
+    public int desgastePorFolha() {
         if(dureza.equals("HB"))
             return 1;
         else if(dureza.equals("2B"))
@@ -28,10 +28,10 @@ class Grafite {
 }
 
 class Lapiseira {
-    float calibre;
-    Grafite grafite;
+    public float calibre;
+    public Grafite grafite;
 
-    Lapiseira(float calibre) {
+    public Lapiseira(float calibre) {
         this.calibre = calibre;
         this.grafite = null;
     }
@@ -45,7 +45,7 @@ class Lapiseira {
         return saida;
     }
 
-    boolean inserir(Grafite grafite) {
+    public boolean inserir(Grafite grafite) {
         if(this.grafite == null) {
             if(this.calibre != grafite.calibre) {
                 System.out.println("fail: calibre incompatível");
@@ -59,7 +59,7 @@ class Lapiseira {
         return false;
     }
 
-    Grafite remover() {
+    public Grafite remover() {
         if(this.grafite == null) {
             System.out.println("fail: nao existe grafite");
             return null;
@@ -69,7 +69,7 @@ class Lapiseira {
         return backup;
     }
 
-    void write(int folhas) {
+    public void write(int folhas) {
         if(this.grafite == null) {
             System.out.println("fail: nao existe grafite");
             return;

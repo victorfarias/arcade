@@ -42,7 +42,7 @@ public:
         if(Fone::validar(number))
             fones.push_back(Fone(id, number));
         else
-            cout << "fail: fone invalido" << endl;
+            cout << "fail: invalid number" << endl;
     }
     void rmFone(int index){
         if(index < 0 || index >= (int) fones.size())

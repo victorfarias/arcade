@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 class Car{
-    int pass; // Passageiros
-    int passMax; // limite de Passageiros
-    int gas; // tanque
-    int gasMax; // limite do tanque
-    int km; // quantidade de quilometragem
+    public int pass; // Passageiros
+    public int passMax; // limite de Passageiros
+    public int gas; // tanque
+    public int gasMax; // limite do tanque
+    public int km; // quantidade de quilometragem
 
-    Car() {
+    public Car() {
         this.pass = 0; // Passageiros
         this.passMax = 2; // limite de Passageiros
         this.gas = 0; // tanque
@@ -19,7 +19,7 @@ class Car{
         return "pass: " + pass + ", gas: " + gas + ", km: " + km;
     }
 
-    void in() {
+    public void in() {
         if (pass < passMax) {
             pass += 1;
             return;
@@ -27,7 +27,7 @@ class Car{
         System.out.println("fail: limite de pessoas atingido");
     }
 
-    void out() {
+    public void out() {
         if (pass > 0) {
             pass-=1;
             return;
@@ -35,13 +35,13 @@ class Car{
         System.out.println("fail: nao ha ninguem no carro");
     }
     
-    void fuel(int gas) {
+    public void fuel(int gas) {
         this.gas += gas;
         if(this.gas > gasMax)
             this.gas = gasMax;
     }
 
-    void drive (int km) {
+    public void drive (int km) {
         if(this.pass == 0) {
             System.out.println("fail: nao ha ninguem no carro");
         } else if(this.gas == 0) {

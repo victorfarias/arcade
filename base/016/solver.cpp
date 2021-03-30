@@ -188,7 +188,7 @@ int main(){
                 while(ss >> fonestr)
                     fones.push_back(format_fone(fonestr));
                 agenda.addContact(name, fones);
-            }else if(cmd == "rmContact"){
+            }else if(cmd == "rm"){
                 agenda.rmContact(get<string>(ss));
             }else if(cmd == "rmFone"){
                 Contact * cont = agenda.getContact(get<string>(ss));

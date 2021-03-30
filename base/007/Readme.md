@@ -110,6 +110,8 @@ $end
 
 ***
 ## Diagrama UML
+Os gets e sets estão marcados em separado para facilitar a visualização dos métodos importantes.
+
 ![](diagrama.png)
 
 ***
@@ -129,7 +131,7 @@ enum Label {
     private Label(String name) {
         this.name = name;
     }
-    public String getName() {
+    String getName() {
         return this.name;
     }
     public String toString() {
@@ -157,16 +159,16 @@ class Operacao {
     public String toString() {
         return pad("" + indice, 2) + ":" + pad("" + label, 9) + ":" + pad("" + value, 5) + ":" + pad("" + saldo, 5);
     }
-    public int getIndice() {
+    int getIndice() {
         return this.indice;
     }
-    public Label getLabel() {
+    Label getLabel() {
         return this.label;
     }
-    public int getValue() {
+    int getValue() {
         return this.value;
     }
-    public int getSaldo() {
+    int getSaldo() {
         return this.saldo;
     }
 };
@@ -182,9 +184,9 @@ class Financas {
     //Crie operação e adiciona ao vetor de operações
     //Incrementa o nextId
     public void addOperacao(Label label, int value);
-    public int getSaldo();
-    public List<Operacao> getExtrato();
-    List<Operacao> getExtrato(int qtdOp);
+    int getSaldo();
+    List<Operacao> getExtrato();
+    public List<Operacao> getExtrato(int qtdOp);
 }
 class Conta {
     //O número da conta
@@ -201,7 +203,7 @@ class Conta {
     //adiciona valor à conta
     public boolean creditar(Label label, int value);
     public String toString();
-    public Financas getFinancas();
+    Financas getFinancas();
 }
 class Solver{
     public static void main(String[] args) {

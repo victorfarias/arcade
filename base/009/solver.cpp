@@ -3,24 +3,22 @@
 #include <sstream>
 using namespace std;
 
-
-
 class Kid{
 private:
     int age;
     string name;
 public:
-    Kid(string name, int age){
+    Kid(string name, int age) {
         this->age = age;
         this->name = name;
     }
-    int getAge(){
+    int getAge() {
         return age;
     }
-    string getName(){
+    string getName() {
         return name;
     }
-    string toString(){
+    string toString() {
         return name + ":" + to_string(age);
     }
 };
@@ -29,9 +27,9 @@ class Trampoline{
     list<Kid*> waiting;
     list<Kid*> playing;
     
-    Kid * remove_kid(string name, list<Kid*>& _list){
-        for(list<Kid*>::iterator it = _list.begin(); it != _list.end(); it++){
-            if((*it)->getName() == name){
+    Kid * remove_kid(string name, list<Kid*>& _list) {
+        for(list<Kid*>::iterator it = _list.begin(); it != _list.end(); it++) {
+            if((*it)->getName() == name) {
                 auto kid = *it;
                 _list.erase(it);
                 return kid;
@@ -41,31 +39,30 @@ class Trampoline{
     }
 
 public:
-    Trampoline(){
+    Trampoline() {
     }
-    ~Trampoline(){
+    ~Trampoline() {
         for(Kid * kid : playing)
             delete kid;
         for(Kid * kid : waiting)
             delete kid;
-        
     }
     
-    void arrive(Kid * kid){
+    void arrive(Kid * kid) {
         waiting.push_front(kid);
     }
 
-    void in(){
+    void in() {
         playing.push_front(waiting.back());
         waiting.pop_back();
     }
 
-    void out(){
+    void out() {
         waiting.push_front(playing.back());
         playing.pop_back();
     }
 
-    Kid * remove(string name){
+    Kid * remove(string name) {
         Kid * kid = remove_kid(name, waiting);
         if(kid)
             return kid;
@@ -75,7 +72,7 @@ public:
         return nullptr;
     }
 
-    string toString(){
+    string toString() {
         string saida = "=> ";
         for(Kid * kid : waiting)
             saida += kid->toString() + " ";
@@ -86,28 +83,35 @@ public:
     }
 };
 
-int main(){
+int main() {
     string line;
     Trampoline tramp;
-    while(true){
+    while(true) {
         getline(cin, line);
         stringstream ss(line);
         cout << "$" << line << endl;
         string cmd;
         ss >> cmd;
-        if(cmd == "end"){
+        if(cmd == "end") {
             break;
-        }else if(cmd == "chegou"){
+        } else if(cmd == "arrive") {
             string nome;
             int idade;
             ss >> nome >> idade;
             tramp.arrive(new Kid(nome, idade));
-        }else if(cmd == "show"){
+        } else if(cmd == "show") {
             cout << tramp.toString() << endl;
-        }else if(cmd == "entrar"){
+        } else if(cmd == "in") {
             tramp.in();
-        }else if(cmd == "sair"){
+        } else if(cmd == "out") {
             tramp.out();
+        } else if(cmd == "remove") {
+            string name;
+            ss >> name;
+            delete(tramp.remove(name));
+            
+        } else{
+            cout << "fail: comando invalido\n";
         }
     }
 }

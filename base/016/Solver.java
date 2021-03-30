@@ -1,121 +1,48 @@
-# Favoritos - Agenda 3
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
 
-![](figura.jpg)
-
-<!--TOC_BEGIN-->
-- [Requisitos Novos](#requisitos-novos)
-- [Shell](#shell)
-- [Diagrama UML](#diagrama-uml)
-- [Esqueleto](#esqueleto)
-<!--TOC_END-->
-
-Ampliando a atividade de agenda 2, vamos criar uma agenda que gerencia os nossos contatos.
-
-
-## Requisitos Novos
-
-O sistema deverá:
-- Partida
-    - Você deve utilizar o código construído na atividade busca.
-    - Você deverá modificar o contato e a classe agenda para permitir a operação de favoritar contatos.
-    - Para isso o contato ganhará um atributo "star" que marca se ele está favoritado.
-    - A agenda ganhará os métodos star e getStarred para favoritar e pegar os favoritos.
-- Mostrando
-    - Ordenar os contatos pelo idContato.
-    - Se o contato não for favorito (starred) use - antes do idContato.
-    - Marque os contatos que são favoritados com um @ antes do idContato. 
-
-- Favoritando
-    - Favoritar contatos. (star)
-    - Desfavoritar contatos. (unstar)
-    - Mostrar apenas os favoritos. (starred)
-
-## Shell
-
-```bash
-#__case iniciando agenda
-$add eva oi:8585 claro:9999
-$add ana tim:3434 
-$add ana casa:4567 oi:8754
-$add bia vivo:5454
-$add rui casa:3233
-$add zac fixo:3131
-
-$show
-- ana [0:tim:3434] [1:casa:4567] [2:oi:8754]
-- bia [0:vivo:5454]
-- eva [0:oi:8585] [1:claro:9999]
-- rui [0:casa:3233]
-- zac [0:fixo:3131]
-
-#__case favoritando
-$star eva
-$star ana
-$star ana
-$star zac
-
-$show
-@ ana [0:tim:3434] [1:casa:4567] [2:oi:8754]
-- bia [0:vivo:5454]
-@ eva [0:oi:8585] [1:claro:9999]
-- rui [0:casa:3233]
-@ zac [0:fixo:3131]
-
-#__case lista de favoritos
-$starred
-@ ana [0:tim:3434] [1:casa:4567] [2:oi:8754]
-@ eva [0:oi:8585] [1:claro:9999]
-@ zac [0:fixo:3131]
-
-#__case removendo contato
-$rm zac
-
-$show
-@ ana [0:tim:3434] [1:casa:4567] [2:oi:8754]
-- bia [0:vivo:5454]
-@ eva [0:oi:8585] [1:claro:9999]
-- rui [0:casa:3233]
-
-$starred
-@ ana [0:tim:3434] [1:casa:4567] [2:oi:8754]
-@ eva [0:oi:8585] [1:claro:9999]
-
-#__case desfavoritando
-$unstar ana
-
-$starred
-@ eva [0:oi:8585] [1:claro:9999]
-
-$show
-- ana [0:tim:3434] [1:casa:4567] [2:oi:8754]
-- bia [0:vivo:5454]
-@ eva [0:oi:8585] [1:claro:9999]
-- rui [0:casa:3233]
-$end
-```
-
-***
-## Diagrama UML
-![](diagrama.png)
-
-## Esqueleto
-<!--FILTER Solver.java java-->
-```java
 class Fone {
     private String id;
     private String number;
-    public Fone(String id, String number);
+    public Fone(String id, String number) {
+        this.id = id;
+        this.number = number;
+    }
+
     //verifica se o número é um número de telefone válido
-    public static boolean validate(String number);
+    public static boolean validate(String number) {
+        String validos = "()-.0123456789";
+        for(int i = 0; i < number.length(); i++)
+            if(!validos.contains("" + number.charAt(i)))
+                return false;
+        return true;
+    }
+
     //O resultado deve ficar assim
     //oi:1234
-    public String toString();
+    @Override
+    public String toString() {
+        return getId()+ ":" + getNumber();
+    }
+
     //GETS e SETS
-    String getId();
-    void setId(String id);
-    String getNumber();
-    void setNumber(String number);
+    String getId() {
+        return this.id;
+    }
+    void setId(String id) {
+        this.id = id;
+    }
+    String getNumber() {
+        return this.number;
+    }
+    void setNumber(String number) {
+        this.number = number;
+    }
 }
+
 class Contact {
     private String name;
     private List<Fone> fones;
@@ -124,48 +51,152 @@ class Contact {
     //Crie um ArrayList para o ATRIBUTO fones
     //Se a variável fones não for null, adicione todos os fones usando o método addFone
     //Inicie star como false
-    public Contact(String name, List<Fone> fones);
+    public Contact(String name, List<Fone> fones) {
+        this.star = false;
+        this.name = name;
+        this.fones = new ArrayList<>();
+        if(fones != null)
+            fones.stream().forEach((fone) -> {this.addFone(fone);});
+    }
+
     //Se fone for válido, insira no atributo fones
     //Se não, informe o erro
-    public void addFone(Fone fone);
+    public void addFone(Fone fone) {
+        if(Fone.validate(fone.getNumber()))
+            this.fones.add(fone);
+        else
+            System.out.println("fail: invalid number");
+    }
+
     //Se o índice existir no ArrayList, remova o telefone com esse índice
-    public void rmFone(int index);
+    public void rmFone(int index) {
+        if(index < 0 || index >= (int) fones.size())
+            return;
+        fones.remove(index);
+    }
+
     //Use um contador para mostrar o índice do telefone
     //Use o toString do fone para adicioná-lo à saída
     //O resultado dever ficar assim:
     //- david [0:oi:123] [1:tim:9081] [2:claro:5431]
-    public String toString();
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.prefix + " " + this.getName());
+        for(int i = 0; i < fones.size(); i++)
+            sb.append( " [" + i + ":" + fones.get(i) + "]");
+        return sb.toString();
+    }
+
     //GETS e SETS
-    String getName();
-    void setName(String name);
-    List<Fone> getFones();
+    String getName() {
+        return this.name;
+    }
+    void setName(String name) {
+        this.name = name;
+    }
+    List<Fone> getFones() {
+        return this.fones;
+    }
     //muda o prefixo e o valor de star
-    void setStar(boolean value);
-    boolean getStar(); 
+    void setStar(boolean value) {
+        this.star = value;
+        prefix = value ? "@" : "-";
+    }
+    boolean getStar() { 
+        return this.star;
+    }
 }
+
 class Agenda {
     private List<Contact> contacts;
-    public Agenda();
+
+    public Agenda() {
+        this.contacts = new ArrayList<>();
+    }
+
     //retorna a posição do contato com esse nome no vetor ou -1 se não existir.
-    private int findPos(String name);
+    private int findPos(String name) {
+        for(int i = 0; i < this.contacts.size(); i++)
+            if(contacts.get(i).getName().equals(name))
+                return i;
+        return -1;
+    }
+
     //retorna o objeto contato com esse nome ou null se não existir
     //utilize o método findPos
-    public Contact getContact(String name);
+    public Contact getContact(String name) {
+        int pos = this.findPos(name);
+        if(pos == -1)
+            return null;
+        return contacts.get(pos);
+    }
+
     //se nenhum contato existir com esse nome, adicione
     //se ja existir, faça o merge adicionando os telefones
-    public void addContact(Contact contact);
+    public void addContact(Contact contact) {
+        if(contact == null)
+            return;
+        Contact old = getContact(contact.getName());
+        if(old == null) {
+            this.contacts.add(contact);
+        } else {
+            contact.getFones().stream().forEach(fone -> old.addFone(fone));
+        }
+        this.contacts.sort((Contact c1, Contact c2) -> (c1.getName().compareTo(c2.getName())));
+        // this.contacts.sort(new Comparator<Contact>() {
+        //     @Override
+        //     public int compare(Contact arg0, Contact arg1) {
+        //         return ((Contact) arg0).getName().compareTo(((Contact)arg1).getName());
+        //     }
+        // });
+    }
+
     //Utilize o método findPos
-    public void rmContact(String name);
+    public void rmContact(String name) {
+        int pos = findPos(name);
+        if(pos == -1) {
+            System.out.println("fail: contact not found");
+            return;
+        }
+        this.contacts.remove(pos);
+    }
+
     //Monte uma lista auxiliar procurando no .toString() de cada contato
     //se ele possui a substring procurada.
-    public List<Contact> search(String pattern);
-    public String toString();
+    public List<Contact> search(String pattern) {
+        return this.contacts
+            .stream()
+            .filter(contact -> contact.toString().contains(pattern))
+            .collect(Collectors.toList());
+    }
+
+
+
+    @Override
+    public String toString() {
+        return this.contacts.stream().map(contact -> "" + contact).collect(Collectors.joining("\n"));
+    }
+
     //se o contato existir, altere o atributo star dele
-    public void star(String name, boolean value); 
+    public void star(String name, boolean value) { 
+        Contact contact = getContact(name);
+        if(contact == null)
+            return;
+        contact.setStar(value);
+    }
+
     //filtre em uma nova lista apenas os contatos que estão favoritados
-    public List<Contact> getStarred();
-    List<Contact> getContacts();
+    public List<Contact> getStarred() {
+        return this.contacts.stream().filter(c -> c.getStar()).collect(Collectors.toList());
+    }
+
+    List<Contact> getContacts() {
+        return this.contacts;
+    }
 }
+
+//!KEEP
 class Solver {
     //cria um contato a partir do vetor de entrada tal como
     //add joao oi:123 tim:432 claro:09123
@@ -281,5 +312,5 @@ class Manual {
         */
     }
 }
-```
-<!--FILTER_END-->
+//!OFF
+    

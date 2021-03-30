@@ -10,19 +10,22 @@ class Pet{
     // Atribui o valor de energia
     // Se o valor ficar abaixo de 0, o pet morre de fraqueza
     // Garanta que os valores ficarão no interalo 0 - max
-    public void setEnergy(int value){
+    // Use esse modelo para fazer os outros métodos set
+//!KEEP
+    void setEnergy(int value){
         if(value <= 0){
-            energy = 0;
+            this.energy = 0;
             System.out.println("fail: pet morreu de fraqueza");
-            alive = false;
+            this.alive = false;
         }
-        else if(value > energyMax)
-            energy = energyMax;
+        else if(value > this.energyMax)
+            this.energy = this.energyMax;
         else
-            energy = value;
+            this.energy = value;
     }
+//!OFF
 
-    public void setHungry(int value){
+    void setHungry(int value){
         if(value <= 0){
             hungry = 0;
             System.out.println("fail: pet morreu de fome");
@@ -34,7 +37,7 @@ class Pet{
             hungry = value;
     }
     
-    public void setClean(int value){
+    void setClean(int value){
         if(value <= 0){
             shower = 0;
             System.out.println("fail: pet morreu de sujeira");
@@ -59,22 +62,22 @@ class Pet{
         alive = true;
     }
 
-    public int getClean(){
+    int getClean(){
         return shower;
     }
-    public int getHungry(){
+    int getHungry(){
         return hungry;
     }
-    public int getEnergy(){
+    int getEnergy(){
         return energy;
     }
-    public int getEnergyMax(){
+    int getEnergyMax(){
         return energyMax;
     }
-    public int getCleanMax(){
+    int getCleanMax(){
         return cleanMax;
     }
-    public int getHungryMax(){
+    int getHungryMax(){
         return hungryMax;
     }
 

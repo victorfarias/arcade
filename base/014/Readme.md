@@ -88,14 +88,15 @@ class Fone {
     //oi:1234
     public String toString();
     //GETS e SETS
-    public String getId();
-    public void setId(String id);
-    public String getNumber();
-    public void setNumber(String number);
+    String getId();
+    void setId(String id);
+    String getNumber();
+    void setNumber(String number);
 }
 class Contact {
     private String name;
     private List<Fone> fones;
+    protected String prefix = "-"; //utilizado no toString
     //Crie um ArrayList para o ATRIBUTO fones
     //Se a variável fones não for null, adicione todos os fones usando o método addFone
     public Contact(String name, List<Fone> fones);
@@ -107,17 +108,37 @@ class Contact {
     //Use um contador para mostrar o índice do telefone
     //Use o toString do fone para adicioná-lo à saída
     //O resultado dever ficar assim:
-    //david [0:oi:123] [1:tim:9081] [2:claro:5431]
+    //- david [0:oi:123] [1:tim:9081] [2:claro:5431]
     public String toString();
     //GETS e SETS
-    public String getName();
-    public void setName(String name);
-    public List<Fone> getFones();
+    String getName();
+    void setName(String name);
+    List<Fone> getFones();
 }
 public class Solver {
-//STORE_ON
-    public static void main(String[] args);
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Contact contact = new Contact("", null);
+        while(true){
+            String line = scanner.nextLine();
+            System.out.println("$" + line);
+            String ui[] = line.split(" ");
+            if(ui[0].equals("end")) {
+                break;
+            } else if(ui[0].equals("init")) { //name
+                contact = new Contact(ui[1], null);
+            } else if(ui[0].equals("add")) {  //id fone
+                contact.addFone(new Fone(ui[1], ui[2]));
+            } else if(ui[0].equals("rm")) {   //index
+                contact.rmFone(Integer.parseInt(ui[1]));
+            } else if(ui[0].equals("show")) {
+                System.out.println(contact);
+            } else {
+                System.out.println("fail: invalid command");
+            }
+        }
+        scanner.close();
+    }
 }
-//STORE_OFF
 ```
 <!--FILTER_END-->

@@ -135,49 +135,49 @@ $end
 ## Esqueleto
 <!--FILTER Solver.java java-->
 ```java
-class Pessoa {
-    String nome;
-    int idade;
-    Pessoa(String nome, int idade);
+class Person {
+    public String name;
+    public int age;
+    public Person(String name, int age);
     public String toString();
 }
-class Motoca {
-    Pessoa pessoa; //agregacao
-    int potencia;
-    int tempo;
-    //Inicia o atributo potencia, tempo com zero e pessoa com null
-    Motoca(int potencia);
+class Motorcycle {
+    public Person person; //agregacao
+    public int power;
+    public int time;
+    //Inicia o atributo power, time com zero e person com null
+    public Motorcycle(int power);
     //Comprar mais tempo
-    void buy(int tempo);
+    public void buy(int time);
     //Se estiver vazio, coloca a pessoa na moto e retorna true
-    boolean in(Pessoa pessoa);
-    //Se houver uma pessoa, retira e retorna
+    public boolean in(Person person);
+    //Se houver uma person, retira e retorna
     //Se não, retorna null
-    Pessoa out();
-    void drive(int tempo);
+    public Person out();
+    public void drive(int time);
     //buzinar
-    void honk();
+    public void honk();
     public String toString();
 }
 
 class Solver{
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Motoca motoca  = new Motoca(1);
+        Motorcycle motoca  = new Motorcycle(1);
         while(true) {
             String line = scanner.nextLine();
             String ui[] = line.split(" "); //ui user input eh um vetor de strings
             System.out.println("$" + line);
             if(ui[0].equals("end")) {
                 break;
-            }else if(ui[0].equals("init")) { //potencia
-                Pessoa pessoa = motoca.pessoa;
-                motoca = new Motoca(Integer.parseInt(ui[1]));
-                motoca.in(pessoa);
-            }else if(ui[0].equals("in")) { //in nome idade
-                int idade = Integer.parseInt(ui[2]);
-                Pessoa pessoa = new Pessoa(ui[1], idade);
-                motoca.in(pessoa);
+            }else if(ui[0].equals("init")) { //power
+                Person person = motoca.person;
+                motoca = new Motorcycle(Integer.parseInt(ui[1]));
+                motoca.in(person);
+            }else if(ui[0].equals("in")) { //in name age
+                int age = Integer.parseInt(ui[2]);
+                Person person = new Person(ui[1], age);
+                motoca.in(person);
             }else if(ui[0].equals("out")) {
                 motoca.out();
             }else if(ui[0].equals("show")) {
@@ -199,75 +199,75 @@ class Solver{
 class Manual{
     public static void main(String[] args) {
         //case subindo e buzinando
-        Motoca moto = new Motoca(1);
+        Motorcycle moto = new Motorcycle(1);
         System.out.println(moto);
-        //potencia: 1, minutos: 0, pessoa: null
+        //power: 1, minutos: 0, person: null
         moto.honk();
         //fail: moto vazia
-        moto.in(new Pessoa("marcos", 4));
+        moto.in(new Person("marcos", 4));
         System.out.println(moto);
-        //potencia: 1, minutos: 0, pessoa: [marcos:4]
+        //power: 1, minutos: 0, person: [marcos:4]
         moto.honk();
         //Pem
-        moto.in(new Pessoa("marisa", 2));
+        moto.in(new Person("marisa", 2));
         //fail: moto ocupada
         System.out.println(moto);
-        //potencia: 1, minutos: 0, pessoa: [marcos:4]
+        //power: 1, minutos: 0, person: [marcos:4]
 
         //case subindo e buzinando
-        moto = new Motoca(5);
+        moto = new Motorcycle(5);
         System.out.println(moto);
-        //potencia: 5, minutos: 0, pessoa: null
-        moto.in(new Pessoa("marcos", 4));
+        //power: 5, minutos: 0, person: null
+        moto.in(new Person("marcos", 4));
         System.out.println(moto);
-        //potencia: 5, minutos: 0, pessoa: [marcos:4]
+        //power: 5, minutos: 0, person: [marcos:4]
         moto.honk();
         //Peeeeem
 
         //case subindo e trocando
-        moto = new Motoca(7);
-        moto.in(new Pessoa("heitor", 6));
+        moto = new Motorcycle(7);
+        moto.in(new Person("heitor", 6));
         System.out.println(moto);
-        //potencia: 7, minutos: 0, pessoa: [heitor:6]
-        Pessoa heitor = moto.out();
+        //power: 7, minutos: 0, person: [heitor:6]
+        Person heitor = moto.out();
         System.out.println(heitor);
         //[heitor:6]
         moto.out();
         //fail: moto vazia
-        moto.in(new Pessoa("suzana", 8));
+        moto.in(new Person("suzana", 8));
         System.out.println(moto);
-        //potencia: 7, minutos: 0, pessoa: [suzana:8]
+        //power: 7, minutos: 0, person: [suzana:8]
 
         //case passeando
-        moto = new Motoca(7);
-        moto.in(new Pessoa("suzana", 8));
+        moto = new Motorcycle(7);
+        moto.in(new Person("suzana", 8));
         moto.drive(10);
-        //fail: tempo zerado
+        //fail: time zerado
         moto.buy(40);
         System.out.println(moto);
-        //potencia: 7, minutos: 40, pessoa: [suzana:8]
+        //power: 7, minutos: 40, person: [suzana:8]
         moto.drive(20);
         System.out.println(moto);
-        //potencia: 7, minutos: 20, pessoa: [suzana:8]
+        //power: 7, minutos: 20, person: [suzana:8]
 
         //case nem grande nem pequeno
-        moto = new Motoca(7);
+        moto = new Motorcycle(7);
         moto.buy(20);
-        moto.in(new Pessoa("andreina", 23));
+        moto.in(new Person("andreina", 23));
         moto.drive(15);
         //fail: muito grande para andar de moto
         System.out.println(moto);
-        //potencia: 7, minutos: 20, pessoa: [andreina:23]
+        //power: 7, minutos: 20, person: [andreina:23]
 
-        //case acabou o tempo
-        moto = new Motoca(7);
+        //case acabou o time
+        moto = new Motorcycle(7);
         moto.buy(20);
-        moto.in(new Pessoa("andreina", 6));
+        moto.in(new Person("andreina", 6));
         moto.drive(15);
         System.out.println(moto);
-        //potencia: 7, minutos: 5, pessoa: [andreina:6]
+        //power: 7, minutos: 5, person: [andreina:6]
         moto.drive(10);
-        //fail: andou 5 min e acabou o tempo
+        //fail: andou 5 min e acabou o time
     }
 }
 ```

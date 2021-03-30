@@ -27,16 +27,16 @@ class Fone {
     }
 
     //GETS e SETS
-    public String getId() {
+    String getId() {
         return this.id;
     }
-    public void setId(String id) {
+    void setId(String id) {
         this.id = id;
     }
-    public String getNumber() {
+    String getNumber() {
         return this.number;
     }
-    public void setNumber(String number) {
+    void setNumber(String number) {
         this.number = number;
     }
 }
@@ -44,7 +44,7 @@ class Fone {
 class Contact {
     private String name;
     private List<Fone> fones;
-
+    protected String prefix = "-"; //utilizado no toString
     //Crie um ArrayList para o ATRIBUTO fones
     //Se a variável fones não for null, adicione todos os fones usando o método addFone
     public Contact(String name, List<Fone> fones) {
@@ -75,30 +75,30 @@ class Contact {
     //Use um contador para mostrar o índice do telefone
     //Use o toString do fone para adicioná-lo à saída
     //O resultado dever ficar assim:
-    //david [0:oi:123] [1:tim:9081] [2:claro:5431]
+    //- david [0:oi:123] [1:tim:9081] [2:claro:5431]
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append(this.getName());
+        sb.append(this.prefix + " " + this.getName());
         for(int i = 0; i < fones.size(); i++)
             sb.append( " [" + i + ":" + fones.get(i) + "]");
         return sb.toString();
     }
 
     //GETS e SETS
-    public String getName() {
+    String getName() {
         return this.name;
     }
-    public void setName(String name) {
+    void setName(String name) {
         this.name = name;
     }
-    public List<Fone> getFones() {
+    List<Fone> getFones() {
         return this.fones;
     }
 }
 
 public class Solver {
-//STORE_ON
+//!KEEP
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Contact contact = new Contact("", null);
@@ -115,7 +115,7 @@ public class Solver {
             } else if(ui[0].equals("rm")) {   //index
                 contact.rmFone(Integer.parseInt(ui[1]));
             } else if(ui[0].equals("show")) {
-                System.out.println("- " + contact);
+                System.out.println(contact);
             } else {
                 System.out.println("fail: invalid command");
             }
@@ -123,4 +123,4 @@ public class Solver {
         scanner.close();
     }
 }
-//STORE_OFF
+//!OFF

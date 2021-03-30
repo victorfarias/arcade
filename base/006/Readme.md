@@ -146,6 +146,8 @@ $end
 
 ***
 ## Diagrama
+Os métodos get e set estão marcados de △ apenas para facilitar a visualização, mas podem ser tratados como métodos públicos.
+
 ![](diagrama.png)
 
 ***
@@ -162,16 +164,27 @@ class Pet{
     // Atribui o valor de energia
     // Se o valor ficar abaixo de 0, o pet morre de fraqueza
     // Garanta que os valores ficarão no interalo 0 - max
-    public void setEnergy(int value);
-    public void setHungry(int value);
-    public void setClean(int value);
+    // Use esse modelo para fazer os outros métodos set
+    void setEnergy(int value){
+        if(value <= 0){
+            this.energy = 0;
+            System.out.println("fail: pet morreu de fraqueza");
+            this.alive = false;
+        }
+        else if(value > this.energyMax)
+            this.energy = this.energyMax;
+        else
+            this.energy = value;
+    }
+    void setHungry(int value);
+    void setClean(int value);
     public Pet(int energy, int hungry, int shower);
-    public int getClean();
-    public int getHungry();
-    public int getEnergy();
-    public int getEnergyMax();
-    public int getCleanMax();
-    public int getHungryMax();
+    int getClean();
+    int getHungry();
+    int getEnergy();
+    int getEnergyMax();
+    int getCleanMax();
+    int getHungryMax();
     public String toString();
     public boolean testAlive();
     // Invoca o método testAlive para verificar se o pet esta vivo

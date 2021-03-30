@@ -1,0 +1,64 @@
+@startuml
+package com.qxcode {
+  ~class Conta {
+    - financas : Financas
+    - id : int
+    __
+    + Conta(id : int)
+    + creditar(label : Label, value : int) : boolean
+    + extornar(indice : int) : boolean
+    + sacar(value : int) : boolean
+    + tarifar(value : int) : boolean
+    + toString() : String
+    __
+    ~ getFinancas() : Financas
+
+  }
+  ~class Financas {
+    - extrato : List<Operacao>
+    - nextId : int
+    - saldo : int
+    __
+    + Financas()
+    + addOperacao(label : Label, value : int)
+    + getExtrato(qtdOp : int) : List<Operacao>
+    + toString() : String
+    __
+    ~ getExtrato() : List<Operacao>
+    ~ getSaldo() : int
+
+  }
+  ~enum Label {
+    + abertura {static}
+    + deposito {static}
+    + extorno {static}
+    + saque {static}
+    + tarifa {static}
+    - name : String
+    __
+    + toString() : String
+    __
+    ~ getName() : String
+
+  }
+  ~class Operacao {
+    - indice : int
+    - label : Label
+    - saldo : int
+    - value : int
+    __
+    + Operacao(indice : int, label : Label, value : int, saldo : int)
+    + pad(string : String, length : int) : String {static}
+    + toString() : String
+    __
+    ~ getIndice() : int
+    ~ getLabel() : Label
+    ~ getSaldo() : int
+    ~ getValue() : int
+
+  }
+}
+Financas -->  "-extrato" Operacao
+Conta -->  "-financas" Financas
+Operacao -->  "-label" Label
+@enduml

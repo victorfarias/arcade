@@ -4,21 +4,25 @@
 - [Requisitos Novos](#requisitos-novos)
 - [Shell](#shell)
 - [Diagrama](#diagrama)
-- [Ajuda](#ajuda)
-- [Main não interativa](#main-não-interativa)
+- [Esqueleto](#esqueleto)
 <!--TOC_END-->
 ![](figura.jpg)
 
 Sua agenda possui vários contatos e cada contato possui vários telefones.
+
+Implemente a classe Contact e Fone utilizando as regras descritas no projeto Contato ou reaproveite o código que você fez.
+
 ***
 ## Requisitos Novos
 - Adicionar
-    - O contato possui o nome como chave. Portanto, não permita que existam dois contatos com o mesmo nome.
+    - O contato possui o nome como chave.
+    - Se tentar adicionar outro contato com o mesmo nome, adicione os telefones ao contato existente.
     - Adicionar os novos números de telefone no contato já existente.
 - Agenda
     - Mostrar os contatos da agenda pela ordem alfabética.
 - Remoção
     - Remover contato pela chave.
+    - Remover telefone do contato.
 - Busca
     - Fazer uma busca por padrão em todos os atributos do contato, nome e telefones.
     - Se o contato tiver qualquer campo que combine com a string pattern de busca, ele deve ser retornado. Se o pattern é maria, devem ser retornados os contatos como "maria julia", "mariana", "ana maria", etc. Também inclua na busca o id do telefone ou o número do telefone.
@@ -86,105 +90,64 @@ $end
 ## Diagrama
 ![](diagrama.png)
 
-***
-## Ajuda
-- Você pode criar mais métodos auxiliares para lhe ajudar.
-- Crie um construtor para o Fone que aceite um único parâmetro, no caso o serial "oi:13123"
-- Para receber vários telefones por linha você pode fazer um laço pegando a partir do índice 2.
-- O construtor que recebe um serial pode ser utilizado para instanciar um Fone
-```java
-if(ui[0].equals("add")){ //add julia tim:99 oi:123 vivo:123544
-    for(int i = 2; i < ui.length; i++)
-        agenda.add(ui[1], new Fone(ui[i]));
-}
-```
+## Esqueleto
 
-- A sua função add deve criar um contato novo se o contato não existir e então adicionar o telefone
+<!--FILTER Solver.java java-->
 ```java
-void add(String name, Fone fone){
-    Contact contact = this.getContact(name);
-    if(contact == null){ //cria e adiciona o contato se ele nao existir
-        contact = new Contact(name);
-        this.contacts.add(contact);
+class Agenda {
+    private List<Contact> contacts;
+    public Agenda();
+    //retorna a posição do contato com esse nome no vetor ou -1 se não existir.
+    private int findPos(String name);
+    //retorna o objeto contato com esse nome ou null se não existir
+    //utilize o método findPos
+    public Contact getContact(String name);
+    //se nenhum contato existir com esse nome, adicione
+    //se ja existir, faça o merge adicionando os telefones
+    public void addContact(Contact contact);
+    //Utilize o método findPos
+    public void rmContact(String name);
+    //Monte uma lista auxiliar procurando no .toString() de cada contato
+    //se ele possui a substring procurada.
+    public List<Contact> search(String pattern);
+    List<Contact> getContacts();
+    public String toString();
+}
+class Solver {
+        //cria um contato a partir do vetor de entrada tal como
+        //add joao oi:123 tim:432 claro:09123
+        static Contact parseContact(String[] ui) {
+            return new Contact(ui[1], Arrays.asList(ui).stream()
+                .skip(2).map(token -> new Fone(token.split(":")[0], token.split(":")[1]))
+                .collect(Collectors.toList()));
+        }
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            Agenda agenda = new Agenda();
+            while(true){
+                String line = scanner.nextLine();
+                System.out.println("$" + line);
+                String ui[] = line.split(" ");
+                if(ui[0].equals("end")) {
+                    break;
+                } else if(ui[0].equals("init")) {
+                    agenda = new Agenda();
+                } else if(ui[0].equals("add")) { //name label:fone label:fone label:fone
+                    agenda.addContact(Solver.parseContact(ui));
+                } else if(ui[0].equals("rm")) { //name
+                    agenda.rmContact(ui[1]);;
+                } else if(ui[0].equals("rmFone")) { //name index
+                    agenda.getContact(ui[1]).rmFone(Integer.parseInt(ui[2]));
+                } else if(ui[0].equals("show")) {
+                    System.out.println(agenda);
+                } else if(ui[0].equals("search")) {
+                    System.out.println(agenda.search(ui[1]).stream().map(c -> "" + c).collect(Collectors.joining("\n")));
+                } else {
+                    System.out.println("fail: invalid command");
+                }
+            }
+            scanner.close();
+        }
     }
-    contact.addFone(fone);  //aproveita para adicionar o telefone
-    //ordene ser vetor
-}
 ```
-
-- Para fazer a busca por padrão você pode criar uma lista auxiliar de contatos.
-- Na busca por pattern verifique faça uma busca usando a substring com o valor toString() to contato.
-
-```java
-ArrayList<Contact> search(String pattern){
-    ArrayList<Contact> result = new ArrayList<>();
-    for(Contact contact : this.contacts){
-        if ... //se esse contato bater com o padrão
-            result.add(contact);
-    }
-    return result;
-}
-```
-
-
-
-***
-## Main não interativa
-```java
-//case adicionando em lote
-Agenda agenda = new Agenda();
-agenda.addContact("eva", Arrays.asList(new Fone("oio", 8585), new Fone("cla", 9999)));
-agenda.addContact("ana", Arrays.asList(new Fone("Tim", 3434)));
-agenda.addContact("bia", Arrays.asList(new Fone("viv", 5454)));
-agenda.addContact("ana", Arrays.asList(new Fone("cas", 4567), new Fone("oio", 8754)));
-System.out.println(agenda);
-/*
-- ana [0:tim:3434] [1:cas:4567] [2:oio:8754]
-- bia [0:viv:5454]
-- eva [0:oio:8585] [1:cla:9999]
-*/
-
-//case removendo telefone
-agenda.rmFone("ana", 0);
-System.out.println(agenda);
-/*
-- ana [0:cas:4567] [1:oio:8754]
-- bia [0:viv:5454]
-- eva [0:oio:8585] [1:cla:9999]
-*/
-
-//case removendo contato
-agenda.rmContact("bia");
-System.out.println(agenda);
-/*
-- ana [0:cas:4567] [1:oio:8754]
-- eva [0:oio:8585] [1:cla:9999]
-*/
-agenda.addContact("ava", Arrays.asList(new Fone("viv", 5454)));
-agenda.addContact("rui", Arrays.asList(new Fone("viv", 2222),new Fone("oio", 9991)));
-agenda.addContact("zac", Arrays.asList(new Fone("rec", 3131)));
-System.out.println(agenda);
-/*
-- ana [0:cas:4567] [1:oio:8754]
-- ava [0:tim:5454]
-- eva [0:oio:8585] [1:cla:9999]
-- rui [0:viv:2222] [1:oio:9991]
-- zac [0:rec:3131]
-*/
-
-//case busca por padrao
-for(Contato contato : agenda.search("va")){
-    System.out.println(contato);
-}
-/*
-- ava [0:tim:5454]
-- eva [0:oio:8585] [1:cla:9999]
-*/
-for(Contato contato : agenda.search("999")){
-    System.out.println(contato);
-}
-/*
-- eva [0:oio:8585] [1:cla:9999]
-- rui [0:viv:2222] [1:oio:9991]
-*/
-```
+<!--FILTER_END-->

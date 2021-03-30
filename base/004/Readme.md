@@ -114,21 +114,21 @@ $end
 <!--FILTER Solver.java java-->
 ```java
 class Grafite {
-    float calibre;
-    String dureza;
-    int tamanho;
-    Grafite(float calibre, String dureza, int tamanho);
+    public float calibre;
+    public String dureza;
+    public int tamanho;
+    public Grafite(float calibre, String dureza, int tamanho);
     public String toString();
-    int desgastePorFolha();
+    public int desgastePorFolha();
 }
 class Lapiseira {
-    float calibre;
-    Grafite grafite;
-    Lapiseira(float calibre);
+    public float calibre;
+    public Grafite grafite;
+    public Lapiseira(float calibre);
     public String toString();
-    boolean inserir(Grafite grafite);
-    Grafite remover();
-    void write(int folhas);
+    public boolean inserir(Grafite grafite);
+    public Grafite remover();
+    public void write(int folhas);
 }
 class Solver{
     public static void main(String[] args) {
