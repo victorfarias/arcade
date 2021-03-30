@@ -1,4 +1,4 @@
-# Calculadora com bateria
+# Calculadora com bateria (solver, manual, diagrama)
 
 ![](figura.jpg)
 
@@ -8,7 +8,6 @@
 - [Diagrama](#diagrama)
 - [Ajuda](#ajuda)
 - [Esqueleto](#esqueleto)
-- [Testes ](#testes)
 <!--TOC_END-->
 
 
@@ -162,5 +161,3 @@ class Solver{
 ```
 <!--FILTER_END-->
 
-## Testes 
-- [LINK](t.tio)

@@ -1,27 +1,27 @@
+//!KEEP
 enum Moeda {
     M10(0.10, 1),
     M25(0.25, 2),
     M50(0.50, 3),
     M100(1.00, 4);
 
-    double valor;
-    int volume;
-
-    Moeda(double valor, int volume) {
+    public double valor;
+    public int volume;
+    private Moeda(double valor, int volume) {
         this.valor = valor;
         this.volume = volume;
     }
-
     public String toString() {
         return "Valor: " + valor + " Volume: " + valor;
     }
 }
 
+//!OFF
 class Item {
-    String descricao;
-    int volume;
+    public String descricao;
+    public int volume;
 
-    Item(String descricao, int volume) {
+    public Item(String descricao, int volume) {
         this.descricao = descricao;
         this.volume = volume;
     }
@@ -34,17 +34,18 @@ class Item {
 
 
 class Porco{
-    String itens = "";
-    double valor = 0;
-    int volume = 0;
-    int volumeMax;
-    boolean estaQuebrado = false;
+    public String itens = "";
+    public double valor = 0;
+    public int volume = 0;
+    public int volumeMax;
+    public boolean estaQuebrado = false;
     
-    Porco(int volumeMax) {
+    //inicializa o volumeMax
+    public Porco(int volumeMax) {
         this.volumeMax = volumeMax;
     }
-
-    boolean addMoeda(Moeda moeda){
+    //se nao estiver quebrado e couber, adicione o valor e o volume
+    public boolean addMoeda(Moeda moeda){
         if(estaQuebrado == true){
             System.out.println("O porco esta quebrado");
             return false;
@@ -58,7 +59,8 @@ class Porco{
         return true;
     }
 
-    boolean addItem(Item item) {
+    //se não estiver quebrado e couber, adicione no volume e na descrição
+    public boolean addItem(Item item) {
         if(estaQuebrado == true){
             System.out.println("O porco esta quebrado");
             return false;
@@ -69,12 +71,13 @@ class Porco{
         }
         this.volume += item.volume;
         if(this.itens.equals(""))
-            this.itens = item.descricao;            
+            this.itens = item.descricao;
         else
             this.itens += ", " + item.descricao;
         return true;
-    }   
-    boolean quebrar(){
+    }
+    //quebre o porco
+    public boolean quebrar(){
         if(estaQuebrado){
             System.out.println("O cofre ja esta quebrado");
             return false;
@@ -82,7 +85,8 @@ class Porco{
         estaQuebrado = true;
         return true;
     }
-   double pegarMoedas(){
+    //se estiver quebrado, pegue e retorne o valor
+    public double pegarMoedas(){
         if(!estaQuebrado){
             System.out.println("Voce deve quebrar o cofre primeiro");
             return 0.0f;
@@ -91,8 +95,8 @@ class Porco{
         this.valor = 0;
         return aux;
     }
-
-    String pegarItens(){
+    //se estiver quebrado, pegue e retorno os itens
+    public String pegarItens(){
         if(!estaQuebrado){
             System.out.println("Voce deve quebrar o cofre primeiro");
             return "";
@@ -101,11 +105,13 @@ class Porco{
         this.itens = "";
         return aux;
     }
+    //mostre o conteúdo do porco
     public String toString() {
         return "I:(" + itens + ") M:" + valor +" V:" + volume + "/" + volumeMax + " EQ:" + estaQuebrado;
     }
 }
 
+//!KEEP
 public class Solver{
     public static void main(String[] args) {
         Porco porco = new Porco(20);
@@ -132,3 +138,4 @@ public class Solver{
         System.out.println(porco); //I:() M:0 V:9/20 EQ:true
     }
 }
+//!OFF

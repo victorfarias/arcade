@@ -1,4 +1,4 @@
-# Tamagotchi
+# Tamagotchi  (modificadores de acesso, gets, sets)
 
 ![](figura.jpg)
 

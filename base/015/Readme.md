@@ -1,4 +1,4 @@
-# Busca - Agenda 2
+# Busca - Agenda 2 (ordenação de vetores, operação de filtragem, manipulação de strings em lote)
 
 <!--TOC_BEGIN-->
 - [Requisitos Novos](#requisitos-novos)

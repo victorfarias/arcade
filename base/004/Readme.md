@@ -1,4 +1,4 @@
-# Lapiseira e Grafite
+# Lapiseira e Grafite (enum, composição)
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
@@ -159,6 +159,7 @@ class Solver{
                 System.out.println("fail: comando invalido");
             }
         }
+        scanner.close();
     }
 }
 

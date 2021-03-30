@@ -1,4 +1,4 @@
-# Pula pula no parquinho
+# Pula pula no parquinho (manipulação linkedlist)
 
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
@@ -86,7 +86,7 @@ class Kid {
     int getAge();
     String getName();
     void setAge(int age);
-    void setName(String name);
+    public void setName(String name); //gs
     public String toString();
 }
 class Trampoline{

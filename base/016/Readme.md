@@ -1,4 +1,4 @@
-# Favoritos - Agenda 3
+# Favoritos - Agenda 3 (filtragem por característica, operações de crud)
 
 ![](figura.jpg)
 

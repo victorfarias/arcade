@@ -1,4 +1,4 @@
-# Motoca infantil no parque
+# Motoca infantil no parque (composição, solver, manual)
 
 ![](figura.jpg)
 

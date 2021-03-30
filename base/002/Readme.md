@@ -1,4 +1,4 @@
-# Carro com pessoas
+# Carro com pessoas (solver, manual, diagrama)
 
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
@@ -100,17 +100,17 @@ $end
 <!--FILTER Solver.java java-->
 ```java
 class Car{
-    int pass; // Passageiros
-    int passMax; // limite de Passageiros
-    int gas; // tanque
-    int gasMax; // limite do tanque
-    int km; // quantidade de quilometragem
-    Car();
+    public int pass; // Passageiros
+    public int passMax; // limite de Passageiros
+    public int gas; // tanque
+    public int gasMax; // limite do tanque
+    public int km; // quantidade de quilometragem
+    public Car();
     public String toString();
-    void in();
-    void out();
-    void fuel(int gas);
-    void drive (int km);
+    public void in();
+    public void out();
+    public void fuel(int gas);
+    public void drive (int km);
 };
 class Solver{
     public static void main(String[] args) {

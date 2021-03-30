@@ -114,6 +114,7 @@ class Solver{
                 System.out.println("fail: comando invalido");
             }
         }
+        scanner.close();
     }
 }
 

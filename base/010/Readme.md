@@ -1,4 +1,4 @@
-# Sala de Cinema
+# Sala de Cinema (vetor de nulos)
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
 - [Shell](#shell)
