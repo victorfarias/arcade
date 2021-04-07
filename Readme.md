@@ -61,8 +61,8 @@
     - [@031 Clinica Veterinária](base/031/Readme.md) 
 
 ## 10. Herança I
-- [@013 Cadastro - Agência 2](base/013/Readme.md) 
-- [@030 ContatoStar - Agenda 4](base/030/Readme.md) 
+- [@013 Cadastro - Agência 2 (herança, método abstrato, polimorfismo)](base/013/Readme.md) 
+- [@030 ContatoStar - Agenda 4 (herança)](base/030/Readme.md) 
 
 ## 11. Lógica I
 - [@021 Matrícula - Associação NxN](base/021/Readme.md) 

@@ -1,10 +1,11 @@
-# Cadastro - Agência 2
+# Cadastro - Agência 2 (herança, método abstrato, polimorfismo)
 ![](capa.jpg)
 
 <!--TOC_BEGIN-->
 - [Requisitos](#requisitos)
 - [Shell](#shell)
 - [Diagrama](#diagrama)
+- [Esqueleto](#esqueleto)
 <!--TOC_END-->
 
 O objetivo dessa atividade é implementar uma agência bancária simplificada. Deve ser capaz de cadastrar cliente. Cada cliente inicia com uma conta poupança e uma conta corrente. Contas correntes tem taxa de administração e contas poupanças rendem juros.
@@ -36,6 +37,11 @@ $addCli Maria
 # show mostra as contas do banco, com id:usuario:saldo:tipo
 # em tipo use CC para conta corrente e CP para conta poupança.
 $show
+Clients:
+- Almir [0, 1]
+- Julia [2, 3]
+- Maria [4, 5]
+Accounts:
 0:Almir:0.00:CC
 1:Almir:0.00:CP
 2:Julia:0.00:CC
@@ -64,6 +70,11 @@ $saque 1 300
 fail: saldo insuficiente
 
 $show
+Clients:
+- Almir [0, 1]
+- Julia [2, 3]
+- Maria [4, 5]
+Accounts:
 0:Almir:30.00:CC
 1:Almir:200.00:CP
 2:Julia:50.00:CC
@@ -79,6 +90,11 @@ $transf 2 8 10
 fail: conta nao encontrada
 
 $show
+Clients:
+- Almir [0, 1]
+- Julia [2, 3]
+- Maria [4, 5]
+Accounts:
 0:Almir:5.00:CC
 1:Almir:200.00:CP
 2:Julia:50.00:CC
@@ -93,12 +109,18 @@ $show
 $update
 
 $show
+Clients:
+- Almir [0, 1]
+- Julia [2, 3]
+- Maria [4, 5]
+Accounts:
 0:Almir:-15.00:CC
 1:Almir:202.00:CP
 2:Julia:30.00:CC
 3:Julia:50.50:CP
 4:Maria:5.00:CC
 5:Maria:202.00:CP
+$end
 
 $end
 
@@ -107,4 +129,113 @@ $end
 ***
 ## Diagrama
 
-![](uml.jpg)
+![](diagrama.png)
+
+***
+## Esqueleto
+<!--FILTER Solver.java java-->
+```java
+//excessão lançada em quaisquer erros relacionados à conta
+class AccountException extends RuntimeException {
+    public AccountException(String message) {
+        super(message);
+    }
+}
+abstract class Account {
+    protected int id;
+    protected float balance;
+    protected String clientId;
+    protected String type; //CC or CP
+    public Account(int id, String clientId);
+    //abstract method
+    public abstract void monthlyUpdate();
+    //saque
+    public void withdraw(float value);
+    //deposito
+    public void deposit(float value);
+    //transferencia para outra conta
+    public void transfer(Account other, float value);
+    public String toString();
+    //GETS and SETS
+    int getId();
+    float getBalance();
+    String getClientId();
+    String getType();
+}
+class CheckingAccount extends Account {
+    //inicializa conta.type com "CC"
+    public CheckingAccount(int id, String idClient);
+    //retira 20 do saldo
+    public void monthlyUpdate();
+}
+class SavingsAccount extends Account {
+    public SavingsAccount(int id, String idClient);
+    //aumenta saldo em 1%
+    public void monthlyUpdate();
+}
+class Client {
+    private String clientId;
+    private List<Account> accounts;
+    public Client(String clientId);
+    public void addAccount(Account account);
+    //GETS and SETS
+    String getClientId();
+    void setClientId(String clientId);
+    List<Account> getAccounts();
+    void setAccounts(List<Account> accounts);
+};
+class BankAgency {
+    private Map<String, Client> clients;
+    private Map<Integer, Account> accounts;
+    private int nextAccountId = 0;
+    //obtém conta ou lança excessão
+    private Account getAccount(int id);
+    public BankAgency();
+    //se o cliente não existir
+    //cria o cliente
+    //cria uma conta poupança e uma conta corrent para o cliente
+    //adiciona essas contas no vetor de contas e no vetor do cliente
+    //adiciona o cliente no mapa de clientes
+    public void addClient(String clientId);
+    //obtem o cliente e invoca as ações
+    public void withdraw(int idConta, float value);
+    public void deposit(int idConta, float value);
+    public void transfer(int contaDe, int contaPara, float value);
+    public void monthlyUpdate();
+    public String toString();
+};
+class Solver{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        BankAgency agency = new BankAgency();
+        while(true){
+            try {
+                String line = scanner.nextLine();
+                System.out.println("$" + line);
+                String ui[] = line.split(" ");
+                if(line.equals("end")) {
+                    break;
+                } else if(ui[0].equals("show")) {
+                    System.out.println(agency);
+                } else if(ui[0].equals("addCli")) {
+                    agency.addClient(ui[1]);
+                } else if(ui[0].equals("saque")) { //accountId value
+                    agency.withdraw(Integer.parseInt(ui[1]), Float.parseFloat(ui[2]));
+                } else if(ui[0].equals("deposito")) {//accountId value
+                    agency.deposit(Integer.parseInt(ui[1]), Float.parseFloat(ui[2]));
+                } else if(ui[0].equals("transf")) {//from to value
+                    agency.transfer(Integer.parseInt(ui[1]), Integer.parseInt(ui[2]), Float.parseFloat(ui[3]));
+                } else if(ui[0].equals("update")) {
+                    agency.monthlyUpdate();
+                } else {
+                    System.out.println("fail: comando invalido");
+                }
+            } catch (AccountException ae) {
+                System.out.println(ae.getMessage());
+            }
+        }
+        scanner.close();
+    }
+}
+```
+<!--FILTER_END-->

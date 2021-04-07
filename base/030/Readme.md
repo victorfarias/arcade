@@ -1,4 +1,4 @@
-# ContatoStar - Agenda 4
+# ContatoStar - Agenda 4 (herança)
 
 ![](figura.jpg)
 
