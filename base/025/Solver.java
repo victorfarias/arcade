@@ -1,64 +1,119 @@
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
-import java.util.List;
+import java.util.stream.Collectors;
 
-class Tweet {
-    int id;
-    String username;
-    String msg;
-    Set<String> likes;
-    public Tweet(int id, String username, String msg){
+class MessageException extends RuntimeException {
+    public MessageException(String message) {
+        super(message);
+    }
+}
+
+class Message {
+    private int id;
+    private String username;
+    private String msg;
+    private Set<String> likes; //Using a Set would eliminate duplicates
+    int getId() {
+        return this.id;
+    }
+    //Initialize all attributes
+    public Message(int id, String username, String msg) {
         this.id = id;
         this.username = username;
         this.msg = msg;
         this.likes = new TreeSet<String>();
     }
-    public void like(String username){
-        for(String user : likes)
-            if(user.equals(username))
-                return;
+    //add username to likes collection
+    public void like(String username) {
         likes.add(username);
     }
-    public String toString(){
-        String saida = "";
-        saida += this.id + ":" + this.username + "( " + this.msg + ")";
-        if(likes.size() > 0){
-            saida += "[ ";
-            for(String user : this.likes)
-                saida += user + " ";
-            saida += "]";
-        }
-        return saida;
+    //mount output string
+    public String toString() {
+        return this.id + ":" + this.username + " (" + this.msg + ")" +
+            (this.likes.isEmpty() ? "" : " [" + this.likes.stream().collect(Collectors.joining(", ")) + "]");
+    }
+}
+
+class Inbox {
+    private Map<Integer, Message> unread; //store unread tweets
+    private Map<Integer, Message> allMsgs; //store read tweets
+
+    public Inbox() {
+        this.unread = new TreeMap<>();
+        this.allMsgs = new TreeMap<>();
+    }
+
+    //stores message both in unread as in allMsgs
+    public void receiveNew(Message tweet) {
+        this.unread.put(tweet.getId(), tweet);
+        this.allMsgs.put(tweet.getId(), tweet);
+    }
+
+    //stores message as a readed Message
+    public void store(Message tweet) {
+        this.allMsgs.put(tweet.getId(), tweet);
+    }
+
+    //return unread and clean unread Msgs
+    public Collection<Message> getUnread() {
+        Collection<Message> aux = unread.values();
+        this.unread.clear();
+        return aux;
+    }
+
+    //return all messages
+    public Collection<Message> getAll() {
+        return allMsgs.values();
+    }
+
+    //search for a tweet with this id and return it or throw a MessageException
+    public Message getTweet(int id) {
+        Message msg = allMsgs.get(id);
+        if(msg == null)
+            throw new MessageException("fail: tweet nao existe");
+        return msg;
+    }
+    //return allMsgs
+    public String toString() {
+        return allMsgs.values().stream().map(m -> "" + m).collect(Collectors.joining("\n"));
     }
 }
 
 class User{
-    String username;
-    List<Tweet>   timeline; 
-    Map<String, User> followers;
-    Map<String, User> following;
-    int unreadCount;
+    private String username;
+    private Map<String, User> followers; //os meus seguidores
+    private Map<String, User> following; //aqueles que eu sigo
+    private Inbox inbox;
 
-    public User(String id){
+    // Initialize all attributes
+    public User(String id) {
         this.username = id;
-        timeline  = new ArrayList<Tweet>();
-        followers = new TreeMap<String, User>();
-        following = new TreeMap<String, User>();
-        unreadCount = 0;
+        followers = new TreeMap<>();
+        following = new TreeMap<>();
+        inbox = new Inbox();
     }
 
-    public void follow(User other){
-        if(following.containsKey(other.username))
+    //if it's still not following
+    //add other to this.following
+    //add this to other.followers
+    public void follow(User other) {
+        if(other == this || following.containsKey(other.username))
             return;
         this.following.put(other.username, other);
         other.followers.put(this.username, this);
     }
 
-    public void unfollow(String username){
+    //get the User other from following using username parameter
+    //if other is null then return
+    //remove other from following
+    //remove this from other.followers
+    public void unfollow(String username) {
         if(!following.containsKey(username))
             return;
         User other = following.get(username);
@@ -66,134 +121,99 @@ class User{
         other.followers.remove(this.username);
     }
 
-    public Tweet getTweet(int id){
-        for(Tweet tw : timeline){
-            if(tw.id == id)
-                return tw;
-        }
-        throw new RuntimeException("fail: tweet nao existe");
+    //retrieve the tweet from inbox and uses method like
+    public void like(int twId) {
+        this.inbox.getTweet(twId).like(this.username);
     }
 
-    public void sendTweet(Tweet tw){
-        this.timeline.add(tw);
-        for(User user : followers.values()){
-            user.timeline.add(tw);
-            user.unreadCount += 1;
-        }
+    //return inbox object
+    public Inbox getInbox() {
+        return this.inbox;
     }
-
-    public String getUnread(){
-        String saida = "";
-        for(int i = timeline.size() - unreadCount; i < timeline.size(); i++)
-            saida += timeline.get(i) + "\n";
-        unreadCount = 0;
-        return saida;
+    //Store the message in the user's inbox
+    //Put the message as an unread message in each of the follower's inbox
+    public void sendTweet(Message tw) {
+        this.inbox.store(tw);
+        this.followers.values().forEach(user -> user.getInbox().receiveNew(tw));
     }
-
-    public String getTimeline(){
-        String saida = "";
-        for(Tweet tw : this.timeline)
-            saida += tw + "\n";
-        return saida;
-    }
-
-    public String toString(){
-        String saida = username;
-        saida += "\n  seguidos   [ ";
-        for(User user : following.values())
-            saida += user.username + " ";
-        saida += "]\n  seguidores [ ";
-        for(User user : followers.values())
-            saida += user.username + " ";
-        saida += "]";
-        return saida;
+    //show all followers and following by name
+    public String toString() {
+        return username + "\n" +
+            "  seguidos   [" + this.following.keySet().stream().collect(Collectors.joining(", ")) + "]\n" +
+            "  seguidores [" + this.followers.keySet().stream().collect(Collectors.joining(", ")) + "]";
     }
 }
 
-class Controller{
-    Map<String, User> users;
-    Map<Integer, Tweet> tweets;
-    int nextTwId = 0;
+class Controller {
+    private Map<String, User> users;
+    private Map<Integer, Message> tweets;
+    private int nextTwId = 0;
 
-    public Controller(){
-        users = new TreeMap<String, User>();
+    public Controller() {
+        users = new TreeMap<>();
+        tweets = new TreeMap<>();
     }
-
-    public void addUser(String username){
-        User user = users.get(username);
-        if(user == null){
-            users.put(username, new User(username));
-        }
-    }
-
-    public User getUser(String username){
+    //add User if not found
+    public void addUser(String username) {
         User user = users.get(username);
         if(user == null)
-            throw new RuntimeException("fail: usuario nao encontrado");
+            users.put(username, new User(username));
+    }
+    //get user by username or throw a MessageException
+    public User getUser(String username) {
+        User user = users.get(username);
+        if(user == null)
+            throw new MessageException("fail: usuario nao encontrado");
         return user;
     }
-
-    public void sendTweet(String username, String msg){
-        User user = this.getUser(username);
-        Tweet tw = new Tweet(nextTwId++, username, msg);
-        user.sendTweet(tw);
+    //get the user with getUser
+    //create a new Tweet using nextTwId and stores in tweets map
+    //call user.sendTweet to deliver the tweet
+    public void sendTweet(String username, String msg) {
+        this.getUser(username).sendTweet(new Message(nextTwId++, username, msg));
     }
-
-    public String toString(){
-        String saida = "";
-        for(User user : users.values())
-            saida += user + "\n";
-        return saida;
+    //return the toString of allUsers
+    public String toString() {
+        return this.users.values().stream().map(u -> "" + u).collect(Collectors.joining("\n"));
     }
 }
 
+//!KEEP
 public class Solver {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Controller sistema = new Controller();
-        
-        while(true){
+        while(true) {
             String line = scanner.nextLine();
             System.out.println("$" + line);
-            String ui[] = line.split(" ");
+            List<String> ui = Arrays.asList(line.split(" "));
             try {
-                if (ui[0].equals("end"))
+                if (ui.get(0).equals("end")) {
                     break;
-                else if (ui[0].equals("addUser")) {
-                    sistema.addUser(ui[1]);
-                } else if (ui[0].equals("show")) {
-                    System.out.print(sistema);
-                } else if (ui[0].equals("follow")) {//goku tina
-                    User one = sistema.getUser(ui[1]);
-                    User two = sistema.getUser(ui[2]);
-                    one.follow(two);
-                }
-                else if (ui[0].equals("twittar")) {//goku msg
-                    String username = ui[1];
-                    String msg = "";
-                    for(int i = 2; i < ui.length; i++)
-                        msg += ui[i] + " ";
-                    sistema.sendTweet(username, msg);
-                }
-                else if (ui[0].equals("timeline")) {//goku tina
-                    User user = sistema.getUser(ui[1]);
-                    System.out.print(user.getTimeline());
-                }
-                else if (ui[0].equals("like")) {//goku tina
-                    User user = sistema.getUser(ui[1]);
-                    Tweet tw = user.getTweet(Integer.parseInt(ui[2]));
-                    tw.like(ui[1]);
-                }else if (ui[0].equals("unfollow")) {//goku tina
-                    User user = sistema.getUser(ui[1]);
-                    user.unfollow(ui[2]);
-                }else{
+                } else if (ui.get(0).equals("addUser")) {
+                    sistema.addUser(ui.get(1));
+                } else if (ui.get(0).equals("show")) {
+                    System.out.println(sistema);
+                } else if (ui.get(0).equals("follow")) {//goku tina
+                    sistema.getUser(ui.get(1)).follow(sistema.getUser(ui.get(2)));
+                } else if (ui.get(0).equals("twittar")) {//goku msg
+                    sistema.sendTweet(ui.get(1), ui.stream().skip(2).collect(Collectors.joining(" ")));
+                } else if (ui.get(0).equals("unread")) {//user
+                    System.out.println(sistema.getUser(ui.get(1))); 
+                } else if (ui.get(0).equals("timeline")) {//user
+                    System.out.println(sistema.getUser(ui.get(1)).getInbox());
+                } else if (ui.get(0).equals("like")) {//goku 
+                    sistema.getUser(ui.get(1)).like(Integer.parseInt(ui.get(2)));
+                } else if (ui.get(0).equals("unfollow")) {//goku tina
+                    sistema.getUser(ui.get(1)).unfollow(ui.get(2));
+                } else {
                     System.out.println("fail: comando invalido");
                 }
-            }catch(RuntimeException rt){
+            } catch(MessageException rt) {
                 System.out.println(rt.getMessage());
             }
         }
         scanner.close();
     }
-
 }
+//!OFF

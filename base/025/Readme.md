@@ -1,4 +1,4 @@
-# Twitter - Associação reflexiva
+# Twitter (Associação reflexiva, envio de mensagens)
 ![](figura.jpg)
 
 <!--TOC_BEGIN-->
@@ -6,7 +6,7 @@
 - [Funcionalidades](#funcionalidades)
 - [Comandos e Exemplos](#comandos-e-exemplos)
 - [Diagrama](#diagrama)
-- [Main interativa](#main-interativa)
+- [Esqueleto](#esqueleto)
 <!--TOC_END-->
 
 Vamos implementar o modelo do twitter. Os usuários se cadastram e podem follow outros usuários do sistema. Ao twittar, a mensagem vai para timeline de todas as pessoas que a seguem.
@@ -56,14 +56,14 @@ $addUser sara
 $addUser tina
 $show
 goku
-  seguidos   [ ]
-  seguidores [ ]
+  seguidos   []
+  seguidores []
 sara
-  seguidos   [ ]
-  seguidores [ ]
+  seguidos   []
+  seguidores []
 tina
-  seguidos   [ ]
-  seguidores [ ]
+  seguidos   []
+  seguidores []
 
 ##################################
 # Seguir e ser seguido
@@ -75,14 +75,14 @@ $follow goku tina
 $follow sara tina
 $show
 goku
-  seguidos   [ sara tina ]
-  seguidores [ ]
+  seguidos   [sara, tina]
+  seguidores []
 sara
-  seguidos   [ tina ]
-  seguidores [ goku ]
+  seguidos   [tina]
+  seguidores [goku]
 tina
-  seguidos   [ ]
-  seguidores [ goku sara ]
+  seguidos   []
+  seguidores [goku, sara]
 
 ##################################
 # Voa passarinho
@@ -97,21 +97,21 @@ $twittar tina chocolate ruim
 $twittar goku internet maldita
 
 $timeline goku
-0:sara( hoje estou triste )
-1:tina( ganhei chocolate )
-2:sara( partiu ru )
-3:tina( chocolate ruim )
-4:goku( internet maldita )
+0:sara (hoje estou triste)
+1:tina (ganhei chocolate)
+2:sara (partiu ru)
+3:tina (chocolate ruim)
+4:goku (internet maldita)
 
 $timeline tina 
-1:tina( ganhei chocolate )
-3:tina( chocolate ruim )
+1:tina (ganhei chocolate)
+3:tina (chocolate ruim)
 
 $timeline sara
-0:sara( hoje estou triste )
-1:tina( ganhei chocolate )
-2:sara( partiu ru )
-3:tina( chocolate ruim )
+0:sara (hoje estou triste)
+1:tina (ganhei chocolate)
+2:sara (partiu ru)
+3:tina (chocolate ruim)
 
 ##################################
 # Gostei dei like
@@ -124,30 +124,30 @@ $like goku 1
 $like sara 3
 
 $timeline sara
-0:sara( hoje estou triste )
-1:tina( ganhei chocolate )[ goku sara ]
-2:sara( partiu ru )
-3:tina( chocolate ruim )[ sara ]
+0:sara (hoje estou triste)
+1:tina (ganhei chocolate) [goku, sara]
+2:sara (partiu ru)
+3:tina (chocolate ruim) [sara]
 
 $timeline goku
-0:sara( hoje estou triste )
-1:tina( ganhei chocolate )[ goku sara ]
-2:sara( partiu ru )
-3:tina( chocolate ruim )[ sara ]
-4:goku( internet maldita )
+0:sara (hoje estou triste)
+1:tina (ganhei chocolate) [goku, sara]
+2:sara (partiu ru)
+3:tina (chocolate ruim) [sara]
+4:goku (internet maldita)
 
 #__case unfollow
 $unfollow goku tina
 $show
 goku
-  seguidos   [ sara ]
-  seguidores [ ]
+  seguidos   [sara]
+  seguidores []
 sara
-  seguidos   [ tina ]
-  seguidores [ goku ]
+  seguidos   [tina]
+  seguidores [goku]
 tina
-  seguidos   [ ]
-  seguidores [ sara ]
+  seguidos   []
+  seguidores [sara]
 ##################################
 # Errinhos
 ##################################
@@ -158,7 +158,7 @@ $timeline bruno
 fail: usuario nao encontrado
 $follow goku kuririm
 fail: usuario nao encontrado
-$like sara 8
+$like sara 4
 fail: tweet nao existe
 $end
 ##################################
@@ -172,54 +172,122 @@ $end
 
 
 ***
-## Main interativa
+## Esqueleto
 
+<!--FILTER Solver.java java-->
 ```java
-public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
-    Controller sistema = new Controller();
-    
-    while(true){
-        String line = scanner.nextLine();
-        System.out.println("$" + line);
-        String ui[] = line.split(" ");
-        try {
-            if (ui[0].equals("end"))
-                break;
-            else if (ui[0].equals("addUser")) {
-                sistema.addUser(ui[1]);
-            } else if (ui[0].equals("show")) {
-                System.out.print(sistema);
-            } else if (ui[0].equals("follow")) {//goku tina
-                User one = sistema.getUser(ui[1]);
-                User two = sistema.getUser(ui[2]);
-                one.follow(two);
+class MessageException extends RuntimeException {
+    public MessageException(String message);
+}
+class Message {
+    private int id;
+    private String username;
+    private String msg;
+    private Set<String> likes; //Using a Set would eliminate duplicates
+    int getId();
+    //Initialize all attributes
+    public Message(int id, String username, String msg);
+    //add username to likes collection
+    public void like(String username);
+    //mount output string
+    public String toString();
+}
+class Inbox {
+    private Map<Integer, Message> unread; //store unread tweets
+    private Map<Integer, Message> allMsgs; //store read tweets
+    public Inbox();
+    //stores message both in unread as in allMsgs
+    public void receiveNew(Message tweet);
+    //stores message as a readed Message
+    public void store(Message tweet);
+    //return unread and clean unread Msgs
+    public Collection<Message> getUnread();
+    //return all messages
+    public Collection<Message> getAll();
+    //search for a tweet with this id and return it or throw a MessageException
+    public Message getTweet(int id);
+    //return allMsgs
+    public String toString();
+}
+class User{
+    private String username;
+    private Map<String, User> followers; //os meus seguidores
+    private Map<String, User> following; //aqueles que eu sigo
+    private Inbox inbox;
+    // Initialize all attributes
+    public User(String id);
+    //if it's still not following
+    //add other to this.following
+    //add this to other.followers
+    public void follow(User other);
+    //get the User other from following using username parameter
+    //if other is null then return
+    //remove other from following
+    //remove this from other.followers
+    public void unfollow(String username);
+    //retrieve the tweet from inbox and uses method like
+    public void like(int twId);
+    //return inbox object
+    public Inbox getInbox();
+    //Store the message in the user's inbox
+    //Put the message as an unread message in each of the follower's inbox
+    public void sendTweet(Message tw);
+    //show all followers and following by name
+    public String toString();
+}
+class Controller {
+    private Map<String, User> users;
+    private Map<Integer, Message> tweets;
+    private int nextTwId = 0;
+    public Controller();
+    //add User if not found
+    public void addUser(String username);
+    //get user by username or throw a MessageException
+    public User getUser(String username);
+    //get the user with getUser
+    //create a new Tweet using nextTwId and stores in tweets map
+    //call user.sendTweet to deliver the tweet
+    public void sendTweet(String username, String msg);
+    //return the toString of allUsers
+    public String toString();
+}
+public class Solver {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Controller sistema = new Controller();
+        while(true) {
+            String line = scanner.nextLine();
+            System.out.println("$" + line);
+            List<String> ui = Arrays.asList(line.split(" "));
+            try {
+                if (ui.get(0).equals("end")) {
+                    break;
+                } else if (ui.get(0).equals("addUser")) {
+                    sistema.addUser(ui.get(1));
+                } else if (ui.get(0).equals("show")) {
+                    System.out.println(sistema);
+                } else if (ui.get(0).equals("follow")) {//goku tina
+                    sistema.getUser(ui.get(1)).follow(sistema.getUser(ui.get(2)));
+                } else if (ui.get(0).equals("twittar")) {//goku msg
+                    sistema.sendTweet(ui.get(1), ui.stream().skip(2).collect(Collectors.joining(" ")));
+                } else if (ui.get(0).equals("unread")) {//user
+                    System.out.println(sistema.getUser(ui.get(1))); 
+                } else if (ui.get(0).equals("timeline")) {//user
+                    System.out.println(sistema.getUser(ui.get(1)).getInbox());
+                } else if (ui.get(0).equals("like")) {//goku 
+                    sistema.getUser(ui.get(1)).like(Integer.parseInt(ui.get(2)));
+                } else if (ui.get(0).equals("unfollow")) {//goku tina
+                    sistema.getUser(ui.get(1)).unfollow(ui.get(2));
+                } else {
+                    System.out.println("fail: comando invalido");
+                }
+            } catch(MessageException rt) {
+                System.out.println(rt.getMessage());
             }
-            else if (ui[0].equals("twittar")) {//goku msg
-                String username = ui[1];
-                String msg = "";
-                for(int i = 2; i < ui.length; i++)
-                    msg += ui[i] + " ";
-                sistema.sendTweet(username, msg);
-            }
-            else if (ui[0].equals("timeline")) {//goku tina
-                User user = sistema.getUser(ui[1]);
-                System.out.print(user.getTimeline());
-            }
-            else if (ui[0].equals("like")) {//goku tina
-                User user = sistema.getUser(ui[1]);
-                Tweet tw = user.getTweet(Integer.parseInt(ui[2]));
-                tw.like(ui[1]);
-            }else if (ui[0].equals("unfollow")) {//goku tina
-                User user = sistema.getUser(ui[1]);
-                user.unfollow(ui[2]);
-            }else{
-                System.out.println("fail: comando invalido");
-            }
-        }catch(RuntimeException rt){
-            System.out.println(rt.getMessage());
         }
+        scanner.close();
     }
-    scanner.close();
 }
 ```
+<!--FILTER_END-->
+

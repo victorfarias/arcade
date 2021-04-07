@@ -66,11 +66,11 @@
 
 ## 11. Lógica I
 - [@021 Matrícula - Associação NxN](base/021/Readme.md) 
-- [@025 Twitter - Associação reflexiva](base/025/Readme.md) 
+- [@025 Twitter (Associação reflexiva, envio de mensagens)](base/025/Readme.md) 
 
 ## 12. Herança II
 - Todo
-    - [@023 Salário](base/023/Readme.md) 
+    - [@023 Salário (Herança, Polimorfismo)](base/023/Readme.md) 
     - [@022 Hospital](base/022/Readme.md) 
 
 ## 13. Lógica II

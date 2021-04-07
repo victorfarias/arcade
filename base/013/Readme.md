@@ -178,6 +178,7 @@ class Client {
     private List<Account> accounts;
     public Client(String clientId);
     public void addAccount(Account account);
+    public java.lang.String toString();
     //GETS and SETS
     String getClientId();
     void setClientId(String clientId);

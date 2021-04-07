@@ -1,36 +1,62 @@
-import java.util.*;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 
+class MsgException extends RuntimeException {
+    public MsgException(String message) {
+        super(message);
+    }
+}
 
 abstract class Funcionario {
-    String nome;
-    int bonus;
+    protected String nome;
+    protected int bonus;
+    protected int diarias;
+    protected int maxDiarias;
 
-    Funcionario(String nome) {
+    public Funcionario(String nome) {
         this.nome = nome;
+        this.diarias = 0;
+        this.maxDiarias = 0;
     }
 
     public String getNome() {
         return nome;
     }
+
     public void setBonus(int bonus) {
       this.bonus = bonus;
+    }
+    //se não atingiu o máximo, adicione mais uma diária
+    //se atingiu o máximo, lance uma MsgException
+    public void addDiaria() {
+        if (this.diarias < this.maxDiarias)
+            this.diarias++;
+        else
+            throw new MsgException("fail: limite de diarias atingido");
+    }
+    //retorna bonus + diarias * 100
+    public int getSalario() {
+        return bonus + diarias * 100;
     }
 }
 
 class Professor extends Funcionario {
-    String classe;
-    int maxDiaria = 2;
-    int diarias;
+    protected String classe;
 
-    Professor(String nome, String classe) {
+    //inicializa classe e muda maxDiarias para 2
+    public Professor(String nome, String classe) {
         super(nome);
         this.classe = classe;
+        this.maxDiarias = 2;
     }
 
     public String getClasse() {
         return classe;
     }
-
+    //lógica do salário do professor
+    //usa o super.getSalario para pegar bonus e diarias
     public int getSalario() {
         int salario;
         switch (classe) {
@@ -52,14 +78,7 @@ class Professor extends Funcionario {
         default:
             salario = 0;
         }
-        return salario + (diarias * 100) + bonus;
-    }
-
-    void addDiaria() {
-        if (diarias < maxDiaria)
-            diarias++;
-        else
-            System.out.println("fail: limite de diarias atingido");
+        return salario + super.getSalario();
     }
 
     @Override
@@ -69,13 +88,12 @@ class Professor extends Funcionario {
 }
 
 class STA extends Funcionario {
-    int nivel;
-    int maxDiaria = 1;
-    int diarias;
+    protected int nivel;
 
-    STA(String nome, int nivel) {
+    public STA(String nome, int nivel) {
         super(nome);
         this.nivel = nivel;
+        this.maxDiarias = 1;
     }
 
     public int getNivel() {
@@ -83,14 +101,7 @@ class STA extends Funcionario {
     }
 
     public int getSalario() {
-        return 3000 + 300 * this.nivel + (diarias * 100) + bonus;
-    }
-
-    void addDiaria() {
-        if (diarias < maxDiaria)
-            diarias++;
-        else
-            System.out.println("fail: limite de diarias atingido");
+        return 3000 + 300 * this.nivel + super.getSalario();
     }
 
     @Override
@@ -100,13 +111,13 @@ class STA extends Funcionario {
 }
 
 class Tercerizado extends Funcionario {
-    int horas;
-    boolean isSalubre = false;
+    protected int horas;
+    protected boolean isSalubre = false;
 
-    Tercerizado(String nome, int horas, String isSalubre) {
+    public Tercerizado(String nome, int horas, String isSalubre) {
         super(nome);
         this.horas = horas;
-        if(isSalubre.equals("sim"))this.isSalubre = true;
+        this.isSalubre = isSalubre.equals("sim");
     }
 
     public int getHoras() {
@@ -114,15 +125,15 @@ class Tercerizado extends Funcionario {
     }
 
     public String getIsSalubre() {
-        if(isSalubre)return "sim";
-        return "nao";
+        return isSalubre ? "sim" : "nao";
     }
 
     public int getSalario() {
-        if (isSalubre)
-            return (4 * horas) + 500 + bonus;
-        else
-            return 4 * horas + bonus;
+        return (4 * horas) + (this.isSalubre ? 500 : 0) + super.getSalario();
+    }
+
+    public void addDiaria() {
+        throw new MsgException("fail: terc nao pode receber diaria");
     }
 
     @Override
@@ -132,83 +143,69 @@ class Tercerizado extends Funcionario {
 }
 
 class UFC {
-    TreeMap<String, Funcionario> funcionarios = new TreeMap<String, Funcionario>();
+    private Map<String, Funcionario> funcionarios = new TreeMap<>();
 
-    public String Show() {
-        StringBuilder lista = new StringBuilder();
-        for (Funcionario funcionario : funcionarios.values()) {
-            lista.append(funcionario.toString() + "\n");
-        }
-        return lista.toString();
+    public String toString() {
+        return this.funcionarios.values().stream().map(f -> "" + f).collect(Collectors.joining("\n"));
     }
 
-    public String Show(String nome) {
-        return funcionarios.get(nome).toString();
+    public Funcionario getFuncionario(String nome) {
+        Funcionario func = funcionarios.get(nome);
+        if(func == null)
+            throw new MsgException("fail: funcionario nao existe");
+        return func;
     }
 
-    public void addFuncionario(Funcionario funcionario){
+    public void addFuncionario(Funcionario funcionario) {
         funcionarios.put(funcionario.getNome(), funcionario);
     }
 
-    public void rmFuncionario(String nome){
+    public void rmFuncionario(String nome) {
         funcionarios.remove(nome);
     }
 
-    public void setBonus(int bonus){
+    //reparte o bonus para todos os funcionarios
+    public void setBonus(int bonus) {
         int bonificacao = bonus/funcionarios.size();
-        for(Funcionario fuc : funcionarios.values()){
-            fuc.setBonus(bonificacao);
-        }
-    }
-
-    public void addDiaria(String nome) {
-        if (funcionarios.get(nome) instanceof Professor) {
-            Professor prof = (Professor) funcionarios.get(nome);
-            prof.addDiaria();
-        } else if (funcionarios.get(nome) instanceof STA) {
-            STA sta = (STA) funcionarios.get(nome);
-            sta.addDiaria();
-        } else {
-            System.out.println("fail: terc nao pode receber diaria");
-        }
+        funcionarios.values().forEach(fuc -> fuc.setBonus(bonificacao));
     }
 }
 
+//!KEEP
 class Solver {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         UFC ufc = new UFC();
-
         while (true) {
-            String line = scanner.nextLine();
-            System.out.println("$" + line);
-            String ui[] = line.split(" ");
-            if (ui[0].equals("end"))
-                break;
-            else if (ui[0].equals("addProf")) {
-                ufc.addFuncionario(new Professor(ui[1], ui[2]));
-            }else if (ui[0].equals("addSta")) {
-                ufc.addFuncionario(new STA(ui[1], Integer.parseInt(ui[2])));
-            }else if (ui[0].equals("addTer")) {
-                ufc.addFuncionario(new Tercerizado(ui[1], Integer.parseInt(ui[2]), ui[3]));
-            }else if (ui[0].equals("rm")) {
-                ufc.rmFuncionario(ui[1]);
-            }else if (ui[0].equals("show")) {
-                if(ui.length > 1)System.out.println(ufc.Show(ui[1]));
-                else System.out.print(ufc.Show());
-            }else if (ui[0].equals("addDiaria")) {
-                ufc.addDiaria(ui[1]);
-            }else if (ui[0].equals("setBonus")) {
-                ufc.setBonus(Integer.parseInt(ui[1]));
-            }else{
-                System.out.print("comando invalido");
+            try {
+                String line = scanner.nextLine();
+                System.out.println("$" + line);
+                String ui[] = line.split(" ");
+                if (ui[0].equals("end")) {
+                    break;
+                } else if (ui[0].equals("addProf")) {
+                    ufc.addFuncionario(new Professor(ui[1], ui[2]));
+                } else if (ui[0].equals("addSta")) {
+                    ufc.addFuncionario(new STA(ui[1], Integer.parseInt(ui[2])));
+                } else if (ui[0].equals("addTer")) {
+                    ufc.addFuncionario(new Tercerizado(ui[1], Integer.parseInt(ui[2]), ui[3]));
+                } else if (ui[0].equals("rm")) {
+                    ufc.rmFuncionario(ui[1]);
+                } else if (ui[0].equals("showAll")) {
+                    System.out.println(ufc);
+                } else if (ui[0].equals("show")) {
+                    System.out.println(ufc.getFuncionario(ui[1]));
+                } else if (ui[0].equals("addDiaria")) {
+                    ufc.getFuncionario(ui[1]).addDiaria();
+                } else if (ui[0].equals("setBonus")) {
+                    ufc.setBonus(Integer.parseInt(ui[1]));
+                } else {
+                    System.out.print("fail: comando invalido");
+                }
+            } catch (MsgException me) {
+                System.out.println(me.getMessage());
             }
         }
     }
 }
-                // $addProf david C
-                // $show
-                // $rm elvis
-                // $addDiaria
-                // $show david
-                // $setBonus 600
+//!OFF
