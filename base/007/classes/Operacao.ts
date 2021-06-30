@@ -14,12 +14,8 @@ export class Operacao {
         this.value = value;
         this.saldo = saldo;
     }
-    //faz o preenchimento da string com espaços em branco até completar o length
-    public static pad(_string:string, _length:number):string {
-        return _string.padStart(_length) //String.format("%1$"+length+ "s", string);
-    }
     public toString():string {
-        return Operacao.pad("" + this.indice, 2) + ":" + Operacao.pad("" + this.label, 9) + ":" + Operacao.pad("" + this.value, 5) + ":" + Operacao.pad("" + this.saldo, 5);
+        return String(this.indice).padStart(2) + ":" + String(this.label).padStart(9) + ":" + String(this.value).padStart(5) + ":" + String(this.saldo).padStart(5);
     }
     getIndice() : number {
         return this.indice;

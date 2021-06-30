@@ -15,9 +15,9 @@ export class Conta {
     public tarifar(value:number):boolean{return true}
     //se o índice for válido e representar uma operação de tarifa
     //adicione o mesmo valor tarifado, mas com label de extorno
-    public extornar(indice:number):boolean{return true;};
+    public extornar(indice:number):boolean{return true;}
     //adiciona valor à conta
-    public creditar(label:Label, value:number):boolean{return true};
-    public toString():string{return ""};
-    getFinancas():Financas{return this.financas};
+    public creditar(label:Label, value:number):boolean{return true}
+    public toString():string{return ""}
+    getFinancas():Financas{return this.financas}
 }

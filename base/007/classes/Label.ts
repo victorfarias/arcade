@@ -6,7 +6,7 @@ export class Label {
     static extorno = new Label("extorno");
     static abertura = new Label("abertura");
     
-    private name : string = "";
+    private name = "";
     //nas enums o Construtor tem que ser privado
     constructor(name:string) {
         this.name = name;
