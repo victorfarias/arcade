@@ -14,7 +14,6 @@ export class Financas {
     //Incrementa o nextId
     public addOperacao(label:Label, value:number){}
     getSaldo() : number { return this.saldo; }
-    _getExtrato() : Operacao[] { return this.extrato; }
     public getExtrato() : Operacao[]{ return this.extrato; }
     public getExtratoN(qtd:number) : Operacao[]{ return this.extrato; }
 }
