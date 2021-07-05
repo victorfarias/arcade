@@ -1,4 +1,4 @@
-# Cadastro - Agência 2 (herança, método abstrato, polimorfismo)
+# Cadastro - Agência 2 (herança, polimorfismo)
 ![](capa.jpg)
 
 <!--TOC_BEGIN-->
@@ -141,14 +141,14 @@ class AccountException extends RuntimeException {
         super(message);
     }
 }
-abstract class Account {
+class Account {
     protected int id;
     protected float balance;
     protected String clientId;
     protected String type; //CC or CP
     public Account(int id, String clientId);
-    //abstract method
-    public abstract void monthlyUpdate();
+    
+    void monthlyUpdate();
     //saque
     public void withdraw(float value);
     //deposito
