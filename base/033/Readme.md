@@ -65,7 +65,7 @@ class Trem
 - vagoes: Vagao[]
 --
 + constructor(maxVagoes: number)
-+ adicionarVagao(vagao: Vagao)
++ adicionarVagao(vagao: Vagao): boolean
 + embarcar(pass: Passageiro):boolean
 + desembarcar(idPass: string)
 + exists(idPass): bool

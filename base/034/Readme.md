@@ -2,8 +2,7 @@
 ### Trem com passageiros e carga.
 ![](figura.jpg)
 
-<!--TOC_BEGIN-->
-    - [Trem com passageiros e carga.](#trem-com-passageiros-e-carga)
+<!--TOC_BEGIN-->    
 - [Funcionalidades](#funcionalidades)
     - [Parte 1 - Trem e Vagões](#parte-1---trem-e-vagões)
     - [Parte 2 - Embarque e Desembarque](#parte-2---embarque-e-desembarque)
@@ -18,13 +17,10 @@ Vamos ampliar a atividade do trem colocando vagões de carga para carregar bagag
 ### Parte 1 - Trem e Vagões
 
 - Um vagão de pessoas possui uma quantidade de cadeiras.
-- Um vagão de carga tem um limite de peso.
-- O trem possui um máximo de vagões que ele pode carregar.
-- Ao mostrar um vagão de pessoas, coloque [], e para cada cadeira livre coloque um "-".
-- Ao mostrar um vagão de carga, use um (), coloque os identificadores de carga e mostre quando de peso livre ainda existe. 
-
-- Uma carga possui um peso e um identificador.
 - Um passageiro possui um identificador.
+- Um vagão de carga tem um limite de peso.
+- Uma carga possui um peso e um identificador.
+- O trem possui um máximo de vagões que ele pode carregar.
 
 ```
   # init _maxVagoes  #inicia o trem
@@ -128,50 +124,61 @@ movimentacao
 ## Raio X
 
 ```java
-
-interface Pass:
-  getId(): string
-
-
-class Pessoa implements Pass
-- id: string
-
-class Carga implements Pass
-- id: string
-- peso: float
-
-interface class Vagao
-- elementos: Passageiro[]
+abstract class Passageiro
+# id: string
 --
-+ embarcar(pass: Pass)
-+ desembarcar(idPass: String)
-+ exists(idPass): boolean
++ constructor(id:string)
++ getId()
+
+
+class PassageiroPessoa extends Passageiro
+  - nome: string
+  ---
+  + constructor(id:string, nome:string)
+  + getName()
+
+
+class PassageiroCarga extends Passageiro
+  - descricao: string
+  - peso: number
+  ---
+  + constructor(id:string, descricao:string, peso:number)
+  + getDescricao()
+  + getPeso()
+
+
+abstract class Vagao
+  # capacidade:number
+  # cadeiras: (Passageiro|null)[]
+  --
+  + constructor(capacidade: number)  
+  + desembarcar(idPass: String)
+  + getPassageiros():(Passageiro|null)[]
+
+class VagaoPassageiro extends Vagao
+  ---
+  + embarcar(pass: PassageiroPessoa):boolean
+
+class VagaoCarga extends Vagao
+  - pesoMaximo:number
+  ---
+  + constructor(capacidade: number, pesoMaximo: number)
+  + embarcar(pass: PassageiroCarga):boolean
+  + getPesoMaximo():number
 
 class Trem
-- maxVagoes: number
-- vagoes: Vagao[]
---
-+ addVagao(vagao: Vagao)
-+ embarcar(pass: Passageiro)
-+ desembarcar(idPass: string)
-+ exists(idPass): bool
---
-+ constructor(maxVagoes: number)
-
-enum Direcao
-IN
-OUT
-
-class Movimento
-- pass: Passageiro
-- dir: Direcao
-
-class Registro
-- repPassageiros: Passageiro[]
-- movimentacao: Movimento[]
---
-+ cadastrar(pass: Passageiro)
-+ movimentar(mov: Movimento)
---
-+ constructor(maxVagoes: number)
+  - maxVagoes: number
+  - vagoes: Vagao[]
+  - vagoesPassageiro: VagaoPassageiro[]
+  - vagoesCarga: VagaoPassageiro[]
+  ---
+  + constructor(maxVagoes: number)
+  + adicionarVagaoPassageiro(vagao: VagaoPassageiro):boolean
+  + adicionarVagao(vagao: VagaoPassageiro):boolean
+  + embarcarPessoa(pass: PassageiroPessoa):boolean
+  + embarcarCarga(pass: PassageiroCarga):boolean
+  + desembarcar(idPass: string)
+  + getVagoes(): Vagao[]
+  + getVagoesPassageiro(): Vagao[]
+  + getVagoesCarga(): Vagao[]
 ```
