@@ -15,6 +15,7 @@ Você vai partir do projeto da agenda de contatos e seguir a seguinte sequência
 class Agenda{
     - entries: Entry[]
     ---
+    + constructor()
     + addEntry(Entry entry)
     + rmEntry(id: String)  // remove a entrada
     + getEntries(): Entry[] // retorna todas as entradas
@@ -25,6 +26,7 @@ class Agenda{
 abstract class Entry{
     # id: string
     ---
+    + constructor(id:string)
     + setId(id:string): void
     + getId(): string    
 }
@@ -42,17 +44,18 @@ class Fone{
     - operadora: string
     - numero: string
     ---
+    + constructor(operadora:string, numero:string)
     + getOperadora():string
     + getNumero():string
 
 }
 
 class Note extends Entry {
-    - text: string
-    - itens: string[]
+    - text: string    
     ---
-    + addItem(string item)
+    + constructor(text:string)
     + toString()
+    + getText()
 }
 
 
