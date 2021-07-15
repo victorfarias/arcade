@@ -47,6 +47,7 @@ class Fone{
     + constructor(operadora:string, numero:string)
     + getOperadora():string
     + getNumero():string
+    + toString():string
 
 }
 
