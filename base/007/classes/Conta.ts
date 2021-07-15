@@ -19,5 +19,6 @@ export class Conta {
     //adiciona valor à conta
     public creditar(label:Label, value:number):boolean{return true}
     public toString():string{return ""}
-    getFinancas():Financas{return this.financas}
+    public getId(){return this.id}
+    public getFinancas():Financas{return this.financas}
 }

@@ -2,6 +2,8 @@ import {
     assertEquals,
 } from "https://deno.land/std@0.99.0/testing/asserts.ts";
 
+//import * as log from "https://deno.land/std@0.99.0/log/mod.ts";
+
 import {Conta} from "./classes/Conta.ts"
 //import {Financas} from "./classes/Financas.ts"
 import {Label} from "./classes/Label.ts"
@@ -11,8 +13,8 @@ let conta : Conta
   
 Deno.test("iniciar", () => {
     conta = new Conta(100);
-    const printStr = conta.toString();
-    assertEquals(printStr, "conta:100 saldo:0");
+    assertEquals(conta.getFinancas().getSaldo(), 0);
+    assertEquals(conta.getId(), 100);
     //assertArrayIncludes([1, 2, 3, 4, 5, 6], [3], "Expected 3 to be in the array");
 });
 
