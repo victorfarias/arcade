@@ -53,9 +53,9 @@ class Fone{
 class Note extends Entry {
     - text: string    
     ---
-    + constructor(text:string)
-    + toString()
+    + constructor(id:string, text:string)
     + getText()
+    + toString()
 }
 
 
