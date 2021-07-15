@@ -35,6 +35,7 @@ abstract class Entry{
 class Contato extends Entry{
     - fones: Fone[]
     ---
+    + constructor(id:string)
     + addFone(fone: Fone)
     + rmFone(id)
     + toString()
