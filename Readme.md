@@ -3,6 +3,11 @@
 - [@034 Trem 2](base/034/Readme.md) 
 
 
+## Lista 6
+- [@028 Bilheteria](base/028/Readme.md) 
+- [@031 Clinica Veterinária](base/031/Readme.md) 
+
+
 ## Todos exercícios []()
 
 <!--TOC_BEGIN-->

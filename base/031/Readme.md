@@ -17,25 +17,7 @@ Você deve desenvolver o sistema de uma clínica veterinária que deve ser capaz
 
 - Cadastrar clientes pelo idCliente
     - Id de cliente deve ser único entre os clientes
-    - Cliente tem um id e um nome de múltiplas palavras
-- Mostrar todos os clientes
-
-```
-# nwcli _idCli _nome_completo
-nwcli luke luke skywallker
-  done
-nwcli lea princesa lea
-  done
-nwcli vader darth vader
-  done
-nwcli lea fracileia moreira
-  fail: cliente lea ja cadastrado.
-lacli
-  cli luke: luke skywallker
-  cli lea: princesa lea
-  cli vader: darth vader
-
-```
+    - Cliente tem um id e um nome 
 
 - Cadastrar animais.
     - Animal tem um id, um nome e uma especie e está vinculado a um único cliente.
@@ -43,24 +25,6 @@ lacli
     - Um cliente não pode ter dois animais com o mesmo nome.
 - Mostrar todos os animais cadastrados.
 - Mostre os clientes com seus animais.
-
-```
-# addAni _idCli _idAni _especie
-nwani vader rex gato
-  done
-nwani vader chaninha urubu
-  done
-nwani vader rex dino
-  fail: animal rex ja existe
-lscli vader
-  cli vader: darth vader [1:rex:gato][2:chaninha:urubu]
-nwani luke rosinha chinchila
-  done
-laani
-  [1:rex:gato]
-  [2:chaninha:urubu]
-  [3:rosinha:chinchila]
-```
 
 - Adicionar serviços na clínica.
     - Cada serviço tem um id único e um preço.
@@ -110,63 +74,67 @@ saldo
 ***
 ## Raio X
 
-````java
+````c
 class Animal
-+ idAnimal: int
-+ nome: String
-+ especie: String
-+ dono: Cliente
---
-+ constructor(idAnimal, nome, especie, dono)
-+ toString()
+  - id: number
+  - nome: string
+  - especie: string
+  - dono: Cliente
+  --
+  + constructor(id:number, nome:string, especie:string, dono:Client)
+  + getId():number
+  + getNome():string
+  + getEspecie():string
+  + getDono():Cliente
 
 class Cliente
-+ id: String
-+ nome: String
-- animais: Map<String, Animal>
---
-+ addAnimal(animal: Animal): void
---
-+ constructor (id, nome)
-+ toString()
-+ getIdCliente()
-+ getNome()
-+ getAnimais()
+  - id: string
+  - nome: string
+  - animais: Animal[]
+  --
+  + constructor (id:number, nome:string)
+  + getId():string
+  + getNome():string
+  + getAnimais():Animal[]
+  + addAnimal(animal: Animal): void
 
 class Servico
-+ idServico: int
-+ nome: String
-+ valor: float
---
-+ constructor(idServico, nome, especie)
-+ toString()
+  - id: number
+  - nome: string
+  - valor: number
+  --
+  + constructor(id:number, nome:string)
+  + getId(): number
+  + getNome(): string
+  + getValor(): number
 
 class Venda
-+ idAnimal: String
-+ idCliente: String
-+ idServico: String
---
-+ constructor(idCliente, idAnimal, idServico)
+  - id_animal: number
+  - id_cliente: number
+  - id_servico: number
+  --
+  + constructor(id_cliente: number, id_animal: number, id_servico: number)
+  + getIdAnimal(): number
+  + getIdCliente(): number
+  + getIdServico(): number
 
-class ServicoClinica
-- nextSerId: int
-- nextAniId: int
-- nextVenId: int
-- rSer: Repository<Servico>
-- rAni: Repository<Animal>
-- rPes: Repository<Pessoa>
-- rVen: Repository<Venda>
---
-+ addCliente(cliente: Cliente): void
-+ addServico(nome: String, valor: String): void
-+ addAnimal(idCliente: String, nomeAnimal: String, especie: String): void
-+ vender(idCliente: String, nomeAnimal: String, IdServico: String): void
-+ saldo(): float
-+ getAllCliente(): List<Cliente>
-+ getAllServico(): List<Servico>
-+ getAllAnimal(): List<Animal>
-+ getCliente(idCliente)
-+ getServico(idServico)
-+ getAnimal(idAnimal)
 
+class Clinica
+  - nextServicoId: number
+  - nextAnimalId: number
+  - nextVendaId: number
+  - nextClienteId: number
+  - servicos: Servico[]
+  - vendas: Venda[]
+  - clientes: Cliente[]
+  --
+  + constructor()
+  + addCliente(nome:string): void -> lançar exceção se nome está repetido
+  + addServico(nome: String, valor: number): void -> lançar exceção se nome está repetido
+  + addAnimal(idCliente: number, nomeAnimal: String, especie: String): void -> lançar exceção se nome está repetido
+  + vender(idCliente: number, idAnimal: number, IdServico: number): void -> lançar exceção de animal não for do cliente
+  + saldo(): number
+  + getClientes(): Cliente[]
+  + getServicos(): Servico[]
+  + getVendas(): Animal[]
 ````

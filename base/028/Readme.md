@@ -16,7 +16,62 @@ Você deve desenvolver um sistema para gerenciar as vendas de uma bilheteria de 
 - Cadastrar uma pessoa pelo nome.
     - nome da pessoa é único
     - a pessoa pode ou não pagar meia
-- Mostrar todos os clientes
+- Cadastrar evento
+    - Evento tem nome e preço
+- Cadastrar venda
+    - cadastrar venda de uma pessoa de um evento
+    - cada venda deve ser adicionado ao caixa da bilheteria
+
+
+## Classes
+
+```c
+class Bilheteria
+    - repVendas: Venda[]
+    - repClientes: Map<string, Cliente>
+    - repEventos: Map<string, Evento>
+    - caixa: number
+    ---
+    constructor()    
+    + getRepVendas(): Venda[]
+    + getRepClientes(): Map<string, Cliente>
+    + getRepEventos(): Map<string, Evento>
+    + getCaixa(): number
+    + addCliente(nome: string, meia:bool):void - lançar exceção se nome for repetido
+    + addEvento(nome: string, preco: valor):void - lançar exceção se nome for repetido
+    + vender(nome_cliente: string, nome_evento: string):void - lançar caso nome_cliente ou nome_evento não exista
+
+class Cliente
+    - nome: string
+    - meia: boolean
+    ---
+    + constructor(nome:string, meia:boolean)
+    + getNome():string
+    + getMeia():boolean
+
+class Evento
+    - nome: string
+    - preco: number
+    ---
+    + constructor(nome: string, preco: number)
+    + getNome():string
+    + getPreco():number
+
+class Venda
+    - cliente: Cliente
+    - evento: Evento
+    ---
+    constructor(cliente: Cliente, evento: Evento)
+    + getCliente():Cliente
+    + getEvento():Evento
+```
+<!-- 
+## Diagrama
+
+![](diagrama.png)
+ 
+---
+
 
 ```sh
 #__case cadastro pessoas
@@ -96,11 +151,6 @@ orappa
 $end
 ```
 ***
-## Diagrama
-
-![](diagrama.png)
- 
----
 
 ## Main não interativa
 
@@ -133,4 +183,4 @@ bilheteria.showVenda();
 
 bilheteria.showCaixa();
 //R$ 35,00
-```
+``` -->
